@@ -40,10 +40,12 @@ setInterval(() => {
     .catch((error) => {
       console
       var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
         auth: {
           user,
-          password
+          pass: password
         }
       });
       
