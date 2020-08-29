@@ -13,7 +13,7 @@ function apiRequest(url) {
 
 
 function apiRequestExplorer(url) {
-  return request({uri: url, simple: false, resolveWithFullResponse: true})
+  return request({ uri: url, simple: false, resolveWithFullResponse: true })
     .then(() => {
       return 'ok';
     })
@@ -136,27 +136,59 @@ var zelcoreRates = {
       apiRequest('https://proxy.bth.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=bithereum&call=nicehistory&param=BExvZ3Pc7poSWC2UWqvvQ1L3kx3VDdrERo'), // 56
       // SIN check. Just one check to check proxy, node, electrumx
       apiRequest('https://proxy.sin.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=sinovate&call=nicehistory&param=SXoqyAiZ6gQjafKmSnb2pmfwg7qLC8r4Sf'), // 57
+      // ZEL check. Just one check to check proxy, node, electrumx
+      apiRequest('https://proxy.zel.network/?server=127.0.0.1&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 58
+      // ZEL check 2. Just one check to check proxy, node, electrumx
+      apiRequest('https://proxy.zel.network/?server=electrumx.zel.network&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 59
 
       // GENX explorer
-      apiRequestExplorer('https://explorer.genx.zelcore.io'), // 58
+      apiRequestExplorer('https://explorer.genx.zelcore.io'), // 60
       // GRS explorer
-      apiRequestExplorer('https://explorer.grs.zelcore.io'), // 59
+      apiRequestExplorer('https://explorer.grs.zelcore.io'), // 61
       // DGB explorer
-      apiRequestExplorer('https://explorer.dgb.zelcore.io'), // 60
+      apiRequestExplorer('https://explorer.dgb.zelcore.io'), // 62
       // DOGE explorer
-      apiRequestExplorer('https://explorer.doge.zelcore.io'), // 61
+      apiRequestExplorer('https://explorer.doge.zelcore.io'), // 63
       // BTH explorer
-      apiRequestExplorer('https://explorer.bth.zelcore.io'), // 62
+      apiRequestExplorer('https://explorer.bth.zelcore.io'), // 64
       // SIN explorer
-      apiRequestExplorer('https://explorer.sin.zelcore.io'), // 63
+      apiRequestExplorer('https://explorer.sin.zelcore.io'), // 65
 
       // VBK transactions
-      apiRequest('https://explorer.vbk.zelcore.io/api/address/VBZ3J16cLrhxeEwZvswQSucfrFKvMF/transaction-normal?count=50'), // 64
+      apiRequest('https://explorer.vbk.zelcore.io/api/address/VBZ3J16cLrhxeEwZvswQSucfrFKvMF/transaction-normal?count=50'), // 66
 
       // VBK balance - node and its proxy
       apiRequestPOST('https://proxy.vbk.zelcore.io/addressesbalance', {
         addresses: ['VBZ3J16cLrhxeEwZvswQSucfrFKvMF']
-      }), // 65
+      }), // 67
+
+      // XMR explorer
+      apiRequestExplorer('https://explorer.xmr.zelcore.io'), // 68
+
+      // APT ZelCash
+      apiRequestExplorer('https://apt.zel.cash'), // 69
+
+      // ZelPro database
+      apiRequest('https://zelpro.zelcore.io/prouser/1CbErtneaX2QVyUfwU7JGB7VzvPgrgc3uC'), // 70
+
+      //proxies
+      apiRequestExplorer('https://cze.proxy.zelcore.io/'), // 71
+      apiRequestExplorer('https://fra.proxy.zelcore.io/'), // 72
+      apiRequestExplorer('https://sgp.proxy.zelcore.io/'), // 73
+      apiRequestExplorer('https://ams.proxy.zelcore.io/'), // 74
+      apiRequestExplorer('https://nyc.proxy.zelcore.io/'), // 75
+      apiRequestExplorer('https://sfo.proxy.zelcore.io/'), // 76
+      apiRequestExplorer('https://instaswap.zelcore.io/'), // 77
+
+      // rates services
+      apiRequest('https://vipbrates.zelcore.io/'), // 78
+      apiRequest('https://vipcrates.zelcore.io/'), // 79
+      apiRequest('https://vipdrates.zelcore.io/'), // 80
+
+      // markets services
+      apiRequest('https://vipbrates.zelcore.io/markets'), // 81
+      apiRequest('https://vipcrates.zelcore.io/markets'), // 82
+      apiRequest('https://vipdrates.zelcore.io/markets'), // 83
 
       // END OF OUR SERVICES
 
@@ -265,6 +297,51 @@ var zelcoreRates = {
         }
       }
 
+      function checkZelCorePlus(i, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i]
+          }
+          if (results[i].validTill === 1760216096000) {
+            ok.push(name)
+          } else {
+            throw new Error(name, 500)
+          }
+        } catch (e) {
+          errors.push(name)
+        }
+      }
+
+      function checkRates(i, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i]
+          }
+          if (Object.keys(results[i][2].errors).length === 0) {
+            ok.push(name)
+          } else {
+            throw new Error(name, 500)
+          }
+        } catch (e) {
+          errors.push(name)
+        }
+      }
+
+      function checkMarkets(i, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i]
+          }
+          if (Object.keys(results[i][1].errors).length === 0) {
+            ok.push(name)
+          } else {
+            throw new Error(name, 500)
+          }
+        } catch (e) {
+          errors.push(name)
+        }
+      }
+
       checkInsight(0, 1, 'explorer.zel.cash');
       checkInsight(2, 3, 'explorer2.zel.cash');
       checkInsight(4, 5, 'explorer.zel.zelcore.io');
@@ -299,16 +376,40 @@ var zelcoreRates = {
       checkElectrumx(55, 'proxy.doge.zelcore.io');
       checkElectrumx(56, 'proxy.bth.zelcore.io');
       checkElectrumx(57, 'proxy.sin.zelcore.io');
+      checkElectrumx(58, 'proxy.zel.network');
+      checkElectrumx(59, 'electrumx.zel.network');
 
-      checkExplorer(58, 'explorer.genx.zelcore.io');
-      checkExplorer(59, 'explorer.grs.zelcore.io');
-      checkExplorer(60, 'explorer.dgb.zelcore.io');
-      checkExplorer(61, 'explorer.doge.zelcore.io');
-      checkExplorer(62, 'explorer.bth.zelcore.io');
-      checkExplorer(63, 'explorer.sin.zelcore.io');
+      checkExplorer(60, 'explorer.genx.zelcore.io');
+      checkExplorer(61, 'explorer.grs.zelcore.io');
+      checkExplorer(62, 'explorer.dgb.zelcore.io');
+      checkExplorer(63, 'explorer.doge.zelcore.io');
+      checkExplorer(64, 'explorer.bth.zelcore.io');
+      checkExplorer(65, 'explorer.sin.zelcore.io');
 
-      checkVeriblockTransactions(64, 'explorer.vbk.zelcore.io');
-      checkVeriblockBalance(65, 'proxy.vbk.zelcore.io');
+      checkVeriblockTransactions(66, 'explorer.vbk.zelcore.io');
+      checkVeriblockBalance(67, 'proxy.vbk.zelcore.io');
+
+      checkExplorer(68, 'explorer.xmr.zelcore.io');
+
+      checkExplorer(69, 'apt.zel.cash');
+
+      checkZelCorePlus(70, 'zelpro.zelcore.io');
+
+      checkExplorer(71, 'cze.proxy.zelcore.io');
+      checkExplorer(72, 'fra.proxy.zelcore.io');
+      checkExplorer(73, 'sgp.proxy.zelcore.io');
+      checkExplorer(74, 'ams.proxy.zelcore.io');
+      checkExplorer(75, 'nyc.proxy.zelcore.io');
+      checkExplorer(76, 'sfo.proxy.zelcore.io');
+      checkExplorer(77, 'instaswap.zelcore.io');
+
+      checkRates(78, 'vipbrates.zelcore.io');
+      checkRates(79, 'vipcrates.zelcore.io');
+      checkRates(80, 'vipdrates.zelcore.io');
+
+      checkMarkets(81, 'vipbrates.zelcore.io/markets');
+      checkMarkets(82, 'vipcrates.zelcore.io/markets');
+      checkMarkets(83, 'vipdrates.zelcore.io/markets');
 
       const statuses = {};
       statuses.ok = ok;
