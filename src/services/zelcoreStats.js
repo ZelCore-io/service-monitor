@@ -127,7 +127,7 @@ var zelcoreRates = {
       // GENX check. Just one check to check proxy, node, electrumx
       apiRequest('https://proxy.genx.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=genesis&call=nicehistory&param=CSyjWNHUFNC4xVSjb6vsrP9QeTpKNRMLZP'), // 52
       // GRS check. Just one check to check proxy, node, electrumx
-      apiRequest('https://proxy.grs.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=groestlcoin&call=nicehistory&param=FfgZPEfmvou5VxZRnTbRjPKhgVsrx7Qjq9'), // 53
+      apiRequest('https://proxy.grs.zelcore.io/?server=127.0.0.1&port=56002&contype=tls&coin=groestlcoin&call=nicehistory&param=FfgZPEfmvou5VxZRnTbRjPKhgVsrx7Qjq9'), // 53
       // DGB check. Just one check to check proxy, node, electrumx
       apiRequest('https://proxy.dgb.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=digibyte&call=nicehistory&param=DFewUat3fj7pbMiudwbWpdgyuULCiVf6q8'), // 54
       // DOGE check. Just one check to check proxy, node, electrumx
