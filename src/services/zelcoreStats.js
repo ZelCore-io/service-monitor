@@ -101,9 +101,11 @@ var zelcoreRates = {
       // explorer.axe.zelcore.io
       apiRequest('https://explorer.axe.zelcore.io/api/addr/PK726JLFREhj3CD5FRvUwmVee5mnX7g4ia'), // 36
       apiRequest('https://explorer.axe.zelcore.io/api/sync'), // 37
-      // explorer.btx.zelcore.io
-      apiRequest('https://explorer.btx.zelcore.io/api/addr/2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'), // 38
-      apiRequest('https://explorer.btx.zelcore.io/api/sync'), // 39
+      // explorer.btx.zelcore.io was migrated to Electrumx
+      apiRequest('https://proxy.btx.zelcore.io/?server=127.0.0.1&port=55002&contype=tls&coin=bitcore&call=nicehistory&param=2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'), // 38
+      apiRequestExplorer('https://explorer.btx.zelcore.io'), // 39
+      // apiRequest('https://explorer.btx.zelcore.io/api/addr/2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'), // 38
+      // apiRequest('https://explorer.btx.zelcore.io/api/sync'), // 39
       // explorer.ltc.zelcore.io
       apiRequest('https://explorer.ltc.zelcore.io/api/addr/LVjoCYFESyTbKAEU5VbFYtb9EYyBXx55V5'), // 40
       apiRequest('https://explorer.ltc.zelcore.io/api/sync'), // 41
@@ -361,7 +363,7 @@ var zelcoreRates = {
       checkInsight(32, 33, 'explorer.btc.zelcore.io');
       checkInsight(34, 35, 'explorer.zec.zelcore.io');
       checkInsight(36, 37, 'explorer.axe.zelcore.io');
-      checkInsight(38, 39, 'explorer.btx.zelcore.io');
+      // checkInsight(38, 39, 'explorer.btx.zelcore.io');
       checkInsight(40, 41, 'explorer.ltc.zelcore.io');
       checkInsight(42, 43, 'explorer.xsg.zelcore.io');
 
@@ -370,6 +372,7 @@ var zelcoreRates = {
       checkBlockBook(48, 49, 'blockbook.btc.zelcore.io');
       checkBlockBook(50, 51, 'blockbook.ltc.zelcore.io');
 
+      checkElectrumx(38, 'proxy.btx.zelcore.io');
       checkElectrumx(52, 'proxy.genx.zelcore.io');
       checkElectrumx(53, 'proxy.grs.zelcore.io');
       checkElectrumx(54, 'proxy.dgb.zelcore.io');
@@ -379,6 +382,7 @@ var zelcoreRates = {
       checkElectrumx(58, 'proxy.zel.network');
       checkElectrumx(59, 'electrumx.zel.network');
 
+      checkExplorer(39, 'explorer.btx.zelcore.io');
       checkExplorer(60, 'explorer.genx.zelcore.io');
       checkExplorer(61, 'explorer.grs.zelcore.io');
       checkExplorer(62, 'explorer.dgb.zelcore.io');
