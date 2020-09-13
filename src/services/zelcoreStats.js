@@ -14,11 +14,14 @@ function apiRequest(url) {
 
 function apiRequestExplorer(url) {
   return request({ uri: url, simple: false, resolveWithFullResponse: true })
-    .then(() => {
+    .then((response) => {
+      if (response.statusCode !== 200 && response.statusCode !== 500) {
+        throw new Error('Bad code');
+      }
       return 'ok';
     })
     .catch((error) => {
-      console.log(error);
+      // console.log(error);
       console.log("ERROR: " + url)
       return error
     })
