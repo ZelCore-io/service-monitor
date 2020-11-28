@@ -195,6 +195,10 @@ var zelcoreRates = {
       apiRequest('https://vipcrates.zelcore.io/markets'), // 82
       apiRequest('https://vipdrates.zelcore.io/markets'), // 83
 
+      // openmonero services TODO move up
+      // BELDEX
+      apiRequestPOST('https://backend.bdx.zelcore.io/get_version'), // 83
+
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -347,6 +351,24 @@ var zelcoreRates = {
         }
       }
 
+      function checkOpenMonero(i, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i]
+          }
+          console.log(results[i])
+          const height = results[i].blockchain_height;
+          console.log(height > 400000)
+          if (height > 0) {
+            ok.push(name)
+          } else {
+            throw new Error(name, 500)
+          }
+        } catch (e) {
+          errors.push(name)
+        }
+      }
+
       checkInsight(0, 1, 'explorer.zel.cash');
       checkInsight(2, 3, 'explorer2.zel.cash');
       checkInsight(4, 5, 'explorer.zel.zelcore.io');
@@ -417,6 +439,8 @@ var zelcoreRates = {
       checkMarkets(81, 'vipbrates.zelcore.io/markets');
       checkMarkets(82, 'vipcrates.zelcore.io/markets');
       checkMarkets(83, 'vipdrates.zelcore.io/markets');
+
+      checkOpenMonero(84, 'backend.bdx.zelcore.io');
 
       const statuses = {};
       statuses.ok = ok;
