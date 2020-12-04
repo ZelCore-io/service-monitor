@@ -197,7 +197,12 @@ var zelcoreRates = {
 
       // openmonero services TODO move up
       // BELDEX
-      apiRequestPOST('https://backend.bdx.zelcore.io/get_version'), // 83
+      apiRequestPOST('https://backend.bdx.zelcore.io/get_address_info', {
+        "address": "bxcFHfY3cRbSLB6FwxG3Dr7AX133Wjy4cZSiUEwVs2LJCheCAndAjwc6AB2fLFJ48UgKazGETTgV54jD58bCyVG63AVwuLVkV",
+        "view_key": "72a386a316536e1d3494e030101240eddd06f23a75a1e275c9f6443e95898e09",
+        "create_account": true,
+        "generated_locally": true
+      }), // 83
 
       // END OF OUR SERVICES
 
@@ -357,9 +362,8 @@ var zelcoreRates = {
             throw results[i]
           }
           console.log(results[i])
-          const height = results[i].blockchain_height;
-          console.log(height > 400000)
-          if (height > 0) {
+          const received = results[i].total_received;
+          if (received > 0) {
             ok.push(name)
           } else {
             throw new Error(name, 500)
