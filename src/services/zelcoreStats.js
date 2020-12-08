@@ -73,7 +73,7 @@ var zelcoreRates = {
       apiRequest('https://explorer.bze.zelcore.io/api/sync'), // 15
       // explorer.zcoin.zelcore.io
       apiRequest('https://explorer.zcoin.zelcore.io/api/addr/aBEJgEP2b7DP7tyQukv639qtdhjFhWp2QE'), // 16
-      apiRequest('https://explorer.anon.zelcore.io/api/sync'), // 17
+      apiRequest('https://explorer.zcoin.zelcore.io/api/sync'), // 17
       // explorer.btcz.zelcore.io
       apiRequest('https://explorer.btcz.zelcore.io/api/addr/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj'), // 18
       apiRequest('https://explorer.btcz.zelcore.io/api/sync'), // 19
