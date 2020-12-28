@@ -202,7 +202,11 @@ var zelcoreRates = {
         "view_key": "72a386a316536e1d3494e030101240eddd06f23a75a1e275c9f6443e95898e09",
         "create_account": true,
         "generated_locally": true
-      }), // 83
+      }), // 84
+
+      // explorer.tbtc.zelcore.io
+      apiRequest('https://explorer.tbtc.zelcore.io/api/v2/address/mr2oEP2PBLenqU1vcvaL6njhtLCcKvhtMe?pageSize=50'), // 85
+      apiRequest('https://explorer.tbtc.zelcore.io/api/sync'), // 86
 
       // END OF OUR SERVICES
 
@@ -400,6 +404,7 @@ var zelcoreRates = {
       checkBlockBook(46, 47, 'explorer.etc.zelcore.io');
       checkBlockBook(48, 49, 'blockbook.btc.zelcore.io');
       checkBlockBook(50, 51, 'blockbook.ltc.zelcore.io');
+      checkBlockBook(85, 86, 'explorer.tbtc.zelcore.io');
 
       checkElectrumx(38, 'proxy.btx.zelcore.io');
       checkElectrumx(52, 'proxy.genx.zelcore.io');
