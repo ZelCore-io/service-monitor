@@ -136,7 +136,7 @@ var zelcoreRates = {
       // DGB check. Just one check to check proxy, node, electrumx
       apiRequest('https://proxy.dgb.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=digibyte&call=nicehistory&param=DFewUat3fj7pbMiudwbWpdgyuULCiVf6q8'), // 54
       // DOGE check. Just one check to check proxy, node, electrumx
-      apiRequest('https://proxy.doge.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=dogecoin&call=nicehistory&param=DFewUat3fj7pbMiudwbWpdgyuULCiVf6q8'), // 55
+      apiRequest('https://proxy.doge.zelcore.io/?server=127.0.0.1&port=55002&contype=tls&coin=dogecoin&call=nicehistory&param=DFewUat3fj7pbMiudwbWpdgyuULCiVf6q8'), // 55
       // BTH check. Just one check to check proxy, node, electrumx
       apiRequest('https://proxy.bth.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=bithereum&call=nicehistory&param=BExvZ3Pc7poSWC2UWqvvQ1L3kx3VDdrERo'), // 56
       // SIN check. Just one check to check proxy, node, electrumx
