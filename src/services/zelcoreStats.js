@@ -47,21 +47,21 @@ function apiRequestPOST(url, data) {
 var zelcoreRates = {
   getAll() {
     return Promise.all([
-      // explorer.zel.cash
-      apiRequest('https://explorer.zel.cash/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 0
-      apiRequest('https://explorer.zel.cash/api/sync'), // 1
-      // explorer2.zel.cash
-      apiRequest('https://explorer2.zel.cash/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 2
-      apiRequest('https://explorer2.zel.cash/api/sync'), // 3
-      // explorer2.zel.cash
+      // explorer.zel.network
+      apiRequest('https://explorer.zel.network/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 0
+      apiRequest('https://explorer.zel.network/api/sync'), // 1
+      // explorer2.zel.network
+      apiRequest('https://explorer2.zel.network/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 2
+      apiRequest('https://explorer2.zel.network/api/sync'), // 3
+      // explorer2.zel.network
       apiRequest('https://explorer.zel.zelcore.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 4
       apiRequest('https://explorer.zel.zelcore.io/api/sync'), // 5
       // explorer.zelcash.online
       apiRequest('https://explorer.zelcash.online/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 6
       apiRequest('https://explorer.zelcash.online/api/sync'), // 7
-      // explorer-asia.zel.cash
-      apiRequest('https://explorer-asia.zel.cash/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 8
-      apiRequest('https://explorer-asia.zel.cash/api/sync'), // 9
+      // explorer-asia.zel.network
+      apiRequest('https://explorer-asia.zel.network/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 8
+      apiRequest('https://explorer-asia.zel.network/api/sync'), // 9
       // explorer.anon.zelcore.io
       apiRequest('https://explorer.anon.zelcore.io/api/addr/AnY5LGSDdUgawBW8TQuFL1fJeTbswo65xeK'), // 10
       apiRequest('https://explorer.anon.zelcore.io/api/sync'), // 11
@@ -171,7 +171,7 @@ var zelcoreRates = {
       apiRequestExplorer('https://explorer.xmr.zelcore.io'), // 68
 
       // APT ZelCash
-      apiRequestExplorer('https://apt.zel.cash'), // 69
+      apiRequestExplorer('https://apt.zel.network'), // 69
 
       // ZelPro database
       apiRequest('https://zelpro.zelcore.io/prouser/1CbErtneaX2QVyUfwU7JGB7VzvPgrgc3uC'), // 70
@@ -377,11 +377,11 @@ var zelcoreRates = {
         }
       }
 
-      checkInsight(0, 1, 'explorer.zel.cash');
-      checkInsight(2, 3, 'explorer2.zel.cash');
+      checkInsight(0, 1, 'explorer.zel.network');
+      checkInsight(2, 3, 'explorer2.zel.network');
       checkInsight(4, 5, 'explorer.zel.zelcore.io');
       checkInsight(6, 7, 'explorer.zelcash.online');
-      checkInsight(8, 9, 'explorer-asia.zel.cash');
+      checkInsight(8, 9, 'explorer-asia.zel.network');
       checkInsight(10, 11, 'explorer.anon.zelcore.io');
       checkInsight(12, 13, 'explorer.dash.zelcore.io');
       checkInsight(14, 15, 'explorer.bze.zelcore.io');
@@ -429,7 +429,7 @@ var zelcoreRates = {
 
       checkExplorer(68, 'explorer.xmr.zelcore.io');
 
-      checkExplorer(69, 'apt.zel.cash');
+      checkExplorer(69, 'apt.zel.network');
 
       checkZelCorePlus(70, 'zelpro.zelcore.io');
 
