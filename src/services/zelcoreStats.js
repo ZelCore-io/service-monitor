@@ -47,21 +47,21 @@ function apiRequestPOST(url, data) {
 var zelcoreRates = {
   getAll() {
     return Promise.all([
-      // explorer.zel.network
-      apiRequest('https://explorer.zel.network/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 0
-      apiRequest('https://explorer.zel.network/api/sync'), // 1
+      // explorer.runonflux.io
+      apiRequest('https://explorer.runonflux.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 0
+      apiRequest('https://explorer.runonflux.io/api/sync'), // 1
       // explorer2.zel.network
       apiRequest('https://explorer2.zel.network/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 2
       apiRequest('https://explorer2.zel.network/api/sync'), // 3
       // explorer2.zel.network
-      apiRequest('https://explorer.zel.zelcore.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 4
-      apiRequest('https://explorer.zel.zelcore.io/api/sync'), // 5
+      apiRequest('https://explorer.flux.zelcore.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 4
+      apiRequest('https://explorer.flux.zelcore.io/api/sync'), // 5
       // explorer.zelcash.online
       apiRequest('https://explorer.zelcash.online/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 6
       apiRequest('https://explorer.zelcash.online/api/sync'), // 7
-      // explorer-asia.zel.network
-      apiRequest('https://explorer-asia.zel.network/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 8
-      apiRequest('https://explorer-asia.zel.network/api/sync'), // 9
+      // explorer-asia.runonflux.io
+      apiRequest('https://explorer-asia.runonflux.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 8
+      apiRequest('https://explorer-asia.runonflux.io/api/sync'), // 9
       // explorer.anon.zelcore.io
       apiRequest('https://explorer.anon.zelcore.io/api/addr/AnY5LGSDdUgawBW8TQuFL1fJeTbswo65xeK'), // 10
       apiRequest('https://explorer.anon.zelcore.io/api/sync'), // 11
@@ -116,9 +116,9 @@ var zelcoreRates = {
       apiRequest('https://explorer.xsg.zelcore.io/api/addr/s1XibA2S46fGxtaWjKNTBadS1eMh9s9eGrD'), // 42
       apiRequest('https://explorer.xsg.zelcore.io/api/sync'), // 43
 
-      // blockbook.zel.network
-      apiRequest('https://blockbook.zel.network/api/v2/address/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj?pageSize=50'), // 44
-      apiRequest('https://blockbook.zel.network/api/sync'), // 45
+      // blockbook.runonflux.io
+      apiRequest('https://blockbook.runonflux.io/api/v2/address/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj?pageSize=50'), // 44
+      apiRequest('https://blockbook.runonflux.io/api/sync'), // 45
       // explorer.etc.zelcore.io // blockbook
       apiRequest('https://explorer.etc.zelcore.io/api/v2/address/0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf?pageSize=50'), // 46
       apiRequest('https://explorer.etc.zelcore.io/api/sync'), // 47
@@ -142,9 +142,9 @@ var zelcoreRates = {
       // SIN check. Just one check to check proxy, node, electrumx
       apiRequest('https://proxy.sin.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=sinovate&call=nicehistory&param=SXoqyAiZ6gQjafKmSnb2pmfwg7qLC8r4Sf'), // 57
       // ZEL check. Just one check to check proxy, node, electrumx
-      apiRequest('https://proxy.zel.network/?server=127.0.0.1&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 58
+      apiRequest('https://proxy.runonflux.io/?server=127.0.0.1&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 58
       // ZEL check 2. Just one check to check proxy, node, electrumx
-      apiRequest('https://proxy.zel.network/?server=electrumx.zel.network&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 59
+      apiRequest('https://proxy.runonflux.io/?server=electrumx.runonflux.io&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 59
 
       // GENX explorer
       apiRequestExplorer('https://explorer.genx.zelcore.io'), // 60
@@ -171,7 +171,7 @@ var zelcoreRates = {
       apiRequestExplorer('https://explorer.xmr.zelcore.io'), // 68
 
       // APT ZelCash
-      apiRequestExplorer('https://apt.zel.network'), // 69
+      apiRequestExplorer('https://apt.runonflux.io'), // 69
 
       // ZelPro database
       apiRequest('https://zelpro.zelcore.io/prouser/1CbErtneaX2QVyUfwU7JGB7VzvPgrgc3uC'), // 70
@@ -181,7 +181,7 @@ var zelcoreRates = {
       apiRequestExplorer('https://fra.proxy.zelcore.io/'), // 72
       apiRequestExplorer('https://sgp.proxy.zelcore.io/'), // 73
       apiRequestExplorer('https://ams.proxy.zelcore.io/'), // 74
-      apiRequestExplorer('https://nyc.proxy.zelcore.io/'), // 75
+      // apiRequestExplorer('https://nyc.proxy.zelcore.io/'), // 75
       apiRequestExplorer('https://sfo.proxy.zelcore.io/'), // 76
       apiRequestExplorer('https://instaswap.zelcore.io/'), // 77
 
@@ -377,11 +377,11 @@ var zelcoreRates = {
         }
       }
 
-      checkInsight(0, 1, 'explorer.zel.network');
-      checkInsight(2, 3, 'explorer2.zel.network');
-      checkInsight(4, 5, 'explorer.zel.zelcore.io');
+      checkInsight(0, 1, 'explorer.runonflux.io');
+      // checkInsight(2, 3, 'explorer2.zel.network');
+      checkInsight(4, 5, 'explorer.flux.zelcore.io');
       checkInsight(6, 7, 'explorer.zelcash.online');
-      checkInsight(8, 9, 'explorer-asia.zel.network');
+      // checkInsight(8, 9, 'explorer-asia.runonflux.io');
       checkInsight(10, 11, 'explorer.anon.zelcore.io');
       checkInsight(12, 13, 'explorer.dash.zelcore.io');
       checkInsight(14, 15, 'explorer.bze.zelcore.io');
@@ -400,7 +400,7 @@ var zelcoreRates = {
       checkInsight(40, 41, 'explorer.ltc.zelcore.io');
       checkInsight(42, 43, 'explorer.xsg.zelcore.io');
 
-      checkBlockBook(44, 45, 'blockbook.zel.network');
+      checkBlockBook(44, 45, 'blockbook.runonflux.io');
       checkBlockBook(46, 47, 'explorer.etc.zelcore.io');
       checkBlockBook(48, 49, 'blockbook.btc.zelcore.io');
       checkBlockBook(50, 51, 'blockbook.ltc.zelcore.io');
@@ -413,8 +413,8 @@ var zelcoreRates = {
       checkElectrumx(55, 'proxy.doge.zelcore.io');
       checkElectrumx(56, 'proxy.bth.zelcore.io');
       checkElectrumx(57, 'proxy.sin.zelcore.io');
-      checkElectrumx(58, 'proxy.zel.network');
-      checkElectrumx(59, 'electrumx.zel.network');
+      checkElectrumx(58, 'proxy.runonflux.io');
+      checkElectrumx(59, 'electrumx.runonflux.io');
 
       checkExplorer(39, 'explorer.btx.zelcore.io');
       checkExplorer(60, 'explorer.genx.zelcore.io');
@@ -429,7 +429,7 @@ var zelcoreRates = {
 
       checkExplorer(68, 'explorer.xmr.zelcore.io');
 
-      checkExplorer(69, 'apt.zel.network');
+      checkExplorer(69, 'apt.runonflux.io');
 
       checkZelCorePlus(70, 'zelpro.zelcore.io');
 
