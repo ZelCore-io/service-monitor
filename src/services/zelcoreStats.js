@@ -208,6 +208,16 @@ var zelcoreRates = {
       apiRequest('https://explorer.tbtc.zelcore.io/api/v2/address/mr2oEP2PBLenqU1vcvaL6njhtLCcKvhtMe?pageSize=50'), // 85
       apiRequest('https://explorer.tbtc.zelcore.io/api/sync'), // 86
 
+      // PolkaDot
+      apiRequest('https://backend.dot.zelcore.io/runtime'), // 87
+      // Kusama
+      apiRequest('https://backend.ksm.zelcore.io/runtime'), // 88
+      // Westend
+      apiRequest('https://backend.wnd.zelcore.io/runtime'), // 89
+
+      // Cardano
+      apiRequest('https://backend.ada.zelcore.io/mainnet/utxos/addr1q8n8r9ljwfjrudwpxhxs48st4npj6k904l4dzryz52cca38nmftl6t473mrp9k7cnveuexjd9nc09ntw4c3mfvlygdgspejkn7'), // 90
+
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -365,9 +375,45 @@ var zelcoreRates = {
           if (results[i] instanceof Error) {
             throw results[i]
           }
-          console.log(results[i])
+          // console.log(results[i])
           const received = results[i].total_received;
           if (received > 0) {
+            ok.push(name)
+          } else {
+            throw new Error(name, 500)
+          }
+        } catch (e) {
+          errors.push(name)
+        }
+      }
+
+      function checkSubstrate(i, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i]
+          }
+          const specVersion = results[i].result.specVersion;
+          if (specVersion > 0 && typeof specVersion === 'number') {
+            ok.push(name)
+          } else {
+            throw new Error(name, 500)
+          }
+        } catch (e) {
+          errors.push(name)
+        }
+      }
+
+      function checkCardano(i, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i]
+          }
+          const utxos = results[i];
+          let balance = 0;
+          utxos.forEach((utxo) => {
+            balance += utxo.coin;
+          });
+          if (balance > 0) {
             ok.push(name)
           } else {
             throw new Error(name, 500)
@@ -450,6 +496,11 @@ var zelcoreRates = {
       checkMarkets(83, 'vipdrates.zelcore.io/markets');
 
       checkOpenMonero(84, 'backend.bdx.zelcore.io');
+
+      checkSubstrate(87, 'backend.dot.zelcore.io');
+      checkSubstrate(88, 'backend.ksm.zelcore.io');
+      checkSubstrate(89, 'backend.wnd.zelcore.io');
+      checkCardano(90, 'backend.ada.zelcore.io');
 
       const statuses = {};
       statuses.ok = ok;
