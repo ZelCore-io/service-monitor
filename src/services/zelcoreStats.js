@@ -218,6 +218,9 @@ var zelcoreRates = {
       // Cardano
       apiRequest('https://backend.ada.zelcore.io/mainnet/utxos/addr1q8n8r9ljwfjrudwpxhxs48st4npj6k904l4dzryz52cca38nmftl6t473mrp9k7cnveuexjd9nc09ntw4c3mfvlygdgspejkn7'), // 90
 
+      // stats service
+      apiRequest('https://stats.runonflux.io/fluxinfo'), // 91
+      apiRequest('https://api.zelcore.io/networkfees'), // 91
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -423,6 +426,37 @@ var zelcoreRates = {
         }
       }
 
+      function checkStats(i, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i]
+          }
+          const response = results[i];
+          if (response.data.length > 500) {
+            ok.push(name)
+          } else {
+            throw new Error(name, 500)
+          }
+        } catch (e) {
+          errors.push(name)
+        }
+      }
+      function checkFees(i, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i]
+          }
+          const response = results[i];
+          if (response.length > 2 && response[2].normal > 40) {
+            ok.push(name)
+          } else {
+            throw new Error(name, 500)
+          }
+        } catch (e) {
+          errors.push(name)
+        }
+      }
+
       checkInsight(0, 1, 'explorer.runonflux.io');
       // checkInsight(2, 3, 'explorer2.zel.network');
       checkInsight(4, 5, 'explorer.flux.zelcore.io');
@@ -501,6 +535,9 @@ var zelcoreRates = {
       checkSubstrate(88, 'backend.ksm.zelcore.io');
       checkSubstrate(89, 'backend.wnd.zelcore.io');
       checkCardano(90, 'backend.ada.zelcore.io');
+
+      checkStats(91, 'stats.runonflux.io');
+      checkFees(91, 'api.zelcore.io/networkfees');
 
       const statuses = {};
       statuses.ok = ok;
