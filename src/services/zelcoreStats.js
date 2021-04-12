@@ -220,7 +220,7 @@ var zelcoreRates = {
 
       // stats service
       apiRequest('https://stats.runonflux.io/fluxinfo'), // 91
-      apiRequest('https://api.zelcore.io/networkfees'), // 91
+      apiRequest('https://api.zelcore.io/networkfees'), // 92
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -537,7 +537,7 @@ var zelcoreRates = {
       checkCardano(90, 'backend.ada.zelcore.io');
 
       checkStats(91, 'stats.runonflux.io');
-      checkFees(91, 'api.zelcore.io/networkfees');
+      checkFees(92, 'api.zelcore.io/networkfees');
 
       const statuses = {};
       statuses.ok = ok;
