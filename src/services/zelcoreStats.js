@@ -11,6 +11,37 @@ function apiRequest(url) {
     })
 }
 
+function extendedInsightTest(url, blockUlr, txUrl) {
+  return request({ uri: url, json: true })
+    .then((res) => {
+      const blockUrlAdjusted = blockUlr + res.blocks[0].hash;
+      return request({ uri: blockUrlAdjusted, json: true })
+        .then((res2) => {
+          const txid = res2.txs[0].txid;
+          const adjustedUrlTx = txUrl + txid;
+          return request({ uri: adjustedUrlTx, json: true })
+            .then((res3) => {
+              console.log(res3.confirmations);
+              if (res3.confirmations < -2) {
+                throw new Error("Error: " + txUrl)
+              }
+              return response
+            })
+            .catch((error) => {
+              console.log("ERROR: " + txUrl)
+              return error
+            })
+        })
+        .catch((error) => {
+          console.log("ERROR: " + blockUlr)
+          return error
+        })
+    })
+    .catch((error) => {
+      console.log("ERROR: " + url)
+      return error
+    })
+}
 
 function apiRequestExplorer(url) {
   return request({ uri: url, simple: false, resolveWithFullResponse: true })
@@ -221,6 +252,9 @@ var zelcoreRates = {
       // stats service
       apiRequest('https://stats.runonflux.io/fluxinfo'), // 91
       apiRequest('https://api.zelcore.io/networkfees'), // 92
+
+      extendedInsightTest('https://explorer.zec.zelcore.io/api/blocks?limit=1', 'https://explorer.zec.zelcore.io/api/txs/?block=', 'https://explorer.zec.zelcore.io/api/tx/'), // 93
+      extendedInsightTest('https://explorer.bze.zelcore.io/api/blocks?limit=1', 'https://explorer.bze.zelcore.io/api/txs/?block=', 'https://explorer.bze.zelcore.io/api/tx/') // 94
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -239,6 +273,27 @@ var zelcoreRates = {
           }
           if (results[j] instanceof Error) {
             throw results[j]
+          }
+          if (results[i].transactions.length > 0 && results[j].status === 'finished') {
+            ok.push(name)
+          } else {
+            throw new Error(name, 500)
+          }
+        } catch (e) {
+          errors.push(name)
+        }
+      }
+
+      function checkExtendedInsight(i, j, k, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i]
+          }
+          if (results[j] instanceof Error) {
+            throw results[j]
+          }
+          if (results[k] instanceof Error) {
+            throw results[k]
           }
           if (results[i].transactions.length > 0 && results[j].status === 'finished') {
             ok.push(name)
@@ -466,7 +521,7 @@ var zelcoreRates = {
       // checkInsight(8, 9, 'explorer-asia.runonflux.io');
       checkInsight(10, 11, 'explorer.anon.zelcore.io');
       checkInsight(12, 13, 'explorer.dash.zelcore.io');
-      checkInsight(14, 15, 'explorer.bze.zelcore.io');
+      checkExtendedInsight(14, 15, 94, 'explorer.bze.zelcore.io');
       checkInsight(16, 17, 'explorer.zcoin.zelcore.io');
       checkInsight(18, 19, 'explorer.btcz.zelcore.io');
       checkInsight(20, 21, 'explorer.zer.zelcore.io');
@@ -476,7 +531,7 @@ var zelcoreRates = {
       checkInsight(28, 29, 'explorer.safe.zelcore.io');
       checkInsight(30, 31, 'explorer.cmm.zelcore.io');
       checkInsight(32, 33, 'explorer.btc.zelcore.io');
-      checkInsight(34, 35, 'explorer.zec.zelcore.io');
+      checkExtendedInsight(34, 35, 93, 'explorer.zec.zelcore.io');
       checkInsight(36, 37, 'explorer.axe.zelcore.io');
       // checkInsight(38, 39, 'explorer.btx.zelcore.io');
       checkInsight(40, 41, 'explorer.ltc.zelcore.io');
