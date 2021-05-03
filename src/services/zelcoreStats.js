@@ -252,6 +252,8 @@ var zelcoreRates = {
 
       function checkBlockBook(i, j, name) {
         try {
+          console.log(result[i])
+          console.log(result[j])
           if (results[i] instanceof Error) {
             throw results[i]
           }
@@ -447,7 +449,7 @@ var zelcoreRates = {
             throw results[i]
           }
           const response = results[i];
-          if (response.length > 2 && response[2].normal > 40) {
+          if (response.length > 2 && response[2].normal > 30) {
             ok.push(name)
           } else {
             throw new Error(name, 500)
