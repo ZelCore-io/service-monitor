@@ -21,11 +21,11 @@ function extendedInsightTest(url, blockUlr, txUrl) {
           const adjustedUrlTx = txUrl + txid;
           return request({ uri: adjustedUrlTx, json: true })
             .then((res3) => {
-              console.log(res3.confirmations);
               if (res3.confirmations < -2) {
+                console.log("HERE");
                 throw new Error("Error: " + txUrl)
               }
-              return response
+              return res3
             })
             .catch((error) => {
               console.log("ERROR: " + txUrl)
@@ -307,8 +307,6 @@ var zelcoreRates = {
 
       function checkBlockBook(i, j, name) {
         try {
-          console.log(result[i])
-          console.log(result[j])
           if (results[i] instanceof Error) {
             throw results[i]
           }
@@ -374,7 +372,6 @@ var zelcoreRates = {
           }
           const confirmedObject = results[i].result.confirmed.find((a) => a.address === 'VBZ3J16cLrhxeEwZvswQSucfrFKvMF');
           const confirmedBal = confirmedObject.unlockedAmount;
-          console.log(confirmedBal)
           if (confirmedBal > 0) {
             ok.push(name)
           } else {
