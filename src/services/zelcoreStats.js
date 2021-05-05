@@ -588,7 +588,7 @@ var zelcoreRates = {
       checkSubstrate(87, 'backend.dot.zelcore.io');
       checkSubstrate(88, 'backend.ksm.zelcore.io');
       checkSubstrate(89, 'backend.wnd.zelcore.io');
-      checkCardano(90, 'backend.ada.zelcore.io');
+      // checkCardano(90, 'backend.ada.zelcore.io');
 
       checkStats(91, 'stats.runonflux.io');
       checkFees(92, 'api.zelcore.io/networkfees');

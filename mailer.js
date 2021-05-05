@@ -22,6 +22,7 @@ setInterval(() => {
         var mailOptions = {
           from: user,
           to: 'tadeas@zel.network',
+          cc: ['alex.rousseau@gmail.com', 'doukka@gmail.com', 'k4mil.piekarski@gmail.com'],
           subject: 'SERVICE down',
           text: JSON.stringify(response.errors),
         };
@@ -52,7 +53,8 @@ setInterval(() => {
       var mailOptions = {
         from: user,
         to: 'tadeas@zel.network',
-        subject: ' MONITORING DOWN',
+        cc: ['alex.rousseau@gmail.com', 'doukka@gmail.com', 'k4mil.piekarski@gmail.com'],
+        subject: 'MONITORING DOWN',
         text: 'Please, check monitoring server!',
       };
       
