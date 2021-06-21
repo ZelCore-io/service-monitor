@@ -248,13 +248,14 @@ var zelcoreRates = {
 
       // Cardano
       apiRequest('https://backend.ada.zelcore.io/mainnet/utxos/addr1q8n8r9ljwfjrudwpxhxs48st4npj6k904l4dzryz52cca38nmftl6t473mrp9k7cnveuexjd9nc09ntw4c3mfvlygdgspejkn7'), // 90
+      apiRequest('https://backend.ada.zelcore.io/api/txs/last'), // 91
 
       // stats service
-      apiRequest('https://stats.runonflux.io/fluxinfo'), // 91
-      apiRequest('https://api.zelcore.io/networkfees'), // 92
+      apiRequest('https://stats.runonflux.io/fluxinfo'), // 92
+      apiRequest('https://api.zelcore.io/networkfees'), // 93
 
-      extendedInsightTest('https://explorer.zec.zelcore.io/api/blocks?limit=1', 'https://explorer.zec.zelcore.io/api/txs/?block=', 'https://explorer.zec.zelcore.io/api/tx/'), // 93
-      extendedInsightTest('https://explorer.bze.zelcore.io/api/blocks?limit=1', 'https://explorer.bze.zelcore.io/api/txs/?block=', 'https://explorer.bze.zelcore.io/api/tx/') // 94
+      extendedInsightTest('https://explorer.zec.zelcore.io/api/blocks?limit=1', 'https://explorer.zec.zelcore.io/api/txs/?block=', 'https://explorer.zec.zelcore.io/api/tx/'), // 94
+      extendedInsightTest('https://explorer.bze.zelcore.io/api/blocks?limit=1', 'https://explorer.bze.zelcore.io/api/txs/?block=', 'https://explorer.bze.zelcore.io/api/tx/') // 95
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -460,18 +461,25 @@ var zelcoreRates = {
         }
       }
 
-      function checkCardano(i, name) {
+      function checkCardano(i, j, name) {
         try {
           if (results[i] instanceof Error) {
             throw results[i]
           }
+          if (results[j] instanceof Error) {
+            throw results[j]
+          }
           const utxos = results[i];
+          const lastTime = results[j].Right[0].cteTimeIssued * 1000;
+          const curTime = new Date().getTime();
           let balance = 0;
           utxos.forEach((utxo) => {
             balance += utxo.coin;
           });
           if (balance > 0) {
-            ok.push(name)
+            if (curTime - lastTime < 600000) {// 10 mins
+              ok.push(name)
+            }
           } else {
             throw new Error(name, 500)
           }
@@ -518,7 +526,7 @@ var zelcoreRates = {
       // checkInsight(8, 9, 'explorer-asia.runonflux.io');
       checkInsight(10, 11, 'explorer.anon.zelcore.io');
       checkInsight(12, 13, 'explorer.dash.zelcore.io');
-      checkExtendedInsight(14, 15, 94, 'explorer.bze.zelcore.io');
+      checkExtendedInsight(14, 15, 95, 'explorer.bze.zelcore.io');
       checkInsight(16, 17, 'explorer.zcoin.zelcore.io');
       checkInsight(18, 19, 'explorer.btcz.zelcore.io');
       checkInsight(20, 21, 'explorer.zer.zelcore.io');
@@ -528,7 +536,7 @@ var zelcoreRates = {
       checkInsight(28, 29, 'explorer.safe.zelcore.io');
       checkInsight(30, 31, 'explorer.cmm.zelcore.io');
       checkInsight(32, 33, 'explorer.btc.zelcore.io');
-      checkExtendedInsight(34, 35, 93, 'explorer.zec.zelcore.io');
+      checkExtendedInsight(34, 35, 94, 'explorer.zec.zelcore.io');
       checkInsight(36, 37, 'explorer.axe.zelcore.io');
       // checkInsight(38, 39, 'explorer.btx.zelcore.io');
       checkInsight(40, 41, 'explorer.ltc.zelcore.io');
@@ -588,10 +596,10 @@ var zelcoreRates = {
       checkSubstrate(87, 'backend.dot.zelcore.io');
       checkSubstrate(88, 'backend.ksm.zelcore.io');
       checkSubstrate(89, 'backend.wnd.zelcore.io');
-      checkCardano(90, 'backend.ada.zelcore.io');
+      checkCardano(90, 91, 'backend.ada.zelcore.io');
 
-      checkStats(91, 'stats.runonflux.io');
-      checkFees(92, 'api.zelcore.io/networkfees');
+      checkStats(92, 'stats.runonflux.io');
+      checkFees(93, 'api.zelcore.io/networkfees');
 
       const statuses = {};
       statuses.ok = ok;
