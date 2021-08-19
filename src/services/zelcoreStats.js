@@ -255,7 +255,13 @@ var zelcoreRates = {
       apiRequest('https://api.zelcore.io/networkfees'), // 93
 
       extendedInsightTest('https://explorer.zec.zelcore.io/api/blocks?limit=1', 'https://explorer.zec.zelcore.io/api/txs/?block=', 'https://explorer.zec.zelcore.io/api/tx/'), // 94
-      extendedInsightTest('https://explorer.bze.zelcore.io/api/blocks?limit=1', 'https://explorer.bze.zelcore.io/api/txs/?block=', 'https://explorer.bze.zelcore.io/api/tx/') // 95
+      extendedInsightTest('https://explorer.bze.zelcore.io/api/blocks?limit=1', 'https://explorer.bze.zelcore.io/api/txs/?block=', 'https://explorer.bze.zelcore.io/api/tx/'), // 95
+
+      // RTM check. Just one check to check proxy, node, electrumx
+      apiRequest('https://proxy.rtm.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=raptoreum&call=nicehistory&param=RKo31qpgy9278MuWNXb5NPranc4W6oaUFf'), // 96
+      // VTC
+      apiRequest('https://explorer.vtc.zelcore.io/api/v2/address/VbFrQgNEiR8ZxMh9WmkjJu9kkqjJA6imdD?pageSize=50'), // 97
+      apiRequest('https://explorer.vtc.zelcore.io/api/sync') // 98
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -547,6 +553,7 @@ var zelcoreRates = {
       checkBlockBook(48, 49, 'blockbook.btc.zelcore.io');
       checkBlockBook(50, 51, 'blockbook.ltc.zelcore.io');
       checkBlockBook(85, 86, 'explorer.tbtc.zelcore.io');
+      checkBlockBook(97, 98, 'explorer.vtc.zelcore.io');
 
       checkElectrumx(38, 'proxy.btx.zelcore.io');
       checkElectrumx(52, 'proxy.genx.zelcore.io');
@@ -557,6 +564,7 @@ var zelcoreRates = {
       checkElectrumx(57, 'proxy.sin.zelcore.io');
       checkElectrumx(58, 'proxy.runonflux.io');
       checkElectrumx(59, 'electrumx.runonflux.io');
+      checkElectrumx(96, 'proxy.rtm.zelcore.io');
 
       checkExplorer(39, 'explorer.btx.zelcore.io');
       checkExplorer(60, 'explorer.genx.zelcore.io');
