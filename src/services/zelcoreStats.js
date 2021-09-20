@@ -2,13 +2,11 @@ const request = require('request-promise-native');
 
 function apiRequest(url) {
   return request({ uri: url, json: true })
-    .then((response) => {
-      return response
-    })
+    .then((response) => response)
     .catch((error) => {
-      console.log("ERROR: " + url)
-      return error
-    })
+      console.log(`ERROR: ${url}`);
+      return error;
+    });
 }
 
 function extendedInsightTest(url, blockUlr, txUrl) {
@@ -17,30 +15,30 @@ function extendedInsightTest(url, blockUlr, txUrl) {
       const blockUrlAdjusted = blockUlr + res.blocks[0].hash;
       return request({ uri: blockUrlAdjusted, json: true })
         .then((res2) => {
-          const txid = res2.txs[0].txid;
+          const { txid } = res2.txs[0];
           const adjustedUrlTx = txUrl + txid;
           return request({ uri: adjustedUrlTx, json: true })
             .then((res3) => {
               if (res3.confirmations < -2) {
-                console.log("HERE");
-                throw new Error("Error: " + txUrl)
+                console.log('HERE');
+                throw new Error(`Error: ${txUrl}`);
               }
-              return res3
+              return res3;
             })
             .catch((error) => {
-              console.log("ERROR: " + txUrl)
-              return error
-            })
+              console.log(`ERROR: ${txUrl}`);
+              return error;
+            });
         })
         .catch((error) => {
-          console.log("ERROR: " + blockUlr)
-          return error
-        })
+          console.log(`ERROR: ${blockUlr}`);
+          return error;
+        });
     })
     .catch((error) => {
-      console.log("ERROR: " + url)
-      return error
-    })
+      console.log(`ERROR: ${url}`);
+      return error;
+    });
 }
 
 function apiRequestExplorer(url) {
@@ -53,29 +51,27 @@ function apiRequestExplorer(url) {
     })
     .catch((error) => {
       // console.log(error);
-      console.log("ERROR: " + url)
-      return error
-    })
+      console.log(`ERROR: ${url}`);
+      return error;
+    });
 }
 
 function apiRequestPOST(url, data) {
-  var options = {
+  const options = {
     method: 'POST',
     uri: url,
     body: data,
-    json: true
+    json: true,
   };
   return request(options)
-    .then((response) => {
-      return response
-    })
+    .then((response) => response)
     .catch((error) => {
-      console.log("ERROR: " + url)
-      return error
-    })
+      console.log(`ERROR: ${url}`);
+      return error;
+    });
 }
 
-var zelcoreRates = {
+const zelcoreRates = {
   getAll() {
     return Promise.all([
       // explorer.runonflux.io
@@ -195,7 +191,7 @@ var zelcoreRates = {
 
       // VBK balance - node and its proxy
       apiRequestPOST('https://proxy.vbk.zelcore.io/addressesbalance', {
-        addresses: ['VBZ3J16cLrhxeEwZvswQSucfrFKvMF']
+        addresses: ['VBZ3J16cLrhxeEwZvswQSucfrFKvMF'],
       }), // 67
 
       // XMR explorer
@@ -207,7 +203,7 @@ var zelcoreRates = {
       // ZelPro database
       apiRequest('https://zelpro.zelcore.io/prouser/1CbErtneaX2QVyUfwU7JGB7VzvPgrgc3uC'), // 70
 
-      //proxies
+      // proxies
       apiRequestExplorer('https://cze.proxy.zelcore.io/'), // 71
       apiRequestExplorer('https://fra.proxy.zelcore.io/'), // 72
       apiRequestExplorer('https://sgp.proxy.zelcore.io/'), // 73
@@ -229,10 +225,10 @@ var zelcoreRates = {
       // openmonero services TODO move up
       // BELDEX
       apiRequestPOST('https://backend.bdx.zelcore.io/get_address_info', {
-        "address": "bxcFHfY3cRbSLB6FwxG3Dr7AX133Wjy4cZSiUEwVs2LJCheCAndAjwc6AB2fLFJ48UgKazGETTgV54jD58bCyVG63AVwuLVkV",
-        "view_key": "72a386a316536e1d3494e030101240eddd06f23a75a1e275c9f6443e95898e09",
-        "create_account": true,
-        "generated_locally": true
+        address: 'bxcFHfY3cRbSLB6FwxG3Dr7AX133Wjy4cZSiUEwVs2LJCheCAndAjwc6AB2fLFJ48UgKazGETTgV54jD58bCyVG63AVwuLVkV',
+        view_key: '72a386a316536e1d3494e030101240eddd06f23a75a1e275c9f6443e95898e09',
+        create_account: true,
+        generated_locally: true,
       }), // 84
 
       // explorer.tbtc.zelcore.io
@@ -261,219 +257,218 @@ var zelcoreRates = {
       apiRequest('https://proxy.rtm.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=raptoreum&call=nicehistory&param=RKo31qpgy9278MuWNXb5NPranc4W6oaUFf'), // 96
       // VTC
       apiRequest('https://explorer.vtc.zelcore.io/api/v2/address/VbFrQgNEiR8ZxMh9WmkjJu9kkqjJA6imdD?pageSize=50'), // 97
-      apiRequest('https://explorer.vtc.zelcore.io/api/sync') // 98
+      apiRequest('https://explorer.vtc.zelcore.io/api/sync'), // 98
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
 
-
       // https://blockscout.com/etc/mainnet/api/?module=account&action=txlist&address=0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf outside etc transactions
 
     ]).then((results) => {
-      var ok = []
-      var errors = []
+      const ok = [];
+      const errors = [];
 
       function checkInsight(i, j, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           if (results[j] instanceof Error) {
-            throw results[j]
+            throw results[j];
           }
           if (results[i].transactions.length > 0 && results[j].status === 'finished') {
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkExtendedInsight(i, j, k, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           if (results[j] instanceof Error) {
-            throw results[j]
+            throw results[j];
           }
           if (results[k] instanceof Error) {
-            throw results[k]
+            throw results[k];
           }
           if (results[i].transactions.length > 0 && results[j].status === 'finished') {
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkBlockBook(i, j, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           if (results[j] instanceof Error) {
-            throw results[j]
+            throw results[j];
           }
           // or txs > 0 as txids may not be there
           if (results[i].txids.length > 0 && results[j].blockbook.inSync === true && results[j].blockbook.bestHeight === results[j].backend.blocks) { // last check not needed
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkElectrumx(i, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           if (results[i].length > 0) {
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkExplorer(i, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
-          ok.push(name)
+          ok.push(name);
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkVeriblockTransactions(i, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           if (results[i].length > 0) {
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkVeriblockBalance(i, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           const confirmedObject = results[i].result.confirmed.find((a) => a.address === 'VBZ3J16cLrhxeEwZvswQSucfrFKvMF');
           const confirmedBal = confirmedObject.unlockedAmount;
           if (confirmedBal > 0) {
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkZelCorePlus(i, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           if (results[i].validTill === 1760216096000) {
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkRates(i, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           if (Object.keys(results[i][2].errors).length === 0) {
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkMarkets(i, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           if (Object.keys(results[i][1].errors).length === 0) {
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkOpenMonero(i, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           // console.log(results[i])
           const received = results[i].total_received;
           if (received > 0) {
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkSubstrate(i, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
-          const specVersion = results[i].result.specVersion;
+          const { specVersion } = results[i].result;
           if (specVersion > 0 && typeof specVersion === 'number') {
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkCardano(i, j, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           if (results[j] instanceof Error) {
-            throw results[j]
+            throw results[j];
           }
           const utxos = results[i];
           const lastTime = results[j].Right[0].cteTimeIssued * 1000;
@@ -483,45 +478,45 @@ var zelcoreRates = {
             balance += utxo.coin;
           });
           if (balance > 0) {
-            if (curTime - lastTime < 600000) {// 10 mins
-              ok.push(name)
+            if (curTime - lastTime < 600000) { // 10 mins
+              ok.push(name);
             }
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 
       function checkStats(i, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           const response = results[i];
           if (response.data.length > 500) {
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
       function checkFees(i, name) {
         try {
           if (results[i] instanceof Error) {
-            throw results[i]
+            throw results[i];
           }
           const response = results[i];
           if (response.length > 2 && response[2].normal > 20) {
-            ok.push(name)
+            ok.push(name);
           } else {
-            throw new Error(name, 500)
+            throw new Error(name, 500);
           }
         } catch (e) {
-          errors.push(name)
+          errors.push(name);
         }
       }
 

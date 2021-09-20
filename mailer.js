@@ -8,30 +8,30 @@ const password = 'secretpassword';
 setInterval(() => {
   request({ uri: url, json: true })
     .then((response) => {
-      if (response.errors.length > 0 ) {
-        var transporter = nodemailer.createTransport({
+      if (response.errors.length > 0) {
+        const transporter = nodemailer.createTransport({
           host: 'smtp.gmail.com',
           port: 465,
           secure: true,
           auth: {
             user,
-            pass: password
-          }
+            pass: password,
+          },
         });
-        
-        var mailOptions = {
+
+        const mailOptions = {
           from: user,
           to: 'tadeas@zel.network',
           cc: ['alex.rousseau@gmail.com', 'doukka@gmail.com', 'k4mil.piekarski@gmail.com'],
           subject: 'SERVICE down',
           text: JSON.stringify(response.errors),
         };
-        
-        transporter.sendMail(mailOptions, function(error, info){
+
+        transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
             console.log(error);
           } else {
-            console.log('Email sent: ' + info.response);
+            console.log(`Email sent: ${info.response}`);
           }
         });
       } else {
@@ -39,31 +39,31 @@ setInterval(() => {
       }
     })
     .catch((error) => {
-      console
-      var transporter = nodemailer.createTransport({
+      console.log(error);
+      const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
         secure: true,
         auth: {
           user,
-          pass: password
-        }
+          pass: password,
+        },
       });
-      
-      var mailOptions = {
+
+      const mailOptions = {
         from: user,
         to: 'tadeas@zel.network',
         cc: ['alex.rousseau@gmail.com', 'doukka@gmail.com', 'k4mil.piekarski@gmail.com'],
         subject: 'MONITORING DOWN',
         text: 'Please, check monitoring server!',
       };
-      
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
+
+      transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+          console.log(err);
         } else {
-          console.log('Email sent: ' + info.response);
+          console.log(`Email sent: ${info.response}`);
         }
       });
-    })
+    });
 }, 6 * 60 * 1000);
