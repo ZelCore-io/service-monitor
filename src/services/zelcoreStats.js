@@ -243,8 +243,21 @@ const zelcoreRates = {
       apiRequest('https://backend.wnd.zelcore.io/runtime'), // 89
 
       // Cardano
-      apiRequest('https://backend.ada.zelcore.io/mainnet/utxos/addr1q8n8r9ljwfjrudwpxhxs48st4npj6k904l4dzryz52cca38nmftl6t473mrp9k7cnveuexjd9nc09ntw4c3mfvlygdgspejkn7'), // 90
-      apiRequest('https://backend.ada.zelcore.io/api/txs/last'), // 91
+      apiRequestPOST('https://backend.ada.zelcore.io/graphql', {
+        query: '{ cardanoDbMeta { initialized syncPercentage }}',
+      }), // 90
+      apiRequestPOST('https://backend.ada.zelcore.io/graphql', {
+        query: `query utxoSetForAddress($address: String!) {
+          utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
+            txHash
+            index
+            value
+          }
+        }`,
+        variables: {
+          address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
+        },
+      }), // 91
 
       // stats service
       apiRequest('https://stats.runonflux.io/fluxinfo'), // 92
@@ -470,16 +483,13 @@ const zelcoreRates = {
           if (results[j] instanceof Error) {
             throw results[j];
           }
-          const utxos = results[i];
-          const lastTime = results[j].Right[0].cteTimeIssued * 1000;
-          const curTime = new Date().getTime();
-          let balance = 0;
-          utxos.forEach((utxo) => {
-            balance += utxo.coin;
-          });
-          if (balance > 0) {
-            if (curTime - lastTime < 600000) { // 10 mins
+          const sync = results[i].data.cardanoDbMeta.syncPercentage;
+          const { utxos } = results[j].data;
+          if (utxos[0].value > 100) {
+            if (sync === 100) {
               ok.push(name);
+            } else {
+              throw new Error(name, 500);
             }
           } else {
             throw new Error(name, 500);
@@ -534,7 +544,7 @@ const zelcoreRates = {
       checkInsight(22, 23, 'explorer.kmd.zelcore.io');
       checkInsight(24, 25, 'explorer.rvn.zelcore.io');
       checkInsight(26, 27, 'explorer.zcl.zelcore.io');
-      checkInsight(28, 29, 'explorer.safe.zelcore.io');
+      // checkInsight(28, 29, 'explorer.safe.zelcore.io');
       checkInsight(30, 31, 'explorer.cmm.zelcore.io');
       checkInsight(32, 33, 'explorer.btc.zelcore.io');
       checkExtendedInsight(34, 35, 94, 'explorer.zec.zelcore.io');
