@@ -210,7 +210,7 @@ const zelcoreRates = {
       apiRequestExplorer('https://ams.proxy.zelcore.io/'), // 74
       apiRequestExplorer('https://nyc.proxy.zelcore.io/'), // 75
       apiRequestExplorer('https://sfo.proxy.zelcore.io/'), // 76
-      apiRequestExplorer('https://proxy.abe.zelcore.io/'), // 77
+      apiRequestExplorer('https://abe.proxy.zelcore.io/'), // 77
 
       // rates services
       apiRequest('https://vipbrates.zelcore.io/'), // 78
@@ -594,7 +594,7 @@ const zelcoreRates = {
       checkExplorer(74, 'ams.proxy.zelcore.io');
       checkExplorer(75, 'nyc.proxy.zelcore.io');
       checkExplorer(76, 'sfo.proxy.zelcore.io');
-      checkExplorer(77, 'proxy.abe.zelcore.io');
+      checkExplorer(77, 'abe.proxy.zelcore.io');
 
       checkRates(78, 'vipbrates.zelcore.io');
       checkRates(79, 'vipcrates.zelcore.io');
