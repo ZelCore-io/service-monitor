@@ -271,6 +271,7 @@ const zelcoreRates = {
       // VTC
       apiRequest('https://explorer.vtc.zelcore.io/api/v2/address/VbFrQgNEiR8ZxMh9WmkjJu9kkqjJA6imdD?pageSize=50'), // 97
       apiRequest('https://explorer.vtc.zelcore.io/api/sync'), // 98
+      apiRequest('https://proxy.runonflux.io/?server=electrumx2.runonflux.io&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 59
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -570,6 +571,7 @@ const zelcoreRates = {
       checkElectrumx(58, 'proxy.runonflux.io');
       checkElectrumx(59, 'electrumx.runonflux.io');
       checkElectrumx(96, 'proxy.rtm.zelcore.io');
+      checkElectrumx(99, 'electrumx2.runonflux.io');
 
       checkExplorer(39, 'explorer.btx.zelcore.io');
       checkExplorer(60, 'explorer.genx.zelcore.io');
