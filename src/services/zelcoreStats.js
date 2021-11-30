@@ -330,7 +330,7 @@ const zelcoreRates = {
             throw results[j];
           }
           // or txs > 0 as txids may not be there
-          if (results[i].txids.length > 0 && results[j].blockbook.inSync === true && results[j].blockbook.bestHeight === results[j].backend.blocks) { // last check not needed
+          if (results[i].txids.length > 0 && results[j].blockbook.inSync === true && results[j].blockbook.bestHeight > (results[j].backend.blocks - 100)) { // last check not needed
             ok.push(name);
           } else {
             throw new Error(name, 500);
