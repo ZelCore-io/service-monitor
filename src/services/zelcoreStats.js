@@ -532,7 +532,7 @@ const zelcoreRates = {
       }
 
       checkInsight(0, 1, 'explorer.runonflux.io');
-      // checkInsight(2, 3, 'explorer2.zel.network');
+      checkInsight(2, 3, 'explorer2.flux.zelcore.io');
       checkInsight(4, 5, 'explorer.flux.zelcore.io');
       checkInsight(6, 7, 'explorer.zelcash.online');
       // checkInsight(8, 9, 'explorer-asia.runonflux.io');
