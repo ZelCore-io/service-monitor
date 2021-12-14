@@ -77,10 +77,10 @@ const zelcoreRates = {
       // explorer.runonflux.io
       apiRequest('https://explorer.runonflux.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 0
       apiRequest('https://explorer.runonflux.io/api/sync'), // 1
-      // explorer2.zel.network
-      apiRequest('https://explorer2.zel.network/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 2
-      apiRequest('https://explorer2.zel.network/api/sync'), // 3
-      // explorer2.zel.network
+      // explorer2.flux.zelcore.io
+      apiRequest('https://explorer2.flux.zelcore.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 2
+      apiRequest('https://explorer2.flux.zelcore.io/api/sync'), // 3
+      // explorer.flux.zelcore.io
       apiRequest('https://explorer.flux.zelcore.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 4
       apiRequest('https://explorer.flux.zelcore.io/api/sync'), // 5
       // explorer.zelcash.online
