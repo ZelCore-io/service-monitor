@@ -66,6 +66,7 @@ function apiRequestPOST(url, data) {
   return request(options)
     .then((response) => response)
     .catch((error) => {
+      console.log(error);
       console.log(`ERROR: ${url}`);
       return error;
     });
@@ -123,8 +124,8 @@ const zelcoreRates = {
       apiRequest('https://explorer.cmm.zelcore.io/api/addr/CSyjWNHUFNC4xVSjb6vsrP9QeTpKNRMLZP'), // 30
       apiRequest('https://explorer.cmm.zelcore.io/api/sync'), // 31
       // explorer.btc.zelcore.io
-      apiRequest('https://explorer.btc.zelcore.io/api/addr/1BWqwKwQNKDY4MYJuMbxGsXP2LbuNGzQ4m'), // 32
-      apiRequest('https://explorer.btc.zelcore.io/api/sync'), // 33
+      apiRequest('https://explorer.btc.zelcore.io/api/addr/12ib7dApVFvg82TXKycWBNpN8kFyiAN1dr/utxo'), // 32
+      apiRequest('https://explorer.btc.zelcore.io/api/status'), // 33
       // explorer.zec.zelcore.io
       apiRequest('https://explorer.zec.zelcore.io/api/addr/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj'), // 34
       apiRequest('https://explorer.zec.zelcore.io/api/sync'), // 35
@@ -271,7 +272,24 @@ const zelcoreRates = {
       // VTC
       apiRequest('https://explorer.vtc.zelcore.io/api/v2/address/VbFrQgNEiR8ZxMh9WmkjJu9kkqjJA6imdD?pageSize=50'), // 97
       apiRequest('https://explorer.vtc.zelcore.io/api/sync'), // 98
-      apiRequest('https://proxy.runonflux.io/?server=electrumx2.runonflux.io&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 59
+      apiRequest('https://proxy.runonflux.io/?server=electrumx2.runonflux.io&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'), // 99
+
+      // Cardano
+      apiRequestPOST('https://backend2.ada.zelcore.io/graphql', {
+        query: '{ cardanoDbMeta { initialized syncPercentage }}',
+      }), // 100
+      apiRequestPOST('https://backend2.ada.zelcore.io/graphql', {
+        query: `query utxoSetForAddress($address: String!) {
+                utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
+                  txHash
+                  index
+                  value
+                }
+              }`,
+        variables: {
+          address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
+        },
+      }), // 101
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -291,6 +309,24 @@ const zelcoreRates = {
             throw results[j];
           }
           if (results[i].transactions.length > 0 && results[j].status === 'finished') {
+            ok.push(name);
+          } else {
+            throw new Error(name, 500);
+          }
+        } catch (e) {
+          errors.push(name);
+        }
+      }
+
+      function checkInsightProxyBTC(i, j, name) { // tests proxy
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i];
+          }
+          if (results[j] instanceof Error) {
+            throw results[j];
+          }
+          if (Array.isArray(results[i]) && results[i].length > 1 && results[j].info.blocks > 722564) {
             ok.push(name);
           } else {
             throw new Error(name, 500);
@@ -366,20 +402,20 @@ const zelcoreRates = {
         }
       }
 
-      function checkVeriblockTransactions(i, name) {
-        try {
-          if (results[i] instanceof Error) {
-            throw results[i];
-          }
-          if (results[i].length > 0) {
-            ok.push(name);
-          } else {
-            throw new Error(name, 500);
-          }
-        } catch (e) {
-          errors.push(name);
-        }
-      }
+      // function checkVeriblockTransactions(i, name) {
+      //   try {
+      //     if (results[i] instanceof Error) {
+      //       throw results[i];
+      //     }
+      //     if (results[i].length > 0) {
+      //       ok.push(name);
+      //     } else {
+      //       throw new Error(name, 500);
+      //     }
+      //   } catch (e) {
+      //     errors.push(name);
+      //   }
+      // }
 
       function checkVeriblockBalance(i, name) {
         try {
@@ -547,7 +583,7 @@ const zelcoreRates = {
       checkInsight(26, 27, 'explorer.zcl.zelcore.io');
       // checkInsight(28, 29, 'explorer.safe.zelcore.io');
       checkInsight(30, 31, 'explorer.cmm.zelcore.io');
-      checkInsight(32, 33, 'explorer.btc.zelcore.io');
+      checkInsightProxyBTC(32, 33, 'explorer.btc.zelcore.io');
       checkExtendedInsight(34, 35, 94, 'explorer.zec.zelcore.io');
       checkInsight(36, 37, 'explorer.axe.zelcore.io');
       // checkInsight(38, 39, 'explorer.btx.zelcore.io');
@@ -581,7 +617,7 @@ const zelcoreRates = {
       checkExplorer(64, 'explorer.bth.zelcore.io');
       checkExplorer(65, 'explorer.sin.zelcore.io');
 
-      checkVeriblockTransactions(66, 'explorer.vbk.zelcore.io');
+      // checkVeriblockTransactions(66, 'explorer.vbk.zelcore.io');
       checkVeriblockBalance(67, 'proxy.vbk.zelcore.io');
 
       checkExplorer(68, 'explorer.xmr.zelcore.io');
@@ -612,6 +648,7 @@ const zelcoreRates = {
       checkSubstrate(88, 'backend.ksm.zelcore.io');
       checkSubstrate(89, 'backend.wnd.zelcore.io');
       checkCardano(90, 91, 'backend.ada.zelcore.io');
+      checkCardano(100, 101, 'backend2.ada.zelcore.io');
 
       checkStats(92, 'stats.runonflux.io');
       checkFees(93, 'api.zelcore.io/networkfees');
