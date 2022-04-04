@@ -56,6 +56,21 @@ function apiRequestExplorer(url) {
     });
 }
 
+function apiRequestFDM(url) {
+  return request({ uri: url, simple: false, resolveWithFullResponse: true })
+    .then((response) => {
+      if (response.statusCode !== 200) {
+        throw new Error('Bad code');
+      }
+      return response;
+    })
+    .catch((error) => {
+      // console.log(error);
+      console.log(`ERROR: ${url}`);
+      return error;
+    });
+}
+
 function apiRequestPOST(url, data) {
   const options = {
     method: 'POST',
@@ -290,6 +305,15 @@ const zelcoreRates = {
           address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
         },
       }), // 101
+
+      // FDMs
+      apiRequestFDM('https://home.runonflux.io/fluxstatistics'), // 102
+      apiRequestFDM('https://fdm-1.runonflux.io/fluxstatistics'), // 103
+      apiRequestFDM('https://fdm-2.runonflux.io/fluxstatistics'), // 104
+      apiRequestFDM('https://fdm-3.runonflux.io/fluxstatistics'), // 105
+      apiRequestFDM('https://fdm-4.runonflux.io/fluxstatistics'), // 106
+      apiRequestFDM('https://kadena.app.runonflux.io/fluxstatistics'), // 107
+      apiRequestFDM('https://kadena2.app.runonflux.io/fluxstatistics'), // 108
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -567,6 +591,27 @@ const zelcoreRates = {
         }
       }
 
+      function checkFDM(i, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i];
+          }
+          const response = results[i].body;
+          const position = response.search('<b>uptime = </b>');
+          const substr = response.substr(position, 40);
+          const hPosition = substr.search('h');
+          const timePosition = hPosition - 1;
+          const numberOfHours = substr[timePosition];
+          if (numberOfHours === '0' && numberOfHours === '1') {
+            ok.push(name);
+          } else {
+            throw new Error(name, 500);
+          }
+        } catch (e) {
+          errors.push(name);
+        }
+      }
+
       checkInsight(0, 1, 'explorer.runonflux.io');
       checkInsight(2, 3, 'explorer2.flux.zelcore.io');
       checkInsight(4, 5, 'explorer.flux.zelcore.io');
@@ -652,6 +697,14 @@ const zelcoreRates = {
 
       checkStats(92, 'stats.runonflux.io');
       checkFees(93, 'api.zelcore.io/networkfees');
+
+      checkFDM(102, 'home.runonflux.io');
+      checkFDM(103, 'fdm-1.runonflux.io');
+      checkFDM(104, 'fdm-2.runonflux.io');
+      checkFDM(105, 'fdm-3.runonflux.io');
+      checkFDM(106, 'fdm-4.runonflux.io');
+      checkFDM(107, 'kadena.app.runonflux.io');
+      checkFDM(108, 'kadena2.app.runonflux.io');
 
       const statuses = {};
       statuses.ok = ok;
