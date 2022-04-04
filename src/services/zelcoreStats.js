@@ -602,7 +602,7 @@ const zelcoreRates = {
           const hPosition = substr.search('h');
           const timePosition = hPosition - 1;
           const numberOfHours = substr[timePosition];
-          if (numberOfHours === '0' && numberOfHours === '1') {
+          if (numberOfHours === '0' || numberOfHours === '1') {
             ok.push(name);
           } else {
             throw new Error(name, 500);
