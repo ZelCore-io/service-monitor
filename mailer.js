@@ -2,7 +2,7 @@ const request = require('request-promise-native');
 const nodemailer = require('nodemailer');
 
 const url = 'https://status.zel.network';
-const user = 'zelservicemanager@gmail.com';
+const user = 'zelcorebotmailer@gmail.com';
 const password = 'secretpassword';
 
 setInterval(() => {
@@ -22,7 +22,7 @@ setInterval(() => {
         const mailOptions = {
           from: user,
           to: 'tadeas@zel.network',
-          cc: ['alex.rousseau@gmail.com', 'doukka@gmail.com', 'k4mil.piekarski@gmail.com'],
+          cc: ['alex.rousseau@gmail.com', 'k4mil.piekarski@gmail.com'],
           subject: 'SERVICE down',
           text: JSON.stringify(response.errors),
         };
@@ -53,7 +53,7 @@ setInterval(() => {
       const mailOptions = {
         from: user,
         to: 'tadeas@zel.network',
-        cc: ['alex.rousseau@gmail.com', 'doukka@gmail.com', 'k4mil.piekarski@gmail.com'],
+        cc: ['alex.rousseau@gmail.com', 'k4mil.piekarski@gmail.com'],
         subject: 'MONITORING DOWN',
         text: 'Please, check monitoring server!',
       };
