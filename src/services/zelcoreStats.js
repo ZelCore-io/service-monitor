@@ -314,6 +314,7 @@ const zelcoreRates = {
       apiRequestFDM('https://fdm-4.runonflux.io/fluxstatistics'), // 106
       apiRequestFDM('https://kadena.app.runonflux.io/fluxstatistics'), // 107
       apiRequestFDM('https://kadena2.app.runonflux.io/fluxstatistics'), // 108
+      apiRequest('https://hashes.runonflux.io'), // 109
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -503,6 +504,7 @@ const zelcoreRates = {
         }
       }
 
+      // eslint-disable-next-line no-unused-vars
       function checkOpenMonero(i, name) {
         try {
           if (results[i] instanceof Error) {
@@ -575,6 +577,21 @@ const zelcoreRates = {
           errors.push(name);
         }
       }
+      function checkHashes(i, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i];
+          }
+          const response = results[i];
+          if (response.length >= 1) {
+            ok.push(name);
+          } else {
+            throw new Error(name, 500);
+          }
+        } catch (e) {
+          errors.push(name);
+        }
+      }
       function checkFees(i, name) {
         try {
           if (results[i] instanceof Error) {
@@ -633,7 +650,7 @@ const zelcoreRates = {
       checkInsight(36, 37, 'explorer.axe.zelcore.io');
       // checkInsight(38, 39, 'explorer.btx.zelcore.io');
       checkInsight(40, 41, 'explorer.ltc.zelcore.io');
-      checkInsight(42, 43, 'explorer.xsg.zelcore.io');
+      // checkInsight(42, 43, 'explorer.xsg.zelcore.io');
 
       checkBlockBook(44, 45, 'blockbook.runonflux.io');
       checkBlockBook(46, 47, 'explorer.etc.zelcore.io');
@@ -687,7 +704,7 @@ const zelcoreRates = {
       checkMarkets(82, 'vipcrates.zelcore.io/markets');
       checkMarkets(83, 'vipdrates.zelcore.io/markets');
 
-      checkOpenMonero(84, 'backend.bdx.zelcore.io');
+      // checkOpenMonero(84, 'backend.bdx.zelcore.io');
 
       checkSubstrate(87, 'backend.dot.zelcore.io');
       checkSubstrate(88, 'backend.ksm.zelcore.io');
@@ -705,6 +722,7 @@ const zelcoreRates = {
       checkFDM(106, 'fdm-4.runonflux.io');
       checkFDM(107, 'kadena.app.runonflux.io');
       checkFDM(108, 'kadena2.app.runonflux.io');
+      checkHashes(109, 'hashes.runonflux.io');
 
       const statuses = {};
       statuses.ok = ok;
