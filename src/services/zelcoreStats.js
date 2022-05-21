@@ -315,6 +315,9 @@ const zelcoreRates = {
       apiRequestFDM('https://kadena.app.runonflux.io/fluxstatistics'), // 107
       apiRequestFDM('https://kadena2.app.runonflux.io/fluxstatistics'), // 108
       apiRequest('https://hashes.runonflux.io'), // 109
+
+      apiRequest('https://blockbook.sin.zelcore.io/api/v2/address/SXoqyAiZ6gQjafKmSnb2pmfwg7qLC8r4Sf?pageSize=50'), // 110
+      apiRequest('https://blockbook.sin.zelcore.io/api/sync'), // 111
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -658,6 +661,7 @@ const zelcoreRates = {
       checkBlockBook(50, 51, 'blockbook.ltc.zelcore.io');
       checkBlockBook(85, 86, 'explorer.tbtc.zelcore.io');
       checkBlockBook(97, 98, 'explorer.vtc.zelcore.io');
+      checkBlockBook(110, 111, 'blockbook.sin.zelcore.io');
 
       checkElectrumx(38, 'proxy.btx.zelcore.io');
       checkElectrumx(52, 'proxy.genx.zelcore.io');
@@ -665,7 +669,7 @@ const zelcoreRates = {
       checkElectrumx(54, 'proxy.dgb.zelcore.io');
       checkElectrumx(55, 'proxy.doge.zelcore.io');
       checkElectrumx(56, 'proxy.bth.zelcore.io');
-      checkElectrumx(57, 'proxy.sin.zelcore.io');
+      // checkElectrumx(57, 'proxy.sin.zelcore.io');
       checkElectrumx(58, 'proxy.runonflux.io');
       checkElectrumx(59, 'electrumx.runonflux.io');
       checkElectrumx(96, 'proxy.rtm.zelcore.io');
@@ -677,7 +681,7 @@ const zelcoreRates = {
       checkExplorer(62, 'explorer.dgb.zelcore.io');
       checkExplorer(63, 'explorer.doge.zelcore.io');
       checkExplorer(64, 'explorer.bth.zelcore.io');
-      checkExplorer(65, 'explorer.sin.zelcore.io');
+      // checkExplorer(65, 'explorer.sin.zelcore.io');
 
       // checkVeriblockTransactions(66, 'explorer.vbk.zelcore.io');
       checkVeriblockBalance(67, 'proxy.vbk.zelcore.io');
