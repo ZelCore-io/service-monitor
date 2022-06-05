@@ -335,6 +335,8 @@ const zelcoreRates = {
           address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
         },
       }), // 113
+
+      apiRequestExplorer('https://nitter.zelcore.io'), // 114
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -745,6 +747,7 @@ const zelcoreRates = {
       checkFDM(107, 'kadena.app.runonflux.io');
       checkFDM(108, 'kadena2.app.runonflux.io');
       checkHashes(109, 'hashes.runonflux.io');
+      checkExplorer(114, 'nitter.zelcore.io');
 
       const statuses = {};
       statuses.ok = ok;
