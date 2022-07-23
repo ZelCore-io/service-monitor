@@ -620,7 +620,7 @@ const zelcoreRates = {
             throw results[i];
           }
           const response = results[i];
-          if (response.length > 2 && response[2].normal > 20) {
+          if (response.length > 2 && response[2].normal > 9) {
             ok.push(name);
           } else {
             throw new Error(name, 500);
