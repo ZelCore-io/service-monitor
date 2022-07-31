@@ -337,6 +337,23 @@ const zelcoreRates = {
       }), // 113
 
       apiRequestExplorer('https://nitter.zelcore.io'), // 114
+
+      // Cardano
+      apiRequestPOST('https://backend4.ada.zelcore.io/graphql', {
+        query: '{ cardanoDbMeta { initialized syncPercentage }}',
+      }), // 115
+      apiRequestPOST('https://backend4.ada.zelcore.io/graphql', {
+        query: `query utxoSetForAddress($address: String!) {
+                            utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
+                              txHash
+                              index
+                              value
+                            }
+                          }`,
+        variables: {
+          address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
+        },
+      }), // 116
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
@@ -735,6 +752,7 @@ const zelcoreRates = {
       checkCardano(90, 91, 'backend.ada.zelcore.io');
       checkCardano(100, 101, 'backend2.ada.zelcore.io');
       checkCardano(112, 113, 'backend3.ada.zelcore.io');
+      checkCardano(115, 116, 'backend4.ada.zelcore.io');
 
       checkStats(92, 'stats.runonflux.io');
       checkFees(93, 'api.zelcore.io/networkfees');
