@@ -56,6 +56,28 @@ function apiRequestExplorer(url) {
     });
 }
 
+function apiRequestNitter(url) {
+  return request({
+    uri: url,
+    simple: false,
+    resolveWithFullResponse: true,
+    headers: {
+      zelcore: 'ZelCore-v5.19.6',
+    },
+  })
+    .then((response) => {
+      if (response.statusCode !== 200 && response.statusCode !== 500) {
+        throw new Error('Bad code');
+      }
+      return 'ok';
+    })
+    .catch((error) => {
+      console.log(error);
+      console.log(`ERROR: ${url}`);
+      return error;
+    });
+}
+
 function apiRequestFDM(url) {
   return request({ uri: url, simple: false, resolveWithFullResponse: true })
     .then((response) => {
@@ -336,7 +358,7 @@ const zelcoreRates = {
         },
       }), // 113
 
-      apiRequestExplorer('https://nitter.zelcore.io'), // 114
+      apiRequestNitter('https://nitter.zelcore.io'), // 114
 
       // Cardano
       apiRequestPOST('https://backend4.ada.zelcore.io/graphql', {
