@@ -78,6 +78,22 @@ function apiRequestNitter(url) {
     });
 }
 
+function apiRequestABE(url) {
+  return request({
+    uri: url,
+    json: true,
+    headers: {
+      zelid: '1CbErtneaX2QVyUfwU7JGB7VzvPgrgc3uC',
+    },
+  })
+    .then((response) => response)
+    .catch((error) => {
+      console.log(error);
+      console.log(`ERROR: ${url}`);
+      return error;
+    });
+}
+
 function apiRequestFDM(url) {
   return request({ uri: url, simple: false, resolveWithFullResponse: true })
     .then((response) => {
@@ -376,12 +392,43 @@ const zelcoreRates = {
           address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
         },
       }), // 116
+      apiRequestABE('https://abe.zelcore.io/v1/exchange/user/history'), // 117
+      apiRequestABE('https://abe.zelcore.io/v1/exchange/sellassets'), // 118
+      apiRequest('https://abe.zelcore.io/v1/serum/tickers'), // 119
+
+      apiRequest('https://blockbook.zec.zelcore.io/api/v2/address/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj?pageSize=50'), // 120
+      apiRequest('https://blockbook.zec.zelcore.io/api/sync'), // 121
+
+      // Ergo
+      apiRequestPOST('https://graphql.erg.zelcore.io', {
+        query: `query boxes($address: String, $take: Int, $skip: Int, $tokenId: String, $spent: Boolean) {
+          boxes(address: $address, take: $take, skip: $skip, tokenId: $tokenId, spent: $spent) {
+            boxId
+            transactionId
+            value
+            creationHeight
+            index
+            ergoTree
+            address
+            additionalRegisters
+            assets {
+              tokenId
+              amount
+            }
+          }
+        }`,
+        variables: {
+          address: '9gqbdQTNbjvvxddeFjg5DEQc7qWUWySC6FkFqvR78cNUz8aJS9Y',
+          spent: false,
+          skip: 0,
+          take: 50,
+        },
+      }), // 122
       // END OF OUR SERVICES
 
       // THIRS PARTY SERVICES USED TODO
 
       // https://blockscout.com/etc/mainnet/api/?module=account&action=txlist&address=0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf outside etc transactions
-
     ]).then((results) => {
       const ok = [];
       const errors = [];
@@ -623,6 +670,66 @@ const zelcoreRates = {
         }
       }
 
+      function checkErgo(j, name) {
+        try {
+          if (results[j] instanceof Error) {
+            throw results[j];
+          }
+          const { boxes } = results[j].data;
+          if (boxes[0].value > 100) {
+            ok.push(name);
+          } else {
+            throw new Error(name, 500);
+          }
+        } catch (e) {
+          errors.push(name);
+        }
+      }
+
+      function checkABE(i, j, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i];
+          }
+          if (results[j] instanceof Error) {
+            throw results[j];
+          }
+          const history = results[i].data;
+          const statusA = results[i].status;
+          if (history.length < 420) {
+            throw new Error(name, 500);
+          }
+          if (statusA !== 'success') {
+            throw new Error(name, 500);
+          }
+          const sellassets = results[j].data;
+          const { status } = results[j];
+          if (sellassets.length > 100 && status === 'success') {
+            ok.push(name);
+          } else {
+            throw new Error(name, 500);
+          }
+        } catch (e) {
+          errors.push(name);
+        }
+      }
+
+      function checkSerum(i, name) {
+        try {
+          if (results[i] instanceof Error) {
+            throw results[i];
+          }
+          const response = results[i];
+          if (response.data.length > 100) {
+            ok.push(name);
+          } else {
+            throw new Error(name, 500);
+          }
+        } catch (e) {
+          errors.push(name);
+        }
+      }
+
       function checkStats(i, name) {
         try {
           if (results[i] instanceof Error) {
@@ -720,6 +827,7 @@ const zelcoreRates = {
       checkBlockBook(85, 86, 'explorer.tbtc.zelcore.io');
       checkBlockBook(97, 98, 'explorer.vtc.zelcore.io');
       checkBlockBook(110, 111, 'blockbook.sin.zelcore.io');
+      checkBlockBook(120, 121, 'blockbook.zec.zelcore.io');
 
       checkElectrumx(38, 'proxy.btx.zelcore.io');
       checkElectrumx(52, 'proxy.genx.zelcore.io');
@@ -762,9 +870,9 @@ const zelcoreRates = {
       checkRates(79, 'vipcrates.zelcore.io');
       checkRates(80, 'vipdrates.zelcore.io');
 
-      checkMarkets(81, 'vipbrates.zelcore.io/markets');
+      // checkMarkets(81, 'vipbrates.zelcore.io/markets');
       checkMarkets(82, 'vipcrates.zelcore.io/markets');
-      checkMarkets(83, 'vipdrates.zelcore.io/markets');
+      // checkMarkets(83, 'vipdrates.zelcore.io/markets');
 
       // checkOpenMonero(84, 'backend.bdx.zelcore.io');
 
@@ -788,6 +896,10 @@ const zelcoreRates = {
       checkFDM(108, 'kadena2.app.runonflux.io');
       checkHashes(109, 'hashes.runonflux.io');
       checkExplorer(114, 'nitter.zelcore.io');
+      checkABE(117, 118, 'abe.zelcore.io');
+      checkSerum(119, 'serum.zelcore.io');
+
+      checkErgo(122, 'graphql.erg.zelcore.io');
 
       const statuses = {};
       statuses.ok = ok;
