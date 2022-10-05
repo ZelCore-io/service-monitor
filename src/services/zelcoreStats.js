@@ -272,9 +272,9 @@ const zelcoreRates = {
       apiRequest('https://vipdrates.zelcore.io/'), // 80
 
       // markets services
-      apiRequest('https://vipbrates.zelcore.io/markets'), // 81
-      apiRequest('https://vipcrates.zelcore.io/markets'), // 82
-      apiRequest('https://vipdrates.zelcore.io/markets'), // 83
+      apiRequest('https://vipbrates.zelcore.io/marketsusd'), // 81
+      apiRequest('https://vipcrates.zelcore.io/marketsusd'), // 82
+      apiRequest('https://vipdrates.zelcore.io/marketsusd'), // 83
 
       // openmonero services TODO move up
       // BELDEX
@@ -804,7 +804,7 @@ const zelcoreRates = {
       // checkInsight(8, 9, 'explorer-asia.runonflux.io');
       checkInsight(10, 11, 'explorer.anon.zelcore.io');
       checkInsight(12, 13, 'explorer.dash.zelcore.io');
-      checkExtendedInsight(14, 15, 95, 'explorer.bze.zelcore.io');
+      // checkExtendedInsight(14, 15, 95, 'explorer.bze.zelcore.io');
       checkInsight(16, 17, 'explorer.zcoin.zelcore.io');
       checkInsight(18, 19, 'explorer.btcz.zelcore.io');
       checkInsight(20, 21, 'explorer.zer.zelcore.io');
@@ -870,9 +870,9 @@ const zelcoreRates = {
       checkRates(79, 'vipcrates.zelcore.io');
       checkRates(80, 'vipdrates.zelcore.io');
 
-      // checkMarkets(81, 'vipbrates.zelcore.io/markets');
-      checkMarkets(82, 'vipcrates.zelcore.io/markets');
-      // checkMarkets(83, 'vipdrates.zelcore.io/markets');
+      checkMarkets(81, 'vipbrates.zelcore.io/marketsusd');
+      checkMarkets(82, 'vipcrates.zelcore.io/marketsusd');
+      checkMarkets(83, 'vipdrates.zelcore.io/marketsusd');
 
       // checkOpenMonero(84, 'backend.bdx.zelcore.io');
 
