@@ -1,8 +1,7 @@
-const apicache = require('apicache');
-const stats = require('./controllers/statuses');
-
-const cache = apicache.middleware;
+const stats = require('./services/zelcoreStats');
 
 module.exports = (app) => {
-  app.get('/', cache('5 minutes'), stats.statuses);
+  app.get('*', (req, res) => {
+    stats.infraStatuses(req, res);
+  });
 };
