@@ -510,6 +510,11 @@ const checks = [
     urls: ['https://abe.proxy.zelcore.io/'],
   },
   {
+    name: 'proxy.nft.zelcore.io',
+    type: 'explorer',
+    urls: ['https://proxy.nft.zelcore.io/'],
+  },
+  {
     name: 'vipbrates.zelcore.io',
     type: 'rates',
     urls: ['https://vipbrates.zelcore.io/'],
