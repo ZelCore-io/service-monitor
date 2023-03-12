@@ -242,11 +242,6 @@ const checks = [
     urls: ['https://explorer.dash.zelcore.io/api/addr/XmCgmabJL2S8DJ8tmEvB8QDArgBbSSMJea', 'https://explorer.dash.zelcore.io/api/sync'],
   },
   {
-    name: 'explorer.bze.zelcore.io',
-    type: 'insight',
-    urls: ['https://explorer.bze.zelcore.io/api/addr/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj', 'https://explorer.bze.zelcore.io/api/sync'],
-  },
-  {
     name: 'explorer.zcoin.zelcore.io',
     type: 'insight',
     urls: ['https://explorer.zcoin.zelcore.io/api/addr/aBEJgEP2b7DP7tyQukv639qtdhjFhWp2QE', 'https://explorer.zcoin.zelcore.io/api/sync'],
@@ -305,11 +300,6 @@ const checks = [
     name: 'explorer.ltc.zelcore.io',
     type: 'insight',
     urls: ['https://explorer.ltc.zelcore.io/api/addr/LVjoCYFESyTbKAEU5VbFYtb9EYyBXx55V5', 'https://explorer.ltc.zelcore.io/api/sync'],
-  },
-  {
-    name: 'explorer.xsg.zelcore.io',
-    type: 'insight',
-    urls: ['https://explorer.xsg.zelcore.io/api/addr/s1XibA2S46fGxtaWjKNTBadS1eMh9s9eGrD', 'https://explorer.xsg.zelcore.io/api/sync'],
   },
   {
     name: 'blockbook.runonflux.io',
@@ -380,11 +370,6 @@ const checks = [
     name: 'proxy.bth.zelcore.io',
     type: 'electrumx',
     urls: ['https://proxy.bth.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=bithereum&call=nicehistory&param=BExvZ3Pc7poSWC2UWqvvQ1L3kx3VDdrERo'],
-  },
-  {
-    name: 'proxy.sin.zelcore.io',
-    type: 'electrumx',
-    urls: ['https://proxy.sin.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=sinovate&call=nicehistory&param=SXoqyAiZ6gQjafKmSnb2pmfwg7qLC8r4Sf'],
   },
   {
     name: 'proxy.rtm.zelcore.io',
@@ -512,7 +497,7 @@ const checks = [
   {
     name: 'proxy.nft.zelcore.io',
     type: 'explorer',
-    urls: ['https://proxy.nft.zelcore.io/'],
+    urls: ['https://proxy.nft.zelcore.io/nft-proxy/v1/nfts/eth'],
   },
   {
     name: 'vipbrates.zelcore.io',
@@ -719,11 +704,6 @@ const checks = [
     urls: ['https://explorer.zec.zelcore.io/api/blocks?limit=1', 'https://explorer.zec.zelcore.io/api/txs/?block=', 'https://explorer.zec.zelcore.io/api/tx/'],
   },
   {
-    name: 'explorer.bze.zelcore.io-ext',
-    type: 'extendedInsight',
-    urls: ['https://explorer.bze.zelcore.io/api/blocks?limit=1', 'https://explorer.bze.zelcore.io/api/txs/?block=', 'https://explorer.bze.zelcore.io/api/tx/'],
-  },
-  {
     name: 'home.runonflux.io',
     type: 'fdm',
     urls: ['https://home.runonflux.io/fluxstatistics'],
@@ -798,10 +778,10 @@ async function checkServices() {
         const responseA = await getRequest(check.urls[0]);
         checkSubstrate(responseA, check.name);
       } else if (check.type === 'cardano') { // must have 1 url
-        const responseA = await getRequest(check.urls[0]);
+        const responseA = await postRequest(check.urls[0], check.data[0]);
         checkCardano(responseA, check.name);
       } else if (check.type === 'ergo') { // must have 1 url
-        const responseA = await getRequest(check.urls[0]);
+        const responseA = await postRequest(check.urls[0], check.data[0]);
         checkErgo(responseA, check.name);
       } else if (check.type === 'abe') { // must have 2 urls
         const responseA = await getRequest(check.urls[0]);
