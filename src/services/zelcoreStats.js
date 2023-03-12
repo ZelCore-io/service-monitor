@@ -841,7 +841,7 @@ async function checkServices() {
   }
   setTimeout(() => {
     checkServices();
-  }, 5 * 60 * 1000);
+  }, 30 * 1000);
 }
 
 checkServices();
