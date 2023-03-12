@@ -783,41 +783,42 @@ async function checkServices() {
       } else if (check.type === 'explorer') { // must have 1 url
         await getRequest(check.urls[0]); // sufficient
       } else if (check.type === 'veriblock') { // must have 1 url
-        await postRequest(check.urls[0], check.data[0]); // sufficient
-        checkVeriblockBalance(check.urls[0], check.name);
+        const responseA = await postRequest(check.urls[0], check.data[0]);
+        checkVeriblockBalance(responseA, check.name);
       } else if (check.type === 'zelcoreplus') { // must have 1 url
-        await getRequest(check.urls[0]); // sufficient
-        checkZelCorePlus(check.urls[0], check.name);
+        const responseA = await getRequest(check.urls[0]);
+        checkZelCorePlus(responseA, check.name);
       } else if (check.type === 'rates') { // must have 1 url
-        await getRequest(check.urls[0]); // sufficient
-        checkRates(check.urls[0], check.name);
+        const responseA = await getRequest(check.urls[0]);
+        checkRates(responseA, check.name);
       } else if (check.type === 'markets') { // must have 1 url
-        await getRequest(check.urls[0]); // sufficient
-        checkMarkets(check.urls[0], check.name);
+        const responseA = await getRequest(check.urls[0]);
+        checkMarkets(responseA, check.name);
       } else if (check.type === 'substrate') { // must have 1 url
-        await getRequest(check.urls[0]); // sufficient
-        checkSubstrate(check.urls[0], check.name);
+        const responseA = await getRequest(check.urls[0]);
+        checkSubstrate(responseA, check.name);
       } else if (check.type === 'cardano') { // must have 1 url
-        await getRequest(check.urls[0]); // sufficient
-        checkCardano(check.urls[0], check.name);
+        const responseA = await getRequest(check.urls[0]);
+        checkCardano(responseA, check.name);
       } else if (check.type === 'ergo') { // must have 1 url
-        await getRequest(check.urls[0]); // sufficient
-        checkErgo(check.urls[0], check.name);
+        const responseA = await getRequest(check.urls[0]);
+        checkErgo(responseA, check.name);
       } else if (check.type === 'abe') { // must have 2 urls
-        await getRequest(check.urls[0], check.urls[1]); // sufficient
-        checkABE(check.urls[0], check.urls[1], check.name);
+        const responseA = await getRequest(check.urls[0]);
+        const responseB = await getRequest(check.urls[1]);
+        checkABE(responseA, responseB, check.name);
       } else if (check.type === 'stats') { // must have 1 url
-        await getRequest(check.urls[0]); // sufficient
-        checkStats(check.urls[0], check.name);
+        const responseA = await getRequest(check.urls[0]);
+        checkStats(responseA, check.name);
       } else if (check.type === 'hashes') { // must have 1 url
-        await getRequest(check.urls[0]); // sufficient
-        checkHashes(check.urls[0], check.name);
+        const responseA = await getRequest(check.urls[0]);
+        checkHashes(responseA, check.name);
       } else if (check.type === 'fees') { // must have 1 url
-        await getRequest(check.urls[0]); // sufficient
-        checkFees(check.urls[0], check.name);
+        const responseA = await getRequest(check.urls[0]);
+        checkFees(responseA, check.name);
       } else if (check.type === 'fdm') { // must have 1 url
-        await getRequestNoCert(check.urls[0]); // sufficient
-        checkFDM(check.urls[0], check.name);
+        const responseA = await getRequestNoCert(check.urls[0]);
+        checkFDM(responseA, check.name);
       }
 
       if (!statuses.ok.includes(check.name)) {
