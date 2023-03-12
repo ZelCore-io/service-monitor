@@ -497,7 +497,7 @@ const checks = [
   {
     name: 'proxy.nft.zelcore.io',
     type: 'explorer',
-    urls: ['https://proxy.nft.zelcore.io/nft-proxy/v1/nfts/eth'],
+    urls: ['https://proxy.nft.zelcore.io/nft-proxy/v1/nfts/eth/?addresses=0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf&noCache=0'],
   },
   {
     name: 'vipbrates.zelcore.io',
@@ -547,41 +547,10 @@ const checks = [
   {
     name: 'backend.ada.zelcore.io',
     type: 'cardano',
-    urls: ['https://backend.ada.zelcore.io/graphql'],
+    urls: ['https://backend.ada.zelcore.io/graphql', 'https://backend.ada.zelcore.io/graphql'],
     data: [{
       query: '{ cardanoDbMeta { initialized syncPercentage }}',
-    }],
-  },
-  {
-    name: 'backend.ada.zelcore.io',
-    type: 'cardano',
-    urls: ['https://backend.ada.zelcore.io/graphql'],
-    data: [{
-      query: `query utxoSetForAddress($address: String!) {
-        utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
-          txHash
-          index
-          value
-        }
-      }`,
-      variables: {
-        address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
-      },
-    }],
-  },
-  {
-    name: 'backend3.ada.zelcore.io',
-    type: 'cardano',
-    urls: ['https://backend3.ada.zelcore.io/graphql'],
-    data: [{
-      query: '{ cardanoDbMeta { initialized syncPercentage }}',
-    }],
-  },
-  {
-    name: 'backend3.ada.zelcore.io',
-    type: 'cardano',
-    urls: ['https://backend3.ada.zelcore.io/graphql'],
-    data: [{
+    }, {
       query: `query utxoSetForAddress($address: String!) {
         utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
           txHash
@@ -597,16 +566,29 @@ const checks = [
   {
     name: 'backend2.ada.zelcore.io',
     type: 'cardano',
-    urls: ['https://backend2.ada.zelcore.io/graphql'],
+    urls: ['https://backend2.ada.zelcore.io/graphql', 'https://backend2.ada.zelcore.io/graphql'],
     data: [{
       query: '{ cardanoDbMeta { initialized syncPercentage }}',
+    }, {
+      query: `query utxoSetForAddress($address: String!) {
+        utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
+          txHash
+          index
+          value
+        }
+      }`,
+      variables: {
+        address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
+      },
     }],
   },
   {
-    name: 'backend2.ada.zelcore.io',
+    name: 'backend3.ada.zelcore.io',
     type: 'cardano',
-    urls: ['https://backend2.ada.zelcore.io/graphql'],
+    urls: ['https://backend3.ada.zelcore.io/graphql', 'https://backend3.ada.zelcore.io/graphql'],
     data: [{
+      query: '{ cardanoDbMeta { initialized syncPercentage }}',
+    }, {
       query: `query utxoSetForAddress($address: String!) {
         utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
           txHash
@@ -622,16 +604,10 @@ const checks = [
   {
     name: 'backend4.ada.zelcore.io',
     type: 'cardano',
-    urls: ['https://backend4.ada.zelcore.io/graphql'],
+    urls: ['https://backend4.ada.zelcore.io/graphql', 'https://backend4.ada.zelcore.io/graphql'],
     data: [{
       query: '{ cardanoDbMeta { initialized syncPercentage }}',
-    }],
-  },
-  {
-    name: 'backend4.ada.zelcore.io',
-    type: 'cardano',
-    urls: ['https://backend4.ada.zelcore.io/graphql'],
-    data: [{
+    }, {
       query: `query utxoSetForAddress($address: String!) {
         utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
           txHash
@@ -777,9 +753,10 @@ async function checkServices() {
       } else if (check.type === 'substrate') { // must have 1 url
         const responseA = await getRequest(check.urls[0]);
         checkSubstrate(responseA, check.name);
-      } else if (check.type === 'cardano') { // must have 1 url
+      } else if (check.type === 'cardano') { // must have 2 url
         const responseA = await postRequest(check.urls[0], check.data[0]);
-        checkCardano(responseA, check.name);
+        const responseB = await postRequest(check.urls[1], check.data[1]);
+        checkCardano(responseA, responseB, check.name);
       } else if (check.type === 'ergo') { // must have 1 url
         const responseA = await postRequest(check.urls[0], check.data[0]);
         checkErgo(responseA, check.name);
