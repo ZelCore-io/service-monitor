@@ -66,7 +66,7 @@ function checkInsight(i, j, name) {
 }
 
 function checkInsightProxy(i, j, name) { // tests proxy blockbook - insight
-  if (Array.isArray(i) && i.length > 1 && j.info.blocks > 722564) {
+  if (Array.isArray(i) && i.length >= 1 && j.info.blocks > 722564) {
     return true;
   }
   throw new Error(`checkInsightProxy ${name}`);
