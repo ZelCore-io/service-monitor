@@ -283,13 +283,13 @@ const checks = [
   },
   {
     name: 'explorer.btc.zelcore.io',
-    type: 'insight',
+    type: 'checkInsightProxy',
     urls: ['https://explorer.btc.zelcore.io/api/addr/12ib7dApVFvg82TXKycWBNpN8kFyiAN1dr/utxo', 'https://explorer.btc.zelcore.io/api/status'],
   },
   {
-    name: 'explorer.zec.zelcore.io',
-    type: 'insight',
-    urls: ['https://explorer.zec.zelcore.io/api/addr/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj', 'https://explorer.zec.zelcore.io/api/sync'],
+    name: 'explorer2.zec.zelcore.io',
+    type: 'checkInsightProxy',
+    urls: ['https://explorer2.zec.zelcore.io/api/addr/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj', 'https://explorer2.zec.zelcore.io/api/status'],
   },
   {
     name: 'explorer.axe.zelcore.io',
@@ -673,11 +673,6 @@ const checks = [
     name: 'abe.zelcore.io',
     type: 'abe',
     urls: ['https://abe.zelcore.io/v1/exchange/user/history', 'https://abe.zelcore.io/v1/exchange/sellassets', 'https://abe.zelcore.io/v1/serum/tickers'],
-  },
-  {
-    name: 'explorer.zec.zelcore.io-ext',
-    type: 'extendedInsight',
-    urls: ['https://explorer.zec.zelcore.io/api/blocks?limit=1', 'https://explorer.zec.zelcore.io/api/txs/?block=', 'https://explorer.zec.zelcore.io/api/tx/'],
   },
   {
     name: 'home.runonflux.io',
