@@ -289,7 +289,7 @@ const checks = [
   {
     name: 'explorer2.zec.zelcore.io',
     type: 'checkInsightProxy',
-    urls: ['https://explorer2.zec.zelcore.io/api/addr/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj', 'https://explorer2.zec.zelcore.io/api/status'],
+    urls: ['https://explorer2.zec.zelcore.io/api/addr/t1fPaaF5w8pRnvrRBb9VUaFLt1qma2PZCQS/utxo', 'https://explorer2.zec.zelcore.io/api/status'],
   },
   {
     name: 'explorer.axe.zelcore.io',
