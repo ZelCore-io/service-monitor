@@ -21,8 +21,8 @@ setInterval(() => {
 
         const mailOptions = {
           from: user,
-          to: 'tadeas@zel.network',
-          cc: ['alex.rousseau@gmail.com', 'k4mil.piekarski@gmail.com'],
+          to: 'tadeas@zelcore.io',
+          cc: ['jeremy@runonflux.io'],
           subject: 'SERVICE down',
           text: JSON.stringify(response.errors),
         };
@@ -52,8 +52,8 @@ setInterval(() => {
 
       const mailOptions = {
         from: user,
-        to: 'tadeas@zel.network',
-        cc: ['alex.rousseau@gmail.com', 'k4mil.piekarski@gmail.com'],
+        to: 'tadeas@zelcore.io',
+        cc: ['jeremy@runonflux.io', 'greg@runonflux.io', 'gil@zelcore.io'],
         subject: 'MONITORING DOWN',
         text: 'Please, check monitoring server!',
       };
