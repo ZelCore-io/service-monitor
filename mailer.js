@@ -2,14 +2,14 @@ const axios = require('axios');
 const nodemailer = require('nodemailer');
 
 const url = 'https://status.zel.network';
-const user = 'zelcorebotmailer@gmail.com';
+const user = 'infrabot@zohomail.com';
 const password = 'secretpassword';
 
 setInterval(() => {
   axios.get(url).then((response) => {
     if (response.data.errors.length > 0) {
       const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
+        host: 'smtp.zoho.com',
         port: 465,
         secure: true,
         auth: {
