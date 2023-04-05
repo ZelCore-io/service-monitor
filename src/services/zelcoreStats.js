@@ -319,7 +319,7 @@ const checks = [
   {
     name: 'blockbook.btc-1.zelcore.io',
     type: 'blockbook',
-    urls: ['https://blockbook.btc-1.zelcore.io/api/v2/address/1BWqwKwQNKDY4MYJuMbxGsXP2LbuNGzQ4m?pageSize=50', 'https://blockbook.bt-1.zelcore.io/api/sync'],
+    urls: ['https://blockbook.btc-1.zelcore.io/api/v2/address/1BWqwKwQNKDY4MYJuMbxGsXP2LbuNGzQ4m?pageSize=50', 'https://blockbook.btc-1.zelcore.io/api/sync'],
   },
   {
     name: 'blockbook.btc-2.zelcore.io',
