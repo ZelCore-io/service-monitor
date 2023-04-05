@@ -287,6 +287,16 @@ const checks = [
     urls: ['https://explorer.btc.zelcore.io/api/addr/12ib7dApVFvg82TXKycWBNpN8kFyiAN1dr/utxo', 'https://explorer.btc.zelcore.io/api/status'],
   },
   {
+    name: 'explorer.btc-1.zelcore.io',
+    type: 'checkInsightProxy',
+    urls: ['https://explorer.btc-1.zelcore.io/api/addr/12ib7dApVFvg82TXKycWBNpN8kFyiAN1dr/utxo', 'https://explorer.btc-1.zelcore.io/api/status'],
+  },
+  {
+    name: 'explorer.btc-2.zelcore.io',
+    type: 'checkInsightProxy',
+    urls: ['https://explorer.btc-2.zelcore.io/api/addr/12ib7dApVFvg82TXKycWBNpN8kFyiAN1dr/utxo', 'https://explorer.btc-2.zelcore.io/api/status'],
+  },
+  {
     name: 'explorer2.zec.zelcore.io',
     type: 'checkInsightProxy',
     urls: ['https://explorer2.zec.zelcore.io/api/addr/t1fPaaF5w8pRnvrRBb9VUaFLt1qma2PZCQS/utxo', 'https://explorer2.zec.zelcore.io/api/status'],
