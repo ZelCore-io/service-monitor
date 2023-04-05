@@ -317,9 +317,29 @@ const checks = [
     urls: ['https://blockbook.btc.zelcore.io/api/v2/address/1BWqwKwQNKDY4MYJuMbxGsXP2LbuNGzQ4m?pageSize=50', 'https://blockbook.btc.zelcore.io/api/sync'],
   },
   {
+    name: 'blockbook.btc-1.zelcore.io',
+    type: 'blockbook',
+    urls: ['https://blockbook.btc-1.zelcore.io/api/v2/address/1BWqwKwQNKDY4MYJuMbxGsXP2LbuNGzQ4m?pageSize=50', 'https://blockbook.bt-1.zelcore.io/api/sync'],
+  },
+  {
+    name: 'blockbook.btc-2.zelcore.io',
+    type: 'blockbook',
+    urls: ['https://blockbook.btc-2.zelcore.io/api/v2/address/1BWqwKwQNKDY4MYJuMbxGsXP2LbuNGzQ4m?pageSize=50', 'https://blockbook.btc-2.zelcore.io/api/sync'],
+  },
+  {
     name: 'blockbook.ltc.zelcore.io',
     type: 'blockbook',
     urls: ['https://blockbook.ltc.zelcore.io/api/v2/address/LVjoCYFESyTbKAEU5VbFYtb9EYyBXx55V5?pageSize=50', 'https://blockbook.ltc.zelcore.io/api/sync'],
+  },
+  {
+    name: 'blockbook.ltc-1.zelcore.io',
+    type: 'blockbook',
+    urls: ['https://blockbook.ltc-1.zelcore.io/api/v2/address/LVjoCYFESyTbKAEU5VbFYtb9EYyBXx55V5?pageSize=50', 'https://blockbook.ltc-1.zelcore.io/api/sync'],
+  },
+  {
+    name: 'blockbook.ltc-2.zelcore.io',
+    type: 'blockbook',
+    urls: ['https://blockbook.ltc-2.zelcore.io/api/v2/address/LVjoCYFESyTbKAEU5VbFYtb9EYyBXx55V5?pageSize=50', 'https://blockbook.ltc-2.zelcore.io/api/sync'],
   },
   {
     name: 'blockbook.sin.zelcore.io',
