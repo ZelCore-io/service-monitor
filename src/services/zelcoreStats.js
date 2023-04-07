@@ -594,9 +594,9 @@ const checks = [
     }],
   },
   {
-    name: 'backend.ada-1.zelcore.io',
+    name: 'graphql.ada.zelcore.io',
     type: 'cardano',
-    urls: ['https://backend.ada-1.zelcore.io/graphql', 'https://backend.ada-1.zelcore.io/graphql'],
+    urls: ['https://graphql.ada.zelcore.io/graphql', 'https://graphql.ada.zelcore.io/graphql'],
     data: [{
       query: '{ cardanoDbMeta { initialized syncPercentage }}',
     }, {
@@ -613,9 +613,9 @@ const checks = [
     }],
   },
   {
-    name: 'backend.ada-2.zelcore.io',
+    name: 'graphql.ada-1.zelcore.io',
     type: 'cardano',
-    urls: ['https://backend.ada-2.zelcore.io/graphql', 'https://backend.ada-2.zelcore.io/graphql'],
+    urls: ['https://graphql.ada-1.zelcore.io/graphql', 'https://graphql.ada-1.zelcore.io/graphql'],
     data: [{
       query: '{ cardanoDbMeta { initialized syncPercentage }}',
     }, {
@@ -632,9 +632,28 @@ const checks = [
     }],
   },
   {
-    name: 'backend.ada-3.zelcore.io',
+    name: 'graphql.ada-2.zelcore.io',
     type: 'cardano',
-    urls: ['https://backend.ada-3.zelcore.io/graphql', 'https://backend.ada-3.zelcore.io/graphql'],
+    urls: ['https://graphql.ada-2.zelcore.io/graphql', 'https://graphql.ada-2.zelcore.io/graphql'],
+    data: [{
+      query: '{ cardanoDbMeta { initialized syncPercentage }}',
+    }, {
+      query: `query utxoSetForAddress($address: String!) {
+        utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
+          txHash
+          index
+          value
+        }
+      }`,
+      variables: {
+        address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
+      },
+    }],
+  },
+  {
+    name: 'graphql.ada-3.zelcore.io',
+    type: 'cardano',
+    urls: ['https://graphql.ada-3.zelcore.io/graphql', 'https://graphql.ada-3.zelcore.io/graphql'],
     data: [{
       query: '{ cardanoDbMeta { initialized syncPercentage }}',
     }, {
