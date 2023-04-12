@@ -217,6 +217,161 @@ function checkFusion(i, j, name) {
   throw new Error(`checkFees ${name}`);
 }
 
+// KADENA
+function kadenaCheckHeight(height, ip) {
+  console.log(height);
+  const currentTime = new Date().getTime();
+  const baseTime = 1669986553000;
+  const baseHeight = 65038090;
+  const timeDifference = currentTime - baseTime;
+  const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
+  const currentBlockEstimation = baseHeight + blocksPassedInDifference;
+  const minimumAcceptedBlockHeight = currentBlockEstimation - (60 * 40); // allow being off sync for this amount of blocks
+  if (height > minimumAcceptedBlockHeight) {
+    return true;
+  }
+  log.info(`${ip}: ${height}, min is: ${minimumAcceptedBlockHeight}`);
+  return false;
+}
+
+function kadenaCheckPeers(peers) {
+  try {
+    const goodPeers = peers.filter((peer) => peer.address.hostname.includes('chainweb')); // has outside of flux too
+    if (goodPeers.length > 1) { // at least 2 chainweb peers
+      return true;
+    }
+    const goodPeersPort = peers.filter((peer) => peer.address.port !== 31350); // has outside of flux too
+    if (goodPeersPort.length > 4) { // at least 5 different than flux peers
+      return true;
+    }
+    return false;
+  } catch (error) {
+    log.error(error);
+    return true;
+  }
+}
+async function kadenaGetHeight(domain) {
+  try {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
+    let isResolved = false;
+    setTimeout(() => {
+      if (!isResolved) {
+        source.cancel('Operation canceled by the user.');
+      }
+    }, 25000 * 2);
+    const kadenaData = await axios.get(`${domain}/chainweb/0.0/mainnet01/cut`, { timeout: 25000, cancelToken: source.token });
+    isResolved = true;
+    return kadenaData.data.height;
+  } catch (e) {
+    // log.error(e);
+    return -1;
+  }
+}
+
+async function kadenaGetConenctions(domain) {
+  try {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
+    let isResolved = false;
+    setTimeout(() => {
+      if (!isResolved) {
+        source.cancel('Operation canceled by the user.');
+      }
+    }, 15000 * 2);
+    const kadenaData = await axios.get(`${domain}/chainweb/0.0/mainnet01/cut/peer`, { timeout: 15000, cancelToken: source.token });
+    isResolved = true;
+    return kadenaData.data.items;
+  } catch (e) {
+    // log.error(e);
+    return [];
+  }
+}
+
+async function checkKadenaApplication(ip) {
+  try {
+    const height = await kadenaGetHeight(ip);
+    if (kadenaCheckHeight(height, ip)) {
+      // eslint-disable-next-line no-await-in-loop
+      const peers = await kadenaGetConenctions(ip);
+      if (kadenaCheckPeers(peers)) {
+        return true;
+      }
+    }
+    return false;
+  } catch (error) {
+    return false;
+  }
+}
+
+// KADENA CHAINWEB DATA
+async function kadenaRecentTxs(domain) {
+  try {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
+    let isResolved = false;
+    setTimeout(() => {
+      if (!isResolved) {
+        source.cancel('Operation canceled by the user.');
+      }
+    }, 15000 * 2);
+    const kadenaData = await axios.get(`${domain}/txs/recent`, { timeout: 15000, cancelToken: source.token });
+    isResolved = true;
+    return kadenaData.data;
+  } catch (e) {
+    // log.error(e);
+    return [];
+  }
+}
+
+async function kadenaSearchTxs(domain) {
+  try {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
+    let isResolved = false;
+    setTimeout(() => {
+      if (!isResolved) {
+        source.cancel('Operation canceled by the user.');
+      }
+    }, 15000 * 2);
+    const kadenaData = await axios.get(`${domain}/txs/search?search=2a3c8b18323ef7be8e28ec585d065a47925202330036a17867d85528f6720a05&offset=0&limit=100`, { timeout: 15000, cancelToken: source.token });
+    isResolved = true;
+    return kadenaData.data;
+  } catch (e) {
+    // log.error(e);
+    return [];
+  }
+}
+
+async function checkKadenaDataApplication(ip) {
+  try {
+    const currentTime = new Date().getTime();
+    const searchTxs = await kadenaRecentTxs(ip);
+    const lastTx = new Date(searchTxs[0].creationTime);
+    const lastTimeTx = lastTx.getTime();
+    const diffTen = 1 * 24 * 60 * 60 * 1000;
+    if (currentTime - diffTen < lastTimeTx) {
+      const searchTxsAcc = await kadenaSearchTxs(ip);
+      if (searchTxsAcc.length === 100) {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  } catch (error) {
+    return false;
+  }
+}
+
+async function checkKDA(i, name) {
+  const chainwebNode = checkKadenaApplication(i);
+  const chainwebData = checkKadenaDataApplication(i);
+  if (chainwebData === true && chainwebNode === true) {
+    return true;
+  }
+  throw new Error(`checkKDA ${name}`);
+}
+
 const checks = [
   {
     name: 'explorer.runonflux.io',
@@ -770,6 +925,26 @@ const checks = [
     type: 'fusion',
     urls: ['https://fusion.runonflux.io/swap/info', 'https://fusion.runonflux.io/messagephrase'],
   },
+  {
+    name: 'node.kda.zelcore.io',
+    type: 'kda',
+    urls: ['https://node.kda.zelcore.io'],
+  },
+  {
+    name: 'node.kda-1.zelcore.io',
+    type: 'kda',
+    urls: ['https://node.kda-1.zelcore.io'],
+  },
+  {
+    name: 'node.kda-2.zelcore.io',
+    type: 'kda',
+    urls: ['https://node.kda-2.zelcore.io'],
+  },
+  {
+    name: 'node.kda-3.zelcore.io',
+    type: 'kda',
+    urls: ['https://node.kda-3.zelcore.io'],
+  },
 ];
 
 async function checkServices() {
@@ -836,6 +1011,8 @@ async function checkServices() {
         const responseA = await getRequest(check.urls[0]);
         const responseB = await getRequest(check.urls[1]);
         checkFusion(responseA, responseB, check.name);
+      } else if (check.type === 'kda') { // must have 1 domain
+        await checkKDA(check.urls[0], check.name);
       }
 
       if (!statuses.ok.includes(check.name)) {
