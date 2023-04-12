@@ -210,6 +210,13 @@ function checkFDM(i, name) {
   throw new Error(`checkFDM ${name}`);
 }
 
+function checkFusion(i, j, name) {
+  if (i.status === 'success' && j.status === 'success') {
+    return true;
+  }
+  throw new Error(`checkFees ${name}`);
+}
+
 const checks = [
   {
     name: 'explorer.runonflux.io',
@@ -758,6 +765,11 @@ const checks = [
     type: 'fdm',
     urls: ['https://kadena2.app.runonflux.io/fluxstatistics'],
   },
+  {
+    name: 'fusion.runonflux.io',
+    type: 'fusion',
+    urls: ['https://fusion.runonflux.io/swap/info', 'https://fusion.runonflux.io/messagephrase'],
+  },
 ];
 
 async function checkServices() {
@@ -820,6 +832,10 @@ async function checkServices() {
       } else if (check.type === 'fdm') { // must have 1 url
         const responseA = await getRequestNoCert(check.urls[0]);
         checkFDM(responseA, check.name);
+      } else if (check.type === 'fusion') { // must have 2 urls
+        const responseA = await getRequest(check.urls[0]);
+        const responseB = await getRequest(check.urls[1]);
+        checkFusion(responseA, responseB, check.name);
       }
 
       if (!statuses.ok.includes(check.name)) {
