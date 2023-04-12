@@ -440,11 +440,6 @@ const checks = [
     urls: ['https://explorer.zcl.zelcore.io/api/addr/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj', 'https://explorer.zcl.zelcore.io/api/sync'],
   },
   {
-    name: 'explorer.cmm.zelcore.io',
-    type: 'insight',
-    urls: ['https://explorer.cmm.zelcore.io/api/addr/CSyjWNHUFNC4xVSjb6vsrP9QeTpKNRMLZP', 'https://explorer.cmm.zelcore.io/api/sync'],
-  },
-  {
     name: 'explorer.btc.zelcore.io',
     type: 'checkInsightProxy',
     urls: ['https://explorer.btc.zelcore.io/api/addr/12ib7dApVFvg82TXKycWBNpN8kFyiAN1dr/utxo', 'https://explorer.btc.zelcore.io/api/status'],
@@ -558,11 +553,6 @@ const checks = [
     name: 'proxy.doge.zelcore.io',
     type: 'electrumx',
     urls: ['https://proxy.doge.zelcore.io/?server=127.0.0.1&port=55002&contype=tls&coin=dogecoin&call=nicehistory&param=DFewUat3fj7pbMiudwbWpdgyuULCiVf6q8'],
-  },
-  {
-    name: 'proxy.bth.zelcore.io',
-    type: 'electrumx',
-    urls: ['https://proxy.bth.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=bithereum&call=nicehistory&param=BExvZ3Pc7poSWC2UWqvvQ1L3kx3VDdrERo'],
   },
   {
     name: 'proxy.rtm.zelcore.io',
