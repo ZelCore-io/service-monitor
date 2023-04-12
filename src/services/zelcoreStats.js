@@ -219,7 +219,7 @@ function checkFusion(i, j, name) {
 
 // KADENA
 function kadenaCheckHeight(height, ip) {
-  console.log(height);
+  // console.log(height);
   const currentTime = new Date().getTime();
   const baseTime = 1669986553000;
   const baseHeight = 65038090;
@@ -264,7 +264,7 @@ async function kadenaGetHeight(domain) {
     isResolved = true;
     return kadenaData.data.height;
   } catch (e) {
-    // log.error(e);
+    log.error(e);
     return -1;
   }
 }
@@ -283,7 +283,7 @@ async function kadenaGetConenctions(domain) {
     isResolved = true;
     return kadenaData.data.items;
   } catch (e) {
-    // log.error(e);
+    log.error(e);
     return [];
   }
 }
@@ -300,6 +300,7 @@ async function checkKadenaApplication(ip) {
     }
     return false;
   } catch (error) {
+    log.error(error);
     return false;
   }
 }
@@ -319,7 +320,7 @@ async function kadenaRecentTxs(domain) {
     isResolved = true;
     return kadenaData.data;
   } catch (e) {
-    // log.error(e);
+    log.error(e);
     return [];
   }
 }
@@ -338,20 +339,20 @@ async function kadenaSearchTxs(domain) {
     isResolved = true;
     return kadenaData.data;
   } catch (e) {
-    // log.error(e);
+    log.error(e);
     return [];
   }
 }
 
-async function checkKadenaDataApplication(ip) {
+async function checkKadenaDataApplication(domain) {
   try {
     const currentTime = new Date().getTime();
-    const searchTxs = await kadenaRecentTxs(ip);
+    const searchTxs = await kadenaRecentTxs(domain);
     const lastTx = new Date(searchTxs[0].creationTime);
     const lastTimeTx = lastTx.getTime();
     const diffTen = 1 * 24 * 60 * 60 * 1000;
     if (currentTime - diffTen < lastTimeTx) {
-      const searchTxsAcc = await kadenaSearchTxs(ip);
+      const searchTxsAcc = await kadenaSearchTxs(domain);
       if (searchTxsAcc.length === 100) {
         return true;
       }
@@ -364,8 +365,8 @@ async function checkKadenaDataApplication(ip) {
 }
 
 async function checkKDA(i, name) {
-  const chainwebNode = checkKadenaApplication(i);
-  const chainwebData = checkKadenaDataApplication(i);
+  const chainwebNode = await checkKadenaApplication(i);
+  const chainwebData = await checkKadenaDataApplication(i);
   if (chainwebData === true && chainwebNode === true) {
     return true;
   }
