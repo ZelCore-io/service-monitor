@@ -877,6 +877,93 @@ const checks = [
     }],
   },
   {
+    name: 'graphql.erg-1.zelcore.io',
+    type: 'ergo',
+    urls: ['https://graphql.erg-1.zelcore.io'],
+    data: [{
+      query: `query boxes($address: String, $take: Int, $skip: Int, $tokenId: String, $spent: Boolean) {
+        boxes(address: $address, take: $take, skip: $skip, tokenId: $tokenId, spent: $spent) {
+          boxId
+          transactionId
+          value
+          creationHeight
+          index
+          ergoTree
+          address
+          additionalRegisters
+          assets {
+            tokenId
+            amount
+          }
+        }
+      }`,
+      variables: {
+        address: '9gqbdQTNbjvvxddeFjg5DEQc7qWUWySC6FkFqvR78cNUz8aJS9Y',
+        spent: false,
+        skip: 0,
+        take: 50,
+      },
+    }],
+  },
+  {
+    name: 'graphql.erg-2.zelcore.io',
+    type: 'ergo',
+    urls: ['https://graphql.erg-2.zelcore.io'],
+    data: [{
+      query: `query boxes($address: String, $take: Int, $skip: Int, $tokenId: String, $spent: Boolean) {
+        boxes(address: $address, take: $take, skip: $skip, tokenId: $tokenId, spent: $spent) {
+          boxId
+          transactionId
+          value
+          creationHeight
+          index
+          ergoTree
+          address
+          additionalRegisters
+          assets {
+            tokenId
+            amount
+          }
+        }
+      }`,
+      variables: {
+        address: '9gqbdQTNbjvvxddeFjg5DEQc7qWUWySC6FkFqvR78cNUz8aJS9Y',
+        spent: false,
+        skip: 0,
+        take: 50,
+      },
+    }],
+  },
+  {
+    name: 'graphql.erg-3.zelcore.io',
+    type: 'ergo',
+    urls: ['https://graphql.erg-3.zelcore.io'],
+    data: [{
+      query: `query boxes($address: String, $take: Int, $skip: Int, $tokenId: String, $spent: Boolean) {
+        boxes(address: $address, take: $take, skip: $skip, tokenId: $tokenId, spent: $spent) {
+          boxId
+          transactionId
+          value
+          creationHeight
+          index
+          ergoTree
+          address
+          additionalRegisters
+          assets {
+            tokenId
+            amount
+          }
+        }
+      }`,
+      variables: {
+        address: '9gqbdQTNbjvvxddeFjg5DEQc7qWUWySC6FkFqvR78cNUz8aJS9Y',
+        spent: false,
+        skip: 0,
+        take: 50,
+      },
+    }],
+  },
+  {
     name: 'stats.runonflux.io',
     type: 'stats',
     urls: ['https://stats.runonflux.io/fluxinfo'],
