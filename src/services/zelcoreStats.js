@@ -460,6 +460,21 @@ const checks = [
     urls: ['https://explorer2.zec.zelcore.io/api/addr/t1fPaaF5w8pRnvrRBb9VUaFLt1qma2PZCQS/utxo', 'https://explorer2.zec.zelcore.io/api/status'],
   },
   {
+    name: 'explorer.zec.zelcore.io',
+    type: 'checkInsightProxy',
+    urls: ['https://explorer.zec.zelcore.io/api/addr/t1fPaaF5w8pRnvrRBb9VUaFLt1qma2PZCQS/utxo', 'https://explorer.zec.zelcore.io/api/status'],
+  },
+  {
+    name: 'explorer.zec-1.zelcore.io',
+    type: 'checkInsightProxy',
+    urls: ['https://explorer.zec-1.zelcore.io/api/addr/t1fPaaF5w8pRnvrRBb9VUaFLt1qma2PZCQS/utxo', 'https://explorer.zec-1.zelcore.io/api/status'],
+  },
+  {
+    name: 'explorer.zec-2.zelcore.io',
+    type: 'checkInsightProxy',
+    urls: ['https://explorer.zec-2.zelcore.io/api/addr/t1fPaaF5w8pRnvrRBb9VUaFLt1qma2PZCQS/utxo', 'https://explorer.zec-2.zelcore.io/api/status'],
+  },
+  {
     name: 'explorer.axe.zelcore.io',
     type: 'insight',
     urls: ['https://explorer.axe.zelcore.io/api/addr/PK726JLFREhj3CD5FRvUwmVee5mnX7g4ia', 'https://explorer.axe.zelcore.io/api/sync'],
@@ -518,6 +533,16 @@ const checks = [
     name: 'blockbook.zec.zelcore.io',
     type: 'blockbook',
     urls: ['https://blockbook.zec.zelcore.io/api/v2/address/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj?pageSize=50', 'https://blockbook.zec.zelcore.io/api/sync'],
+  },
+  {
+    name: 'blockbook.zec-1.zelcore.io',
+    type: 'blockbook',
+    urls: ['https://blockbook.zec-1.zelcore.io/api/v2/address/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj?pageSize=50', 'https://blockbook.zec-1.zelcore.io/api/sync'],
+  },
+  {
+    name: 'blockbook.zec-2.zelcore.io',
+    type: 'blockbook',
+    urls: ['https://blockbook.zec-2.zelcore.io/api/v2/address/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj?pageSize=50', 'https://blockbook.zec-2.zelcore.io/api/sync'],
   },
   {
     name: 'explorer.tbtc.zelcore.io',
