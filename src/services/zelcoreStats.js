@@ -783,9 +783,9 @@ const checks = [
     },
   },
   {
-    name: 'node.etc-1.zelcore.io',
+    name: 'node.etc-2.zelcore.io',
     type: 'eth',
-    urls: ['https://node.etc.-2zelcore.io'],
+    urls: ['https://node.etc.-2.zelcore.io'],
     data: {
       jsonrpc: '2.0', id: 132, method: 'eth_getBalance', params: ['0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf', 'latest'],
     },
