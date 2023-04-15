@@ -700,17 +700,17 @@ const checks = [
   {
     name: 'proxy.btx.zelcore.io',
     type: 'electrumx',
-    urls: ['https://proxy.btx.zelcore.io/?server=explorer.btx.zelcore.io&port=55002&contype=tls&coin=bitcore&call=nicehistory&param=2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'],
+    urls: ['https://proxy.btx.zelcore.io/?server=explorer.btx.zelcore.io&port=50002&contype=tls&coin=bitcore&call=nicehistory&param=2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'],
   },
   {
     name: 'proxy.btx-1.zelcore.io',
     type: 'electrumx',
-    urls: ['https://proxy.btx-1.zelcore.io/?server=explorer.btx-1.zelcore.io&port=55002&contype=tls&coin=bitcore&call=nicehistory&param=2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'],
+    urls: ['https://proxy.btx-1.zelcore.io/?server=explorer.btx-1.zelcore.io&port=50002&contype=tls&coin=bitcore&call=nicehistory&param=2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'],
   },
   {
     name: 'proxy.btx-2.zelcore.io',
     type: 'electrumx',
-    urls: ['https://proxy.btx-2.zelcore.io/?server=explorer.btx-2.zelcore.io&port=55002&contype=tls&coin=bitcore&call=nicehistory&param=2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'],
+    urls: ['https://proxy.btx-2.zelcore.io/?server=explorer.btx-2.zelcore.io&port=50002&contype=tls&coin=bitcore&call=nicehistory&param=2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'],
   },
   {
     name: 'proxy.rtm.zelcore.io',
