@@ -108,6 +108,14 @@ function checkVeriblockBalance(i, name) {
   throw new Error(`checkVeriblockBalance ${name}`);
 }
 
+function checkEthBalance(i, name) {
+  const confirmedBal = i.result.startsWith('0x');
+  if (confirmedBal.length > 4) {
+    return true;
+  }
+  throw new Error(`checkEthBalance ${name}`);
+}
+
 function checkZelCorePlus(i, name) {
   if (i.validTill === 1760216096000) {
     return true;
@@ -723,6 +731,30 @@ const checks = [
     }],
   },
   {
+    name: 'node.etc.zelcore.io',
+    type: 'eth',
+    urls: ['https://node.etc.zelcore.io'],
+    data: {
+      jsonrpc: '2.0', id: 132, method: 'eth_getBalance', params: ['0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf', 'latest'],
+    },
+  },
+  {
+    name: 'node.etc-1.zelcore.io',
+    type: 'eth',
+    urls: ['https://node.etc-1.zelcore.io'],
+    data: {
+      jsonrpc: '2.0', id: 132, method: 'eth_getBalance', params: ['0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf', 'latest'],
+    },
+  },
+  {
+    name: 'node.etc-1.zelcore.io',
+    type: 'eth',
+    urls: ['https://node.etc.-2zelcore.io'],
+    data: {
+      jsonrpc: '2.0', id: 132, method: 'eth_getBalance', params: ['0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf', 'latest'],
+    },
+  },
+  {
     name: 'explorer.xmr.zelcore.io',
     type: 'explorer',
     urls: ['https://explorer.xmr.zelcore.io'],
@@ -1170,6 +1202,9 @@ async function checkServices() {
       } else if (check.type === 'veriblock') { // must have 1 url
         const responseA = await postRequest(check.urls[0], check.data[0]);
         checkVeriblockBalance(responseA, check.name);
+      } else if (check.type === 'eth') { // must have 1 url
+        const responseA = await postRequest(check.urls[0], check.data[0]);
+        checkEthBalance(responseA, check.name);
       } else if (check.type === 'zelcoreplus') { // must have 1 url
         const responseA = await getRequest(check.urls[0]);
         checkZelCorePlus(responseA, check.name);
