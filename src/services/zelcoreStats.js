@@ -102,7 +102,7 @@ function checkElectrumx(i, name) {
 function checkVeriblockBalance(i, name) {
   const confirmedObject = i.result.confirmed.find((a) => a.address === 'VBZ3J16cLrhxeEwZvswQSucfrFKvMF');
   const confirmedBal = confirmedObject.unlockedAmount;
-  if (confirmedBal > 0) {
+  if (+confirmedBal > 0) {
     return true;
   }
   throw new Error(`checkVeriblockBalance ${name}`);
@@ -943,7 +943,7 @@ const checks = [
   {
     name: 'node.dot-1.zelcore.io',
     type: 'substrate',
-    urls: ['https://node-1.dot.zelcore.io/runtime'],
+    urls: ['https://node.dot-1.zelcore.io/runtime'],
   },
   {
     name: 'node.dot-2.zelcore.io',
