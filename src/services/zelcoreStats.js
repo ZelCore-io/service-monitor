@@ -109,8 +109,8 @@ function checkVeriblockBalance(i, name) {
 }
 
 function checkEthBalance(i, name) {
-  const confirmedBal = i.result.startsWith('0x');
-  if (confirmedBal.length > 4) {
+  const balOK = i.result.startsWith('0x');
+  if (balOK && i.result.length > 4) {
     return true;
   }
   throw new Error(`checkEthBalance ${name}`);
@@ -770,25 +770,25 @@ const checks = [
     name: 'node.etc.zelcore.io',
     type: 'eth',
     urls: ['https://node.etc.zelcore.io'],
-    data: {
+    data: [{
       jsonrpc: '2.0', id: 132, method: 'eth_getBalance', params: ['0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf', 'latest'],
-    },
+    }],
   },
   {
     name: 'node.etc-1.zelcore.io',
     type: 'eth',
     urls: ['https://node.etc-1.zelcore.io'],
-    data: {
+    data: [{
       jsonrpc: '2.0', id: 132, method: 'eth_getBalance', params: ['0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf', 'latest'],
-    },
+    }],
   },
   {
     name: 'node.etc-2.zelcore.io',
     type: 'eth',
-    urls: ['https://node.etc.-2.zelcore.io'],
-    data: {
+    urls: ['https://node.etc-2.zelcore.io'],
+    data: [{
       jsonrpc: '2.0', id: 132, method: 'eth_getBalance', params: ['0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf', 'latest'],
-    },
+    }],
   },
   {
     name: 'explorer.xmr.zelcore.io',
