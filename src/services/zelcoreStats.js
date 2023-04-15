@@ -700,12 +700,32 @@ const checks = [
   {
     name: 'proxy.btx.zelcore.io',
     type: 'electrumx',
-    urls: ['https://proxy.btx.zelcore.io/?server=127.0.0.1&port=55002&contype=tls&coin=bitcore&call=nicehistory&param=2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'],
+    urls: ['https://proxy.btx.zelcore.io/?server=explorer.btx.zelcore.io&port=55002&contype=tls&coin=bitcore&call=nicehistory&param=2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'],
+  },
+  {
+    name: 'proxy.btx-1.zelcore.io',
+    type: 'electrumx',
+    urls: ['https://proxy.btx-1.zelcore.io/?server=explorer.btx-1.zelcore.io&port=55002&contype=tls&coin=bitcore&call=nicehistory&param=2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'],
+  },
+  {
+    name: 'proxy.btx-2.zelcore.io',
+    type: 'electrumx',
+    urls: ['https://proxy.btx-2.zelcore.io/?server=explorer.btx-2.zelcore.io&port=55002&contype=tls&coin=bitcore&call=nicehistory&param=2PXeteqGVrcAWexZycbujFLjurNjXhqDXo'],
   },
   {
     name: 'proxy.rtm.zelcore.io',
     type: 'electrumx',
-    urls: ['https://proxy.rtm.zelcore.io/?server=127.0.0.1&port=50002&contype=tls&coin=raptoreum&call=nicehistory&param=RKo31qpgy9278MuWNXb5NPranc4W6oaUFf'],
+    urls: ['https://proxy.rtm.zelcore.io/?server=explorer.rtm.zelcore.io&port=50002&contype=tls&coin=raptoreum&call=nicehistory&param=RKo31qpgy9278MuWNXb5NPranc4W6oaUFf'],
+  },
+  {
+    name: 'proxy.rtm-1.zelcore.io',
+    type: 'electrumx',
+    urls: ['https://proxy.rtm-1.zelcore.io/?server=explorer.rtm-2.zelcore.io&port=50002&contype=tls&coin=raptoreum&call=nicehistory&param=RKo31qpgy9278MuWNXb5NPranc4W6oaUFf'],
+  },
+  {
+    name: 'proxy.rtm-2.zelcore.io',
+    type: 'electrumx',
+    urls: ['https://proxy.rtm-2.zelcore.io/?server=explorer.rtm-2.zelcore.io&port=50002&contype=tls&coin=raptoreum&call=nicehistory&param=RKo31qpgy9278MuWNXb5NPranc4W6oaUFf'],
   },
   {
     name: 'proxy.runonflux.io',
@@ -726,6 +746,22 @@ const checks = [
     name: 'proxy.vbk.zelcore.io',
     type: 'veriblock',
     urls: ['https://proxy.vbk.zelcore.io/addressesbalance'],
+    data: [{
+      addresses: ['VBZ3J16cLrhxeEwZvswQSucfrFKvMF'],
+    }],
+  },
+  {
+    name: 'proxy.vbk-1.zelcore.io',
+    type: 'veriblock',
+    urls: ['https://proxy.vbk-1.zelcore.io/addressesbalance'],
+    data: [{
+      addresses: ['VBZ3J16cLrhxeEwZvswQSucfrFKvMF'],
+    }],
+  },
+  {
+    name: 'proxy.vbk-2.zelcore.io',
+    type: 'veriblock',
+    urls: ['https://proxy.vbk-2.zelcore.io/addressesbalance'],
     data: [{
       addresses: ['VBZ3J16cLrhxeEwZvswQSucfrFKvMF'],
     }],
@@ -768,6 +804,36 @@ const checks = [
     name: 'explorer.xmr-2.zelcore.io',
     type: 'explorer',
     urls: ['https://explorer.xmr-2.zelcore.io'],
+  },
+  {
+    name: 'explorer.btx.zelcore.io',
+    type: 'explorer',
+    urls: ['https://explorer.btx.zelcore.io'],
+  },
+  {
+    name: 'explorer.btx-1.zelcore.io',
+    type: 'explorer',
+    urls: ['https://explorer.btx-1.zelcore.io'],
+  },
+  {
+    name: 'explorer.btx-2.zelcore.io',
+    type: 'explorer',
+    urls: ['https://explorer.btx-2.zelcore.io'],
+  },
+  {
+    name: 'explorer.rtm.zelcore.io',
+    type: 'explorer',
+    urls: ['https://explorer.rtm.zelcore.io'],
+  },
+  {
+    name: 'explorer.rtm-1.zelcore.io',
+    type: 'explorer',
+    urls: ['https://explorer.rtm-1.zelcore.io'],
+  },
+  {
+    name: 'explorer.rtm-2.zelcore.io',
+    type: 'explorer',
+    urls: ['https://explorer.rtm-2.zelcore.io'],
   },
   {
     name: 'apt.runonflux.io',
@@ -866,18 +932,63 @@ const checks = [
   },
   {
     name: 'backend.dot.zelcore.io',
-    type: 'substrats',
+    type: 'substrate',
     urls: ['https://backend.dot.zelcore.io/runtime'],
   },
   {
+    name: 'node.dot.zelcore.io',
+    type: 'substrate',
+    urls: ['https://node.dot.zelcore.io/runtime'],
+  },
+  {
+    name: 'node.dot-1.zelcore.io',
+    type: 'substrate',
+    urls: ['https://node-1.dot.zelcore.io/runtime'],
+  },
+  {
+    name: 'node.dot-2.zelcore.io',
+    type: 'substrate',
+    urls: ['https://node.dot-2.zelcore.io/runtime'],
+  },
+  {
     name: 'backend.wnd.zelcore.io',
-    type: 'substrats',
-    urls: ['https://backend.wmd.zelcore.io/runtime'],
+    type: 'substrate',
+    urls: ['https://backend.wnd.zelcore.io/runtime'],
+  },
+  {
+    name: 'node.wnd.zelcore.io',
+    type: 'substrate',
+    urls: ['https://node.wnd.zelcore.io/runtime'],
+  },
+  {
+    name: 'node.wnd-1.zelcore.io',
+    type: 'substrate',
+    urls: ['https://node.wnd-1.zelcore.io/runtime'],
+  },
+  {
+    name: 'node.wnd-2.zelcore.io',
+    type: 'substrate',
+    urls: ['https://node.wnd-2.zelcore.io/runtime'],
   },
   {
     name: 'backend.ksm.zelcore.io',
-    type: 'substrats',
+    type: 'substrate',
     urls: ['https://backend.ksm.zelcore.io/runtime'],
+  },
+  {
+    name: 'node.ksm.zelcore.io',
+    type: 'substrate',
+    urls: ['https://node.ksm.zelcore.io/runtime'],
+  },
+  {
+    name: 'node.ksm-1.zelcore.io',
+    type: 'substrate',
+    urls: ['https://node.ksm-1.zelcore.io/runtime'],
+  },
+  {
+    name: 'node.ksm-2.zelcore.io',
+    type: 'substrate',
+    urls: ['https://node.ksm-2.zelcore.io/runtime'],
   },
   {
     name: 'backend.ada.zelcore.io',
