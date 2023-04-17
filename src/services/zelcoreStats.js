@@ -381,6 +381,18 @@ async function checkKDA(i, name) {
   throw new Error(`checkKDA ${name}`);
 }
 
+async function checkFluxStorage(i, name) {
+  try {
+    await axios.get(i);
+    throw new Error(`checkFluxStorage ${name}`);
+  } catch (error) {
+    if (error.response.data === 'Forbidden') {
+      return true;
+    }
+    throw new Error(`checkFluxStorage ${name}`);
+  }
+}
+
 const checks = [
   {
     name: 'explorer.runonflux.io',
@@ -1286,6 +1298,11 @@ const checks = [
     type: 'kda',
     urls: ['https://node.kda-3.zelcore.io'],
   },
+  {
+    name: 'storage.runonflux.io',
+    type: 'fluxstorage',
+    urls: ['https://storage.runonflux.io/v1/env/865071381744200'],
+  },
 ];
 
 async function checkServices() {
@@ -1357,6 +1374,8 @@ async function checkServices() {
         checkFusion(responseA, responseB, check.name);
       } else if (check.type === 'kda') { // must have 1 domain
         await checkKDA(check.urls[0], check.name);
+      } else if (check.type === 'fluxstorage') { // must have 1 domain
+        await checkFluxStorage(check.urls[0], check.name);
       }
 
       if (!statuses.ok.includes(check.name)) {
