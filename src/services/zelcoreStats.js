@@ -580,11 +580,6 @@ const checks = [
     urls: ['https://explorer.axe-2.zelcore.io/api/addr/PK726JLFREhj3CD5FRvUwmVee5mnX7g4ia', 'https://explorer.axe-2.zelcore.io/api/sync'],
   },
   {
-    name: 'explorer.ltc.zelcore.io',
-    type: 'insight',
-    urls: ['https://explorer.ltc.zelcore.io/api/addr/LVjoCYFESyTbKAEU5VbFYtb9EYyBXx55V5', 'https://explorer.ltc.zelcore.io/api/sync'],
-  },
-  {
     name: 'blockbook.runonflux.io',
     type: 'blockbook',
     urls: ['https://blockbook.runonflux.io/api/v2/address/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj?pageSize=50', 'https://blockbook.runonflux.io/api/sync'],
