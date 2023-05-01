@@ -863,6 +863,11 @@ const checks = [
     urls: ['https://zelpro.zelcore.io/prouser/1CbErtneaX2QVyUfwU7JGB7VzvPgrgc3uC'],
   },
   {
+    name: 'plus.zelcore.io',
+    type: 'zelcoreplus',
+    urls: ['https://plus.zelcore.io/prouser/1CbErtneaX2QVyUfwU7JGB7VzvPgrgc3uC'],
+  },
+  {
     name: 'cze.proxy.zelcore.io',
     type: 'explorer',
     urls: ['https://cze.proxy.zelcore.io/'],
