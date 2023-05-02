@@ -1219,6 +1219,11 @@ const checks = [
     urls: ['https://stats.runonflux.io/fluxinfo'],
   },
   {
+    name: 'api.firo.zelcore.io',
+    type: 'stats',
+    urls: ['https://api.firo.zelcore.io/znodeinfo'],
+  },
+  {
     name: 'api.zelcore.io/networkfees',
     type: 'fees',
     urls: ['https://api.zelcore.io/networkfees'],
