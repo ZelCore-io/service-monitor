@@ -855,7 +855,7 @@ const checks = [
   {
     name: 'download.zelcore.io',
     type: 'explorer',
-    urls: ['https://donwload.zelcore.io'],
+    urls: ['https://download.zelcore.io'],
   },
   {
     name: 'cdn.zelcore.io',
