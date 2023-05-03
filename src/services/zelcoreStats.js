@@ -848,6 +848,46 @@ const checks = [
     urls: ['https://apt.runonflux.io'],
   },
   {
+    name: 'apt.zelcore.io',
+    type: 'explorer',
+    urls: ['https://apt.zelcore.io'],
+  },
+  {
+    name: 'download.zelcore.io',
+    type: 'explorer',
+    urls: ['https://donwload.zelcore.io'],
+  },
+  {
+    name: 'cdn.zelcore.io',
+    type: 'explorer',
+    urls: ['https://cdn.zelcore.io'],
+  },
+  {
+    name: 'resources.zelcore.io',
+    type: 'explorer',
+    urls: ['https://resources.zelcore.io'],
+  },
+  {
+    name: 'cdn.zelcore.workers.dev',
+    type: 'explorer',
+    urls: ['https://cdn.zelcore.workers.dev'],
+  },
+  {
+    name: 'update.zelcore.workers.dev',
+    type: 'explorer',
+    urls: ['https://update.zelcore.workers.dev'],
+  },
+  {
+    name: 'resources.zelcore.workers.dev',
+    type: 'explorer',
+    urls: ['https://resources.zelcore.workers.dev'],
+  },
+  {
+    name: 'runonflux.zelcore.workers.dev',
+    type: 'explorer',
+    urls: ['https://runonflux.zelcore.workers.dev'],
+  },
+  {
     name: 'apt.zel.network',
     type: 'explorer',
     urls: ['https://apt.zel.network'],
