@@ -948,11 +948,6 @@ const checks = [
     urls: ['https://sfo.proxy.zelcore.io/'],
   },
   {
-    name: 'abe.proxy.zelcore.io',
-    type: 'explorer',
-    urls: ['https://abe.proxy.zelcore.io/'],
-  },
-  {
     name: 'proxy.nft.zelcore.io',
     type: 'explorer',
     urls: ['https://proxy.nft.zelcore.io/nft-proxy/v1/nfts/eth/?addresses=0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf&noCache=0'],
