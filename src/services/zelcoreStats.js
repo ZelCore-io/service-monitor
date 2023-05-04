@@ -898,6 +898,11 @@ const checks = [
     urls: ['https://apt.fluxos.network'],
   },
   {
+    name: 'link.zelcore.io',
+    type: 'explorer',
+    urls: ['https://link.zelcore.io'],
+  },
+  {
     name: 'zelpro.zelcore.io',
     type: 'zelcoreplus',
     urls: ['https://zelpro.zelcore.io/prouser/1CbErtneaX2QVyUfwU7JGB7VzvPgrgc3uC'],
