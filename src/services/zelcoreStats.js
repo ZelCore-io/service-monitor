@@ -425,6 +425,21 @@ const checks = [
     urls: ['https://explorer.flux-3.zelcore.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih', 'https://explorer.flux-3.zelcore.io/api/sync'],
   },
   {
+    name: 'explorer.flux-1.zelcore.io-ext',
+    type: 'extendedInsight',
+    urls: ['https://explorer.flux-1.zelcore.io/api/blocks?limit=1', 'https://explorer.flux-1.zelcore.io/api/txs/?block=', 'https://explorer.flux-1.zelcore.io/api/tx/'],
+  },
+  {
+    name: 'explorer.flux-2.zelcore.io-ext',
+    type: 'extendedInsight',
+    urls: ['https://explorer.flux-2.zelcore.io/api/blocks?limit=1', 'https://explorer.flux-2.zelcore.io/api/txs/?block=', 'https://explorer.flux-2.zelcore.io/api/tx/'],
+  },
+  {
+    name: 'explorer.flux-3.zelcore.io-ext',
+    type: 'extendedInsight',
+    urls: ['https://explorer.flux-3.zelcore.io/api/blocks?limit=1', 'https://explorer.flux-3.zelcore.io/api/txs/?block=', 'https://explorer.flux-3.zelcore.io/api/tx/'],
+  },
+  {
     name: 'explorer.zelcash.online',
     type: 'insight',
     urls: ['https://explorer.zelcash.online/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih', 'https://explorer.zelcash.online/api/sync'],
