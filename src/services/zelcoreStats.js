@@ -1324,14 +1324,14 @@ const checks = [
     urls: ['https://fdm-ca-2-2.runonflux.io/fluxstatistics'],
   },
   {
-    name: 'fdm-us-2-1.runonflux.io',
+    name: 'fdm-fr-2-1.runonflux.io',
     type: 'fdm',
-    urls: ['https://fdm-ca-2-1.runonflux.io/fluxstatistics'],
+    urls: ['https://fdm-fr-2-1.runonflux.io/fluxstatistics'],
   },
   {
-    name: 'fdm-us-2-2.runonflux.io',
+    name: 'fdm-fr-2-2.runonflux.io',
     type: 'fdm',
-    urls: ['https://fdm-us-2-2.runonflux.io/fluxstatistics'],
+    urls: ['https://fdm-fr-2-2.runonflux.io/fluxstatistics'],
   },
   {
     name: 'fdm-sg-2-1.runonflux.io',
