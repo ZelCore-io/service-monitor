@@ -1397,7 +1397,7 @@ async function checkServices() {
         const responseB = await getRequest(check.urls[1]);
         checkInsightProxy(responseA, responseB, check.name);
       } else if (check.type === 'extendedInsight') { // must have 3 urls
-        await extendedInsightTest(check.urls[1], check.urls[1], check.urls[2], check.name);
+        await extendedInsightTest(check.urls[0], check.urls[1], check.urls[2], check.name);
       } else if (check.type === 'blockbook') { // must have 2 urls
         const responseA = await getRequest(check.urls[0]);
         const responseB = await getRequest(check.urls[1]);
