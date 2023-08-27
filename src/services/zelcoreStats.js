@@ -1394,14 +1394,9 @@ const checks = [
     urls: ['https://fdm-fn-2-2.runonflux.io/fluxstatistics'],
   },
   {
-    name: 'kadena.app.runonflux.io',
+    name: 'kadena.dapp.runonflux.io',
     type: 'fdm',
-    urls: ['https://kadena.app.runonflux.io/fluxstatistics'],
-  },
-  {
-    name: 'kadena2.app.runonflux.io',
-    type: 'fdm',
-    urls: ['https://kadena2.app.runonflux.io/fluxstatistics'],
+    urls: ['https://kadena.dapp.runonflux.io/fluxstatistics'],
   },
   {
     name: 'fusion.runonflux.io',
