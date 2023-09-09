@@ -1304,14 +1304,14 @@ const checks = [
     urls: ['https://home.runonflux.io/fluxstatistics'],
   },
   {
-    name: 'fdm-eu-1-1.runonflux.io',
+    name: 'fdm-nodes-eu-1-1.runonflux.io',
     type: 'fdm',
-    urls: ['https://fdm-eu-1-1.runonflux.io/fluxstatistics'],
+    urls: ['https://fdm-nodes-eu-1-1.runonflux.io/fluxstatistics'],
   },
   {
-    name: 'fdm-us-1-1.runonflux.io',
+    name: 'fdm-nodes-us-1-1.runonflux.io',
     type: 'fdm',
-    urls: ['https://fdm-us-1-1.runonflux.io/fluxstatistics'],
+    urls: ['https://fdm-nodes-us-1-1.runonflux.io/fluxstatistics'],
   },
   {
     name: 'fdm-usa-1-1.runonflux.io',
