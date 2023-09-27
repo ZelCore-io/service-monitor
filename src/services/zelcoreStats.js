@@ -229,8 +229,8 @@ function checkFusion(i, j, name) {
 function kadenaCheckHeight(height, ip) {
   // console.log(height);
   const currentTime = new Date().getTime();
-  const baseTime = 1687402691000;
-  const baseHeight = 76646278;
+  const baseTime = 1694968141000;
+  const baseHeight = 81687264;
   const timeDifference = currentTime - baseTime;
   const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
   const currentBlockEstimation = baseHeight + blocksPassedInDifference;
@@ -352,32 +352,35 @@ async function kadenaSearchTxs(domain) {
   }
 }
 
-async function checkKadenaDataApplication(domain) {
-  try {
-    const currentTime = new Date().getTime();
-    const searchTxs = await kadenaRecentTxs(domain);
-    const lastTx = new Date(searchTxs[0].creationTime);
-    const lastTimeTx = lastTx.getTime();
-    const diffTen = 1 * 24 * 60 * 60 * 1000;
-    if (currentTime - diffTen < lastTimeTx) {
-      const searchTxsAcc = await kadenaSearchTxs(domain);
-      if (searchTxsAcc.length === 100) {
-        return true;
-      }
-      return false;
-    }
-    return false;
-  } catch (error) {
-    return false;
-  }
-}
+// async function checkKadenaDataApplication(domain) {
+//   try {
+//     const currentTime = new Date().getTime();
+//     const searchTxs = await kadenaRecentTxs(domain);
+//     const lastTx = new Date(searchTxs[0].creationTime);
+//     const lastTimeTx = lastTx.getTime();
+//     const diffTen = 1 * 24 * 60 * 60 * 1000;
+//     if (currentTime - diffTen < lastTimeTx) {
+//       const searchTxsAcc = await kadenaSearchTxs(domain);
+//       if (searchTxsAcc.length === 100) {
+//         return true;
+//       }
+//       return false;
+//     }
+//     return false;
+//   } catch (error) {
+//     return false;
+//   }
+// }
 
 async function checkKDA(i, name) {
   const chainwebNode = await checkKadenaApplication(i);
-  const chainwebData = await checkKadenaDataApplication(i);
-  if (chainwebData === true && chainwebNode === true) {
+  if (chainwebNode === true) {
     return true;
   }
+  // const chainwebData = await checkKadenaDataApplication(i);
+  // if (chainwebData === true && chainwebNode === true) {
+  //   return true;
+  // }
   throw new Error(`checkKDA ${name}`);
 }
 
