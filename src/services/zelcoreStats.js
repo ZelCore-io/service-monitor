@@ -100,9 +100,9 @@ function checkElectrumx(i, name) {
 }
 
 function checkVeriblockBalance(i, name) {
-  const confirmedObject = i.result.confirmed.find((a) => a.address === 'VBZ3J16cLrhxeEwZvswQSucfrFKvMF');
+  const confirmedObject = i.result.confirmed.find((a) => a.address === 'V5h6udgGe6eL4M9cYGi776WCP75URm');
   const confirmedBal = confirmedObject.unlockedAmount;
-  if (+confirmedBal > 0) {
+  if (+confirmedBal > 500000) {
     return true;
   }
   throw new Error(`checkVeriblockBalance ${name}`);
@@ -229,8 +229,8 @@ function checkFusion(i, j, name) {
 function kadenaCheckHeight(height, ip) {
   // console.log(height);
   const currentTime = new Date().getTime();
-  const baseTime = 1694968141000;
-  const baseHeight = 81687264;
+  const baseTime = 1705568722000;
+  const baseHeight = 88750921;
   const timeDifference = currentTime - baseTime;
   const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
   const currentBlockEstimation = baseHeight + blocksPassedInDifference;
@@ -343,7 +343,7 @@ async function kadenaSearchTxs(domain) {
         source.cancel('Operation canceled by the user.');
       }
     }, 15000 * 2);
-    const kadenaData = await axios.get(`${domain}/txs/search?search=2a3c8b18323ef7be8e28ec585d065a47925202330036a17867d85528f6720a05&offset=0&limit=100`, { timeout: 15000, cancelToken: source.token });
+    const kadenaData = await axios.get(`${domain}/txs/account/fluxswap`, { timeout: 15000, cancelToken: source.token });
     isResolved = true;
     return kadenaData.data;
   } catch (e) {
@@ -352,36 +352,93 @@ async function kadenaSearchTxs(domain) {
   }
 }
 
-// async function checkKadenaDataApplication(domain) {
-//   try {
-//     const currentTime = new Date().getTime();
-//     const searchTxs = await kadenaRecentTxs(domain);
-//     const lastTx = new Date(searchTxs[0].creationTime);
-//     const lastTimeTx = lastTx.getTime();
-//     const diffTen = 1 * 24 * 60 * 60 * 1000;
-//     if (currentTime - diffTen < lastTimeTx) {
-//       const searchTxsAcc = await kadenaSearchTxs(domain);
-//       if (searchTxsAcc.length === 100) {
-//         return true;
-//       }
-//       return false;
-//     }
-//     return false;
-//   } catch (error) {
-//     return false;
-//   }
-// }
+async function kadenaSearchTxsB(domain) {
+  try {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
+    let isResolved = false;
+    setTimeout(() => {
+      if (!isResolved) {
+        source.cancel('Operation canceled by the user.');
+      }
+    }, 12000 * 2);
+    const kadenaData = await axios.get(`${domain}/txs/account/fluxteam?limit=200000&token=coin`, { timeout: 11000, cancelToken: source.token });
+    isResolved = true;
+    return kadenaData.data;
+  } catch (e) {
+    // log.error(e);
+    return [];
+  }
+}
 
+async function checkKadenaDataApplication(domain) {
+  try {
+    const currentTime = new Date().getTime();
+    const searchTxs = await kadenaRecentTxs(domain);
+    const lastTx = new Date(searchTxs[0].creationTime);
+    const lastTimeTx = lastTx.getTime();
+    const diffTen = 10 * 24 * 60 * 60 * 1000;
+    if (currentTime - diffTen < lastTimeTx) {
+      const searchTxsB = await kadenaSearchTxsB(domain);
+      if (searchTxsB.length < 229) {
+        return false;
+      }
+      const searchTxsAcc = await kadenaSearchTxs(domain);
+      const lastTxB = new Date(searchTxsAcc[0].blockTime);
+      const lastTimeTxB = lastTxB.getTime();
+      if (currentTime - diffTen < lastTimeTxB) {
+        return true;
+      }
+      return false;
+    }
+    return false;
+  } catch (error) {
+    return false;
+  }
+}
+
+async function checkKadenaTxsApp(domain) {
+  try {
+    const { CancelToken } = axios;
+    const source = CancelToken.source();
+    let isResolved = false;
+    setTimeout(() => {
+      if (!isResolved) {
+        source.cancel('Operation canceled by the user.');
+      }
+    }, 12000 * 2);
+    const kadenaData = await axios.get(`${domain}/v1/txs/fluxteam/coin/2050`, { timeout: 11000, cancelToken: source.token });
+    isResolved = true;
+    if (kadenaData.data.length > 200) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    return false;
+  }
+}
 async function checkKDA(i, name) {
   const chainwebNode = await checkKadenaApplication(i);
   if (chainwebNode === true) {
     return true;
   }
-  // const chainwebData = await checkKadenaDataApplication(i);
-  // if (chainwebData === true && chainwebNode === true) {
-  //   return true;
-  // }
   throw new Error(`checkKDA ${name}`);
+}
+
+async function checkKDAData(i, name) {
+  const chainwebData = await checkKadenaDataApplication(i);
+  if (chainwebData === true) {
+    return true;
+  }
+  throw new Error(`checkKDAData ${name}`);
+}
+
+async function checkKDATxs(i, name) {
+  const chainwebData = await checkKadenaTxsApp(i);
+  if (chainwebData === true) {
+    return true;
+  }
+  throw new Error(`checkKDAData ${name}`);
 }
 
 async function checkFluxStorage(i, name) {
@@ -802,7 +859,7 @@ const checks = [
     type: 'veriblock',
     urls: ['https://proxy.vbk.zelcore.io/addressesbalance'],
     data: [{
-      addresses: ['VBZ3J16cLrhxeEwZvswQSucfrFKvMF'],
+      addresses: ['V5h6udgGe6eL4M9cYGi776WCP75URm'],
     }],
   },
   {
@@ -810,7 +867,7 @@ const checks = [
     type: 'veriblock',
     urls: ['https://proxy.vbk-1.zelcore.io/addressesbalance'],
     data: [{
-      addresses: ['VBZ3J16cLrhxeEwZvswQSucfrFKvMF'],
+      addresses: ['V5h6udgGe6eL4M9cYGi776WCP75URm'],
     }],
   },
   {
@@ -818,7 +875,7 @@ const checks = [
     type: 'veriblock',
     urls: ['https://proxy.vbk-2.zelcore.io/addressesbalance'],
     data: [{
-      addresses: ['VBZ3J16cLrhxeEwZvswQSucfrFKvMF'],
+      addresses: ['V5h6udgGe6eL4M9cYGi776WCP75URm'],
     }],
   },
   {
@@ -1437,11 +1494,6 @@ const checks = [
     urls: ['https://fusion.runonflux.io/swap/info', 'https://fusion.runonflux.io/messagephrase'],
   },
   {
-    name: 'node.kda.zelcore.io',
-    type: 'kda',
-    urls: ['https://node.kda.zelcore.io'],
-  },
-  {
     name: 'node.kda-1.zelcore.io',
     type: 'kda',
     urls: ['https://node.kda-1.zelcore.io'],
@@ -1455,6 +1507,41 @@ const checks = [
     name: 'node.kda-3.zelcore.io',
     type: 'kda',
     urls: ['https://node.kda-3.zelcore.io'],
+  },
+  {
+    name: 'node.kda-1.zelcore.ioDATA',
+    type: 'kdaData',
+    urls: ['https://node.kda-1.zelcore.io'],
+  },
+  {
+    name: 'node.kda-2.zelcore.ioDATA',
+    type: 'kdaData',
+    urls: ['https://node.kda-2.zelcore.io'],
+  },
+  {
+    name: 'node.kda-3.zelcore.ioDATA',
+    type: 'kdaData',
+    urls: ['https://node.kda-3.zelcore.io'],
+  },
+  {
+    name: 'kadena.dapp.runonflux.ioTXS',
+    type: 'kdaTXS',
+    urls: ['http://116.203.253.186:9876'],
+  },
+  {
+    name: 'node.kda-1.zelcore.ioTXS',
+    type: 'kdaTXS',
+    urls: ['http://54.39.237.205:9876'],
+  },
+  {
+    name: 'node.kda-2.zelcore.ioTXS',
+    type: 'kdaTXS',
+    urls: ['http://54.39.237.2606:9876'],
+  },
+  {
+    name: 'node.kda-3.zelcore.ioTXS',
+    type: 'kdaTXS',
+    urls: ['http://54.39.237.207:9876'],
   },
   {
     name: 'storage.runonflux.io',
@@ -1532,6 +1619,10 @@ async function checkServices() {
         checkFusion(responseA, responseB, check.name);
       } else if (check.type === 'kda') { // must have 1 domain
         await checkKDA(check.urls[0], check.name);
+      } else if (check.type === 'kdaData') { // must have 1 domain
+        await checkKDAData(check.urls[0], check.name);
+      } else if (check.type === 'kdaTXS') { // must have 1 domain
+        await checkKDATxs(check.urls[0], check.name);
       } else if (check.type === 'fluxstorage') { // must have 1 domain
         await checkFluxStorage(check.urls[0], check.name);
       }
