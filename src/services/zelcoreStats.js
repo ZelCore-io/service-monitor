@@ -1536,7 +1536,7 @@ const checks = [
   {
     name: 'node.kda-2.zelcore.ioTXS',
     type: 'kdaTXS',
-    urls: ['http://54.39.237.2606:9876'],
+    urls: ['http://54.39.237.206:9876'],
   },
   {
     name: 'node.kda-3.zelcore.ioTXS',
