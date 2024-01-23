@@ -1008,6 +1008,11 @@ const checks = [
     urls: ['https://link.zelcore.io'],
   },
   {
+    name: 'docs.zelcore.io',
+    type: 'explorer',
+    urls: ['https://docs.zelcore.io'],
+  },
+  {
     name: 'zelpro.zelcore.io',
     type: 'zelcoreplus',
     urls: ['https://zelpro.zelcore.io/prouser/1CbErtneaX2QVyUfwU7JGB7VzvPgrgc3uC'],
