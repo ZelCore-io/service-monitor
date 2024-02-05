@@ -146,12 +146,10 @@ function checkSubstrate(i, name) {
 }
 
 function checkCardano(i, j, name) {
-  const sync = i.data.cardanoDbMeta.syncPercentage;
-  const { utxos } = j.data;
-  if (utxos[0].value > 100) {
-    if (sync === 100) {
-      return true;
-    }
+  const cardanoBalance = i.amount.find((amnt) => amnt.unit === 'lovelace');
+  const txs = j;
+  if (txs.length > 2 && cardanoBalance && +cardanoBalance.quantity > 0) {
+    return true;
   }
   throw new Error(`checkCardano ${name}`);
 }
@@ -1155,97 +1153,22 @@ const checks = [
   {
     name: 'backend.ada.zelcore.io',
     type: 'cardano',
-    urls: ['https://backend.ada.zelcore.io/graphql', 'https://backend.ada.zelcore.io/graphql'],
-    data: [{
-      query: '{ cardanoDbMeta { initialized syncPercentage }}',
-    }, {
-      query: `query utxoSetForAddress($address: String!) {
-        utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
-          txHash
-          index
-          value
-        }
-      }`,
-      variables: {
-        address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
-      },
-    }],
+    urls: ['https://backend.ada.zelcore.io/v1/balances/addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv', 'https://backend.ada.zelcore.io/v1/txs/addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv'],
   },
   {
-    name: 'graphql.ada.zelcore.io',
+    name: 'backend.ada-1.zelcore.io',
     type: 'cardano',
-    urls: ['https://graphql.ada.zelcore.io/graphql', 'https://graphql.ada.zelcore.io/graphql'],
-    data: [{
-      query: '{ cardanoDbMeta { initialized syncPercentage }}',
-    }, {
-      query: `query utxoSetForAddress($address: String!) {
-        utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
-          txHash
-          index
-          value
-        }
-      }`,
-      variables: {
-        address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
-      },
-    }],
+    urls: ['https://backend.ada-1.zelcore.io/v1/balances/addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv', 'https://backend.ada-1.zelcore.io/v1/txs/addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv'],
   },
   {
-    name: 'graphql.ada-1.zelcore.io',
+    name: 'backend.ada-2.zelcore.io',
     type: 'cardano',
-    urls: ['https://graphql.ada-1.zelcore.io/graphql', 'https://graphql.ada-1.zelcore.io/graphql'],
-    data: [{
-      query: '{ cardanoDbMeta { initialized syncPercentage }}',
-    }, {
-      query: `query utxoSetForAddress($address: String!) {
-        utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
-          txHash
-          index
-          value
-        }
-      }`,
-      variables: {
-        address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
-      },
-    }],
+    urls: ['https://backend.ada-2.zelcore.io/v1/balances/addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv', 'https://backend.ada-2.zelcore.io/v1/txs/addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv'],
   },
   {
-    name: 'graphql.ada-2.zelcore.io',
+    name: 'backend.ada-3.zelcore.io',
     type: 'cardano',
-    urls: ['https://graphql.ada-2.zelcore.io/graphql', 'https://graphql.ada-2.zelcore.io/graphql'],
-    data: [{
-      query: '{ cardanoDbMeta { initialized syncPercentage }}',
-    }, {
-      query: `query utxoSetForAddress($address: String!) {
-        utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
-          txHash
-          index
-          value
-        }
-      }`,
-      variables: {
-        address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
-      },
-    }],
-  },
-  {
-    name: 'graphql.ada-3.zelcore.io',
-    type: 'cardano',
-    urls: ['https://graphql.ada-3.zelcore.io/graphql', 'https://graphql.ada-3.zelcore.io/graphql'],
-    data: [{
-      query: '{ cardanoDbMeta { initialized syncPercentage }}',
-    }, {
-      query: `query utxoSetForAddress($address: String!) {
-        utxos(order_by: { value: desc }, where: { address: { _eq: $address } }) {
-          txHash
-          index
-          value
-        }
-      }`,
-      variables: {
-        address: 'addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv',
-      },
-    }],
+    urls: ['https://backend.ada-3.zelcore.io/v1/balances/addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv', 'https://backend.ada-3.zelcore.io/v1/txs/addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv'],
   },
   {
     name: 'graphql.erg.zelcore.io',
@@ -1596,8 +1519,8 @@ async function checkServices() {
         const responseA = await getRequest(check.urls[0]);
         checkSubstrate(responseA, check.name);
       } else if (check.type === 'cardano') { // must have 2 url
-        const responseA = await postRequest(check.urls[0], check.data[0]);
-        const responseB = await postRequest(check.urls[1], check.data[1]);
+        const responseA = await getRequest(check.urls[0]);
+        const responseB = await getRequest(check.urls[1]);
         checkCardano(responseA, responseB, check.name);
       } else if (check.type === 'ergo') { // must have 1 url
         const responseA = await postRequest(check.urls[0], check.data[0]);
