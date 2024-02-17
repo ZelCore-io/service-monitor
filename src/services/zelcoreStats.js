@@ -1322,6 +1322,21 @@ const checks = [
     urls: ['https://home.runonflux.io/fluxstatistics'],
   },
   {
+    name: 'fdm-main-asia',
+    type: 'fdm',
+    urls: ['https://fdm-main-asia.runonflux.io/fluxstatistics'],
+  },
+  {
+    name: 'fdm-main-eu',
+    type: 'fdm',
+    urls: ['https://fdm-main-eu.runonflux.io/fluxstatistics'],
+  },
+  {
+    name: 'fdm-main-na',
+    type: 'fdm',
+    urls: ['https://fdm-main-na.runonflux.io/fluxstatistics'],
+  },
+  {
     name: 'fdm-nodes-eu-1-1.runonflux.io',
     type: 'fdm',
     urls: ['https://fdm-nodes-eu-1-1.runonflux.io/fluxstatistics'],
