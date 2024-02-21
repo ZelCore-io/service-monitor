@@ -458,9 +458,24 @@ const checks = [
     urls: ['https://explorer.runonflux.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih', 'https://explorer.runonflux.io/api/sync'],
   },
   {
+    name: 'explorer1.runonflux.io',
+    type: 'insight',
+    urls: ['https://explorer1.runonflux.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih', 'https://explorer1.runonflux.io/api/sync'],
+  },
+  {
+    name: 'explorer2.runonflux.io',
+    type: 'insight',
+    urls: ['https://explorer2.runonflux.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih', 'https://explorer2.runonflux.io/api/sync'],
+  },
+  {
     name: 'explorer2.flux.zelcore.io',
     type: 'insight',
     urls: ['https://explorer2.flux.zelcore.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih', 'https://explorer2.flux.zelcore.io/api/sync'],
+  },
+  {
+    name: 'explorer1.flux.zelcore.io',
+    type: 'insight',
+    urls: ['https://explorer1.flux.zelcore.io/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih', 'https://explorer1.flux.zelcore.io/api/sync'],
   },
   {
     name: 'explorer.flux.zelcore.io',
@@ -688,6 +703,16 @@ const checks = [
     urls: ['https://blockbook.runonflux.io/api/v2/address/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj?pageSize=50', 'https://blockbook.runonflux.io/api/sync'],
   },
   {
+    name: 'blockbook1.runonflux.io',
+    type: 'blockbook',
+    urls: ['https://blockbook1.runonflux.io/api/v2/address/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj?pageSize=50', 'https://blockbook1.runonflux.io/api/sync'],
+  },
+  {
+    name: 'blockbook2.runonflux.io',
+    type: 'blockbook',
+    urls: ['https://blockbook2.runonflux.io/api/v2/address/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj?pageSize=50', 'https://blockbook2.runonflux.io/api/sync'],
+  },
+  {
     name: 'blockbook.etc.zelcore.io',
     type: 'blockbook',
     urls: ['https://blockbook.etc.zelcore.io/api/v2/address/0x0e009d19cb4693fcf2d15aaf4a5ee1c8a0bb5ecf?pageSize=50', 'https://blockbook.etc.zelcore.io/api/sync'],
@@ -843,9 +868,24 @@ const checks = [
     urls: ['https://proxy.runonflux.io/?server=127.0.0.1&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'],
   },
   {
+    name: 'proxy1.runonflux.io',
+    type: 'electrumx',
+    urls: ['https://proxy1.runonflux.io/?server=127.0.0.1&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'],
+  },
+  {
+    name: 'proxy2.runonflux.io',
+    type: 'electrumx',
+    urls: ['https://proxy2.runonflux.io/?server=127.0.0.1&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'],
+  },
+  {
     name: 'electrumx.runonflux.io',
     type: 'electrumx',
     urls: ['https://proxy.runonflux.io/?server=electrumx.runonflux.io&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'],
+  },
+  {
+    name: 'electrumx1.runonflux.io',
+    type: 'electrumx',
+    urls: ['https://proxy.runonflux.io/?server=electrumx1.runonflux.io&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'],
   },
   {
     name: 'electrumx2.runonflux.io',
