@@ -117,7 +117,7 @@ function checkEthBalance(i, name) {
 }
 
 function checkZelCorePlus(i, name) {
-  if (i.validTill === 1760216096000) {
+  if (i.validTill === 1760388896000) {
     return true;
   }
   throw new Error(`checkZelCorePlus ${name}`);
