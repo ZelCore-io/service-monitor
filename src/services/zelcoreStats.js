@@ -828,9 +828,24 @@ const checks = [
     urls: ['https://blockbook.dash-1.zelcore.io/api/v2/address/XmCgmabJL2S8DJ8tmEvB8QDArgBbSSMJea?pageSize=50', 'https://blockbook.dash-1.zelcore.io/api/sync'],
   },
   {
-    name: 'blockbook.dash.zelcore.io',
+    name: 'blockbook.dash-2.zelcore.io',
     type: 'blockbook',
     urls: ['https://blockbook.dash-2.zelcore.io/api/v2/address/XmCgmabJL2S8DJ8tmEvB8QDArgBbSSMJea?pageSize=50', 'https://blockbook.dash-2.zelcore.io/api/sync'],
+  },
+  {
+    name: 'blockbook.clore.zelcore.io',
+    type: 'blockbook',
+    urls: ['https://blockbook.clore.zelcore.io/api/v2/address/ANHcdHjkMEYzSL6d8rc8JhvinRKeKJAemq?pageSize=50', 'https://blockbook.clore.zelcore.io/api/sync'],
+  },
+  {
+    name: 'blockbook.clore-1.zelcore.io',
+    type: 'blockbook',
+    urls: ['https://blockbook.clore-1.zelcore.io/api/v2/address/ANHcdHjkMEYzSL6d8rc8JhvinRKeKJAemq?pageSize=50', 'https://blockbook.clore-1.zelcore.io/api/sync'],
+  },
+  {
+    name: 'blockbook.clore-2.zelcore.io',
+    type: 'blockbook',
+    urls: ['https://blockbook.clore-2.zelcore.io/api/v2/address/ANHcdHjkMEYzSL6d8rc8JhvinRKeKJAemq?pageSize=50', 'https://blockbook.clore-2.zelcore.io/api/sync'],
   },
   {
     name: 'proxy.btx.zelcore.io',
