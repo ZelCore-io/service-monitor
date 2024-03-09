@@ -1151,6 +1151,16 @@ const checks = [
     urls: ['https://vipcrates.zelcore.io/'],
   },
   {
+    name: 'viprates.runonflux.io',
+    type: 'rates',
+    urls: ['https://viprates.runonflux.io/rates'],
+  },
+  {
+    name: 'viprates.zelcore.io',
+    type: 'rates',
+    urls: ['https://viprates.zelcore.io/rates'],
+  },
+  {
     name: 'vipbrates.zelcore.io/marketsusd',
     type: 'markets',
     urls: ['https://vipbrates.zelcore.io/marketsusd'],
@@ -1376,11 +1386,11 @@ const checks = [
     type: 'fees',
     urls: ['https://api.zelcore.io/networkfees'],
   },
-  {
-    name: 'nitter.zelcore.io',
-    type: 'explorer',
-    urls: ['https://nitter.zelcore.io'],
-  },
+  // {
+  //   name: 'nitter.zelcore.io',
+  //   type: 'explorer',
+  //   urls: ['https://nitter.zelcore.io'],
+  // },
   {
     name: 'hashes.runonflux.io',
     type: 'hashes',
