@@ -227,12 +227,12 @@ function checkFusion(i, j, name) {
 function kadenaCheckHeight(height, ip) {
   // console.log(height);
   const currentTime = new Date().getTime();
-  const baseTime = 1720917941000;
-  const baseHeight = 98974715;
+  const baseTime = 1724695984000;
+  const baseHeight = 101488662;
   const timeDifference = currentTime - baseTime;
   const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
   const currentBlockEstimation = baseHeight + blocksPassedInDifference;
-  const minimumAcceptedBlockHeight = currentBlockEstimation - (60 * 40); // allow being off sync for this amount of blocks
+  const minimumAcceptedBlockHeight = currentBlockEstimation - (5000); // allow being off sync for this amount of blocks
   if (height > minimumAcceptedBlockHeight) {
     return true;
   }
