@@ -197,7 +197,7 @@ function checkHashes(i, name) {
 
 function checkFees(i, name) {
   const response = i;
-  if (response.length > 2 && response[2].normal > 5) {
+  if (response.length > 2 && response[2].normal > 3) {
     return true;
   }
   throw new Error(`checkFees ${name}`);
