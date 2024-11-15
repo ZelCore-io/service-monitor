@@ -45,6 +45,12 @@ sx_check_server() {
     time=0
   fi
 
+  # Workaround for xftp: every xftp check creates temp files in /tmp folder
+  # so we need to manually cleanup them.
+  case "$1" in
+		xftp*) rm -f "/tmp/$(date '+%Y-%m-%dT')"* ;;
+	esac
+
   # Finally, print the message and exit with the appropriate code
   # Message consist of: status latency
   if [ "$time" != '0' ]; then
