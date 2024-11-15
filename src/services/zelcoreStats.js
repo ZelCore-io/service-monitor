@@ -2,6 +2,8 @@
 /* eslint-disable no-await-in-loop */
 const axios = require('axios');
 const https = require('https');
+const util = require('util');
+const execShell = util.promisify(require('child_process').exec);
 const log = require('../lib/log');
 
 async function getRequest(url) {
@@ -448,6 +450,20 @@ async function checkFluxStorage(i, name) {
       return true;
     }
     throw new Error(`checkFluxStorage ${name}`);
+  }
+}
+
+async function checkSimplex(i, name) {
+  try {
+    const exec = `sh ~/service-monitor/services/src/simplex-check_script.sh ${i}`;
+    const cmdres = await execShell(exec, { maxBuffer: 1024 * 1024 * 10 });
+    const parsed = cmdres.stdout;
+    if (parsed.includes('pass')) {
+      return true;
+    }
+    throw new Error(`checkSimplex ${name}`);
+  } catch (error) {
+    throw new Error(`checkSimplex ${name}`);
   }
 }
 
@@ -1576,6 +1592,66 @@ const checks = [
     type: 'fluxstorage',
     urls: ['https://storage.runonflux.io/v1/env/865071381744200'],
   },
+  {
+    name: 'smp1.simplexonflux.com',
+    type: 'simplex',
+    urls: ['smp://xQW_ufMkGE20UrTlBl8QqceG1tbuylXhr9VOLPyRJmw=@smp1.simplexonflux.com,qb4yoanyl4p7o33yrknv4rs6qo7ugeb2tu2zo66sbebezs4cpyosarid.onion'],
+  },
+  {
+    name: 'smp2.simplexonflux.com',
+    type: 'simplex',
+    urls: ['smp://LDnWZVlAUInmjmdpQQoIo6FUinRXGe0q3zi5okXDE4s=@smp2.simplexonflux.com,yiqtuh3q4x7hgovkomafsod52wvfjucdljqbbipg5sdssnklgongxbqd.onion'],
+  },
+  {
+    name: 'smp3.simplexonflux.com',
+    type: 'simplex',
+    urls: ['smp://1jne379u7IDJSxAvXbWb_JgoE7iabcslX0LBF22Rej0=@smp3.simplexonflux.com,a5lm4k7ufei66cdck6fy63r4lmkqy3dekmmb7jkfdm5ivi6kfaojshad.onion'],
+  },
+  {
+    name: 'smp4.simplexonflux.com',
+    type: 'simplex',
+    urls: ['smp://xmAmqj75I9mWrUihLUlI0ZuNLXlIwFIlHRq5Pb6cHAU=@smp4.simplexonflux.com,qpcz2axyy66u26hfdd2e23uohcf3y6c36mn7dcuilcgnwjasnrvnxjqd.onion'],
+  },
+  {
+    name: 'smp5.simplexonflux.com',
+    type: 'simplex',
+    urls: ['smp://rWvBYyTamuRCBYb_KAn-nsejg879ndhiTg5Sq3k0xWA=@smp5.simplexonflux.com,4ao347qwiuluyd45xunmii4skjigzuuox53hpdsgbwxqafd4yrticead.onion'],
+  },
+  {
+    name: 'smp6.simplexonflux.com',
+    type: 'simplex',
+    urls: ['smp://PN7-uqLBToqlf1NxHEaiL35lV2vBpXq8Nj8BW11bU48=@smp6.simplexonflux.com,hury6ot3ymebbr2535mlp7gcxzrjpc6oujhtfxcfh2m4fal4xw5fq6qd.onion'],
+  },
+  {
+    name: 'xftp1.simplexonflux.com',
+    type: 'simplex',
+    urls: ['xftp://92Sctlc09vHl_nAqF2min88zKyjdYJ9mgxRCJns5K2U=@xftp1.simplexonflux.com,apl3pumq3emwqtrztykyyoomdx4dg6ysql5zek2bi3rgznz7ai3odkid.onion'],
+  },
+  {
+    name: 'xftp2.simplexonflux.com',
+    type: 'simplex',
+    urls: ['xftp://YBXy4f5zU1CEhnbbCzVWTNVNsaETcAGmYqGNxHntiE8=@xftp2.simplexonflux.com,c5jjecisncnngysah3cz2mppediutfelco4asx65mi75d44njvua3xid.onion'],
+  },
+  {
+    name: 'xftp3.simplexonflux.com',
+    type: 'simplex',
+    urls: ['xftp://ARQO74ZSvv2OrulRF3CdgwPz_AMy27r0phtLSq5b664=@xftp3.simplexonflux.com,dc4mohiubvbnsdfqqn7xhlhpqs5u4tjzp7xpz6v6corwvzvqjtaqqiqd.onion'],
+  },
+  {
+    name: 'xftp4.simplexonflux.com',
+    type: 'simplex',
+    urls: ['xftp://ub2jmAa9U0uQCy90O-fSUNaYCj6sdhl49Jh3VpNXP58=@xftp4.simplexonflux.com,4qq5pzier3i4yhpuhcrhfbl6j25udc4czoyascrj4yswhodhfwev3nyd.onion'],
+  },
+  {
+    name: 'xftp5.simplexonflux.com',
+    type: 'simplex',
+    urls: ['xftp://Rh19D5e4Eez37DEE9hAlXDB3gZa1BdFYJTPgJWPO9OI=@xftp5.simplexonflux.com,q7itltdn32hjmgcqwhow4tay5ijetng3ur32bolssw32fvc5jrwvozad.onion'],
+  },
+  {
+    name: 'xftp6.simplexonflux.com',
+    type: 'simplex',
+    urls: ['xftp://0AznwoyfX8Od9T_acp1QeeKtxUi676IBIiQjXVwbdyU=@xftp6.simplexonflux.com,upvzf23ou6nrmaf3qgnhd6cn3d74tvivlmz3p7wdfwq6fhthjrjiiqid.onion'],
+  },
 ];
 
 async function checkServices() {
@@ -1653,6 +1729,8 @@ async function checkServices() {
         await checkKDATxs(check.urls[0], check.name);
       } else if (check.type === 'fluxstorage') { // must have 1 domain
         await checkFluxStorage(check.urls[0], check.name);
+      } else if (check.type === 'simplex') { // must have 1 domain
+        await checkSimplex(check.urls[0], check.name);
       }
 
       if (!statuses.ok.includes(check.name)) {
