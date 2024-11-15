@@ -455,7 +455,7 @@ async function checkFluxStorage(i, name) {
 
 async function checkSimplex(i, name) {
   try {
-    const exec = `sh ~/service-monitor/services/src/simplex-check_script.sh ${i}`;
+    const exec = `sh ~/service-monitor/src/services/simplex-check_script.sh ${i}`;
     const cmdres = await execShell(exec, { maxBuffer: 1024 * 1024 * 10 });
     const parsed = cmdres.stdout;
     if (parsed.includes('pass')) {
