@@ -51,7 +51,7 @@ setInterval(() => {
     const mailOptions = {
       from: user,
       to: 'tadeas@zelcore.io',
-      cc: ['jeremy@runonflux.io', 'greg@runonflux.io', 'gil@zelcore.io'],
+      cc: ['jeremy@runonflux.io'],
       subject: 'MONITORING DOWN',
       text: 'Please, check monitoring server!',
     };
