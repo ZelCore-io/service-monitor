@@ -1,7 +1,7 @@
 const axios = require('axios');
 const nodemailer = require('nodemailer');
 
-const url = 'https://status.zel.network';
+const url = 'https://api.status.runonflux.io';
 const user = 'infrabot@zohomail.com';
 const password = 'secretpassword';
 

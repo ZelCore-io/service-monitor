@@ -1062,11 +1062,6 @@ const checks = [
     urls: ['https://runonflux.zelcore.workers.dev'],
   },
   {
-    name: 'apt.zel.network',
-    type: 'explorer',
-    urls: ['https://apt.zel.network'],
-  },
-  {
     name: 'apt.fluxos.network',
     type: 'explorer',
     urls: ['https://apt.fluxos.network'],
