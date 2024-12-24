@@ -446,6 +446,11 @@ async function checkFluxStorage(i, name) {
     await axios.get(i);
     throw new Error(`checkFluxStorage ${name}`);
   } catch (error) {
+    log.error(error);
+    log.error(error.response);
+    log.error(error.response.status);
+    log.error(error.response.statusText);
+    log.error(error.response.data);
     if (error.response.data === 'Forbidden') {
       return true;
     }
