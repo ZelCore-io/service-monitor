@@ -891,7 +891,7 @@ const checks = [
   {
     name: 'proxy.rtm-1.zelcore.io',
     type: 'electrumx',
-    urls: ['https://proxy.rtm-1.zelcore.io/?server=explorer.rtm-2.zelcore.io&port=50002&contype=tls&coin=raptoreum&call=nicehistory&param=RKo31qpgy9278MuWNXb5NPranc4W6oaUFf'],
+    urls: ['https://proxy.rtm-1.zelcore.io/?server=explorer.rtm-1.zelcore.io&port=50002&contype=tls&coin=raptoreum&call=nicehistory&param=RKo31qpgy9278MuWNXb5NPranc4W6oaUFf'],
   },
   {
     name: 'proxy.rtm-2.zelcore.io',
