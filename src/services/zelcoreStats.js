@@ -564,11 +564,6 @@ const checks = [
     urls: ['https://explorer.flux-6.zelcore.io/api/blocks?limit=1', 'https://explorer.flux-6.zelcore.io/api/txs/?block=', 'https://explorer.flux-6.zelcore.io/api/tx/'],
   },
   {
-    name: 'explorer.zelcash.online',
-    type: 'insight',
-    urls: ['https://explorer.zelcash.online/api/addr/t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih', 'https://explorer.zelcash.online/api/sync'],
-  },
-  {
     name: 'explorer.anon.zelcore.io',
     type: 'insight',
     urls: ['https://explorer.anon.zelcore.io/api/addr/AnY5LGSDdUgawBW8TQuFL1fJeTbswo65xeK', 'https://explorer.anon.zelcore.io/api/sync'],
