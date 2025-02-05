@@ -806,17 +806,17 @@ const checks = [
   {
     name: 'blockbook.tbtc.zelcore.io',
     type: 'blockbook',
-    urls: ['https://blockbook.tbtc.zelcore.io/api/v2/address/mr2oEP2PBLenqU1vcvaL6njhtLCcKvhtMe?pageSize=50', 'https://blockbook.tbtc.zelcore.io/api/sync'],
+    urls: ['https://blockbook.tbtc.zelcore.io/api/v2/address/tb1q7v5wlst2lq5dcdwk7l5dlx7tpzlyj8g5arvpfs?pageSize=50', 'https://blockbook.tbtc.zelcore.io/api/sync'],
   },
   {
     name: 'blockbook.tbtc-1.zelcore.io',
     type: 'blockbook',
-    urls: ['https://blockbook.tbtc-1.zelcore.io/api/v2/address/mr2oEP2PBLenqU1vcvaL6njhtLCcKvhtMe?pageSize=50', 'https://blockbook.tbtc-1.zelcore.io/api/sync'],
+    urls: ['https://blockbook.tbtc-1.zelcore.io/api/v2/address/tb1q7v5wlst2lq5dcdwk7l5dlx7tpzlyj8g5arvpfs?pageSize=50', 'https://blockbook.tbtc-1.zelcore.io/api/sync'],
   },
   {
     name: 'blockbook.tbtc-2.zelcore.io',
     type: 'blockbook',
-    urls: ['https://blockbook.tbtc-2.zelcore.io/api/v2/address/mr2oEP2PBLenqU1vcvaL6njhtLCcKvhtMe?pageSize=50', 'https://blockbook.tbtc-2.zelcore.io/api/sync'],
+    urls: ['https://blockbook.tbtc-2.zelcore.io/api/v2/address/tb1q7v5wlst2lq5dcdwk7l5dlx7tpzlyj8g5arvpfs?pageSize=50', 'https://blockbook.tbtc-2.zelcore.io/api/sync'],
   },
   {
     name: 'blockbook.vtc.zelcore.io',
