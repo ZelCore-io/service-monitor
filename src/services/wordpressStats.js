@@ -33,17 +33,17 @@ async function checkServices() {
   try {
     const wps = [];
     const response = await getRequest('https://api.runonflux.io/apps/globalappsspecifications');
-    const wordpresses = response.data.filter((app) => app.name.startsWith('wordpress'));
+    const wordpresses = response.data.filter((app) => app.name.startsWith('wordpress1'));
     // eslint-disable-next-line no-restricted-syntax
     for (const wordpress of wordpresses) {
       wps.push({
-        name: wordpress.name,
+        name: `https://${wordpress.name}_${wordpress.compose[0].ports[0]}.app.runonflux.io`,
         type: 'wordpress',
         urls: [`https://${wordpress.name}_${wordpress.compose[0].ports[0]}.app.runonflux.io`],
       });
       if (wordpress.compose[0].domains[0]) {
         wps.push({
-          name: wordpress.name,
+          name: wordpress.compose[0].domains[0].includes('http') ? wordpress.compose[0].domains[0] : `https://${wordpress.compose[0].domains[0]}`,
           type: 'wordpress',
           urls: [wordpress.compose[0].domains[0].includes('http') ? wordpress.compose[0].domains[0] : `https://${wordpress.compose[0].domains[0]}`],
         });

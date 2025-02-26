@@ -1661,7 +1661,7 @@ async function checkServices() {
   try {
     const wps = [];
     const response = await getRequest('https://api.runonflux.io/apps/globalappsspecifications');
-    const wordpresses = response.data.filter((app) => app.name.startsWith('wordpress'));
+    const wordpresses = response.data.filter((app) => app.name.startsWith('wordpress1'));
     // eslint-disable-next-line no-restricted-syntax
     for (const wordpress of wordpresses) {
       wps.push({
