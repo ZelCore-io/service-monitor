@@ -72,23 +72,33 @@ async function checkServices() {
       }
     } catch (error) {
       log.error(error);
-      if (error && error.response && error.response.data && error.response.data.includes('Just a moment...')) {
-        // cloudflare protected, mark as ok
-        if (!statuses.ok.includes(check.name)) {
-          statuses.ok.push(check.name);
+      try {
+        if (error && error.response && error.response.data && error.response.data.includes('Just a moment...')) {
+          // cloudflare protected, mark as ok
+          if (!statuses.ok.includes(check.name)) {
+            statuses.ok.push(check.name);
+          }
+          if (statuses.errors.includes(check.name)) {
+            const index = statuses.errors.findIndex((item) => item === check.name);
+            statuses.errors.splice(index, 1);
+          }
+          return;
         }
-        if (statuses.errors.includes(check.name)) {
-          const index = statuses.errors.findIndex((item) => item === check.name);
-          statuses.errors.splice(index, 1);
+        if (!statuses.errors.includes(check.name)) {
+          statuses.errors.push(check.name);
         }
-        return;
-      }
-      if (!statuses.errors.includes(check.name)) {
-        statuses.errors.push(check.name);
-      }
-      if (statuses.ok.includes(check.name)) {
-        const index = statuses.ok.findIndex((item) => item === check.name);
-        statuses.ok.splice(index, 1);
+        if (statuses.ok.includes(check.name)) {
+          const index = statuses.ok.findIndex((item) => item === check.name);
+          statuses.ok.splice(index, 1);
+        }
+      } catch (e) {
+        if (!statuses.errors.includes(check.name)) {
+          statuses.errors.push(check.name);
+        }
+        if (statuses.ok.includes(check.name)) {
+          const index = statuses.ok.findIndex((item) => item === check.name);
+          statuses.ok.splice(index, 1);
+        }
       }
     }
   }
