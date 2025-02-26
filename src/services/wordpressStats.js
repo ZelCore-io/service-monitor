@@ -45,7 +45,7 @@ async function checkServices() {
         wps.push({
           name: wordpress.name,
           type: 'wordpress',
-          urls: [`https://${wordpress.compose[0].domains[0]}`],
+          urls: [wordpress.compose[0].domains[0].includes('http') ? wordpress.compose[0].domains[0] : `https://${wordpress.compose[0].domains[0]}`],
         });
       }
     }
