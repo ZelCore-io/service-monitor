@@ -82,14 +82,14 @@ async function checkServices() {
             const index = statuses.errors.findIndex((item) => item === check.name);
             statuses.errors.splice(index, 1);
           }
-          return;
-        }
-        if (!statuses.errors.includes(check.name)) {
-          statuses.errors.push(check.name);
-        }
-        if (statuses.ok.includes(check.name)) {
-          const index = statuses.ok.findIndex((item) => item === check.name);
-          statuses.ok.splice(index, 1);
+        } else {
+          if (!statuses.errors.includes(check.name)) {
+            statuses.errors.push(check.name);
+          }
+          if (statuses.ok.includes(check.name)) {
+            const index = statuses.ok.findIndex((item) => item === check.name);
+            statuses.ok.splice(index, 1);
+          }
         }
       } catch (e) {
         if (!statuses.errors.includes(check.name)) {
