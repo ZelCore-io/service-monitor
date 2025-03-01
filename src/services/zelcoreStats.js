@@ -1658,32 +1658,32 @@ const checks = [
 ];
 
 async function checkServices() {
-  try {
-    const wps = [];
-    const response = await getRequest('https://api.runonflux.io/apps/globalappsspecifications');
-    const wordpresses = response.data.filter((app) => app.name.startsWith('wordpress1'));
-    // eslint-disable-next-line no-restricted-syntax
-    for (const wordpress of wordpresses) {
-      wps.push({
-        name: wordpress.name,
-        type: 'wordpress',
-        urls: [`https://${wordpress.name}_${wordpress.compose[0].ports[0]}.app.runonflux.io`],
-      });
-      if (wordpress.compose[0].domains[0]) {
-        wps.push({
-          name: wordpress.name,
-          type: 'wordpress',
-          urls: [`https://${wordpress.compose[0].domains[0]}`],
-        });
-      }
-    }
-    console.log(wps);
-    wps.forEach((wp) => {
-      checks.push(wp);
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  // try {
+  //   const wps = [];
+  //   const response = await getRequest('https://api.runonflux.io/apps/globalappsspecifications');
+  //   const wordpresses = response.data.filter((app) => app.name.startsWith('wordpress1'));
+  //   // eslint-disable-next-line no-restricted-syntax
+  //   for (const wordpress of wordpresses) {
+  //     wps.push({
+  //       name: wordpress.name,
+  //       type: 'wordpress',
+  //       urls: [`https://${wordpress.name}_${wordpress.compose[0].ports[0]}.app.runonflux.io`],
+  //     });
+  //     if (wordpress.compose[0].domains[0]) {
+  //       wps.push({
+  //         name: wordpress.name,
+  //         type: 'wordpress',
+  //         urls: [`https://${wordpress.compose[0].domains[0]}`],
+  //       });
+  //     }
+  //   }
+  //   console.log(wps);
+  //   wps.forEach((wp) => {
+  //     checks.push(wp);
+  //   });
+  // } catch (error) {
+  //   console.log(error);
+  // }
   for (const check of checks) {
     try {
       if (check.type === 'insight') { // must have 2 urls
