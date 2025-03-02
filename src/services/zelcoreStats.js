@@ -1165,11 +1165,6 @@ const checks = [
     urls: ['https://viparates.zelcore.io/'],
   },
   {
-    name: 'vipcrates.zelcore.io',
-    type: 'rates',
-    urls: ['https://vipcrates.zelcore.io/'],
-  },
-  {
     name: 'viprates.runonflux.io',
     type: 'rates',
     urls: ['https://viprates.runonflux.io/rates'],
@@ -1188,11 +1183,6 @@ const checks = [
     name: 'viparates.zelcore.io/marketsusd',
     type: 'markets',
     urls: ['https://viparates.zelcore.io/marketsusd'],
-  },
-  {
-    name: 'vipcrates.zelcore.io/marketsusd',
-    type: 'markets',
-    urls: ['https://vipcrates.zelcore.io/marketsusd'],
   },
   {
     name: 'backend.dot.zelcore.io',
