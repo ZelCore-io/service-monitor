@@ -572,21 +572,6 @@ const checks = [
     urls: ['https://explorer.flux-6.zelcore.io/api/blocks?limit=1', 'https://explorer.flux-6.zelcore.io/api/txs/?block=', 'https://explorer.flux-6.zelcore.io/api/tx/'],
   },
   {
-    name: 'explorer.anon.zelcore.io',
-    type: 'insight',
-    urls: ['https://explorer.anon.zelcore.io/api/addr/AnY5LGSDdUgawBW8TQuFL1fJeTbswo65xeK', 'https://explorer.anon.zelcore.io/api/sync'],
-  },
-  {
-    name: 'explorer.anon-1.zelcore.io',
-    type: 'insight',
-    urls: ['https://explorer.anon-1.zelcore.io/api/addr/AnY5LGSDdUgawBW8TQuFL1fJeTbswo65xeK', 'https://explorer.anon-1.zelcore.io/api/sync'],
-  },
-  {
-    name: 'explorer.anon-2.zelcore.io',
-    type: 'insight',
-    urls: ['https://explorer.anon-2.zelcore.io/api/addr/AnY5LGSDdUgawBW8TQuFL1fJeTbswo65xeK', 'https://explorer.anon-2.zelcore.io/api/sync'],
-  },
-  {
     name: 'explorer.firo.zelcore.io',
     type: 'insight',
     urls: ['https://explorer.firo.zelcore.io/api/addr/aBEJgEP2b7DP7tyQukv639qtdhjFhWp2QE', 'https://explorer.firo.zelcore.io/api/sync'],
