@@ -237,8 +237,8 @@ function checkFusion(i, j, name) {
 function kadenaCheckHeight(height, ip) {
   // console.log(height);
   const currentTime = new Date().getTime();
-  const baseTime = 1733919199000;
-  const baseHeight = 107632137;
+  const baseTime = 1742095352000;
+  const baseHeight = 113077705;
   const timeDifference = currentTime - baseTime;
   const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
   const currentBlockEstimation = baseHeight + blocksPassedInDifference;
@@ -570,6 +570,21 @@ const checks = [
     name: 'explorer.flux-6.zelcore.io-ext',
     type: 'extendedInsight',
     urls: ['https://explorer.flux-6.zelcore.io/api/blocks?limit=1', 'https://explorer.flux-6.zelcore.io/api/txs/?block=', 'https://explorer.flux-6.zelcore.io/api/tx/'],
+  },
+  {
+    name: 'explorer.anon.zelcore.io',
+    type: 'insight',
+    urls: ['https://explorer.anon.zelcore.io/api/addr/AnY5LGSDdUgawBW8TQuFL1fJeTbswo65xeK', 'https://explorer.anon.zelcore.io/api/sync'],
+  },
+  {
+    name: 'explorer.anon-1.zelcore.io',
+    type: 'insight',
+    urls: ['https://explorer.anon-1.zelcore.io/api/addr/AnY5LGSDdUgawBW8TQuFL1fJeTbswo65xeK', 'https://explorer.anon-1.zelcore.io/api/sync'],
+  },
+  {
+    name: 'explorer.anon-2.zelcore.io',
+    type: 'insight',
+    urls: ['https://explorer.anon-2.zelcore.io/api/addr/AnY5LGSDdUgawBW8TQuFL1fJeTbswo65xeK', 'https://explorer.anon-2.zelcore.io/api/sync'],
   },
   {
     name: 'explorer.firo.zelcore.io',
