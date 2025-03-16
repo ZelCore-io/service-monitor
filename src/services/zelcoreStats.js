@@ -207,7 +207,7 @@ function checkHashes(i, name) {
 
 function checkFees(i, name) {
   const response = i;
-  if (response.length >= 37) {
+  if (response.length > 30) {
     return true;
   }
   throw new Error(`checkFees ${name}`);
