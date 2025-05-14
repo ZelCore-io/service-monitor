@@ -1185,11 +1185,6 @@ const checks = [
     urls: ['https://viparates.zelcore.io/marketsusd'],
   },
   {
-    name: 'backend.dot.zelcore.io',
-    type: 'substrate',
-    urls: ['https://backend.dot.zelcore.io/runtime'],
-  },
-  {
     name: 'node.dot.zelcore.io',
     type: 'substrate',
     urls: ['https://node.dot.zelcore.io/runtime'],
@@ -1205,11 +1200,6 @@ const checks = [
     urls: ['https://node.dot-2.zelcore.io/runtime'],
   },
   {
-    name: 'backend.wnd.zelcore.io',
-    type: 'substrate',
-    urls: ['https://backend.wnd.zelcore.io/runtime'],
-  },
-  {
     name: 'node.wnd.zelcore.io',
     type: 'substrate',
     urls: ['https://node.wnd.zelcore.io/runtime'],
@@ -1223,11 +1213,6 @@ const checks = [
     name: 'node.wnd-2.zelcore.io',
     type: 'substrate',
     urls: ['https://node.wnd-2.zelcore.io/runtime'],
-  },
-  {
-    name: 'backend.ksm.zelcore.io',
-    type: 'substrate',
-    urls: ['https://backend.ksm.zelcore.io/runtime'],
   },
   {
     name: 'node.ksm.zelcore.io',
