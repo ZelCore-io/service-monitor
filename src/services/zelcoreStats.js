@@ -1260,11 +1260,6 @@ const checks = [
     urls: ['https://backend.ada-2.zelcore.io/v1/balances/addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv', 'https://backend.ada-2.zelcore.io/v1/txs/addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv'],
   },
   {
-    name: 'backend.ada-3.zelcore.io',
-    type: 'cardano',
-    urls: ['https://backend.ada-3.zelcore.io/v1/balances/addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv', 'https://backend.ada-3.zelcore.io/v1/txs/addr1qy8s6f3nunlw05anczrkgspys2pkx4p9aa0jlzhj2gl5pjq87gdf9tcy2xsn28xlye3dghklckhup56axkjqqzv5dc2s38tvpv'],
-  },
-  {
     name: 'graphql.erg.zelcore.io',
     type: 'ergo',
     urls: ['https://graphql.erg.zelcore.io'],
@@ -1326,35 +1321,6 @@ const checks = [
     name: 'graphql.erg-2.zelcore.io',
     type: 'ergo',
     urls: ['https://graphql.erg-2.zelcore.io'],
-    data: [{
-      query: `query boxes($address: String, $take: Int, $skip: Int, $tokenId: String, $spent: Boolean) {
-        boxes(address: $address, take: $take, skip: $skip, tokenId: $tokenId, spent: $spent) {
-          boxId
-          transactionId
-          value
-          creationHeight
-          index
-          ergoTree
-          address
-          additionalRegisters
-          assets {
-            tokenId
-            amount
-          }
-        }
-      }`,
-      variables: {
-        address: '9gqbdQTNbjvvxddeFjg5DEQc7qWUWySC6FkFqvR78cNUz8aJS9Y',
-        spent: false,
-        skip: 0,
-        take: 50,
-      },
-    }],
-  },
-  {
-    name: 'graphql.erg-3.zelcore.io',
-    type: 'ergo',
-    urls: ['https://graphql.erg-3.zelcore.io'],
     data: [{
       query: `query boxes($address: String, $take: Int, $skip: Int, $tokenId: String, $spent: Boolean) {
         boxes(address: $address, take: $take, skip: $skip, tokenId: $tokenId, spent: $spent) {
