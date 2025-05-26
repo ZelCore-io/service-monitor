@@ -1473,7 +1473,7 @@ const checks = [
   },
   {
     name: 'kadena.dapp.runonflux.io',
-    type: 'fdm',
+    type: 'kdalb',
     urls: ['https://kadena.dapp.runonflux.io/fluxstatistics'],
   },
   {
@@ -1687,6 +1687,8 @@ async function checkServices() {
       } else if (check.type === 'fdm') { // must have 1 url
         const responseA = await getRequestNoCert(check.urls[0]);
         checkFDM(responseA, check.name);
+      } else if (check.type === 'kdalb') { // must have 1 url
+        await getRequestNoCert(check.urls[0]); // no throw is ok
       } else if (check.type === 'fusion') { // must have 2 urls
         const responseA = await getRequest(check.urls[0]);
         const responseB = await getRequest(check.urls[1]);
