@@ -1512,24 +1512,19 @@ const checks = [
     urls: ['https://node.kda-3.zelcore.io'],
   },
   {
-    name: 'kadena.dapp.runonflux.ioTXS',
-    type: 'kdaTXS',
-    urls: ['http://116.203.253.186:9876'],
-  },
-  {
     name: 'node.kda-1.zelcore.ioTXS',
     type: 'kdaTXS',
-    urls: ['http://54.39.237.205:9876'],
+    urls: ['http://5.39.57.12:9876'],
   },
   {
     name: 'node.kda-2.zelcore.ioTXS',
     type: 'kdaTXS',
-    urls: ['http://54.39.237.206:9876'],
+    urls: ['http:/5.39.57.13:9876'],
   },
   {
     name: 'node.kda-3.zelcore.ioTXS',
     type: 'kdaTXS',
-    urls: ['http://54.39.237.207:9876'],
+    urls: ['http://5.39.57.14:9876'],
   },
   {
     name: 'storage.runonflux.io',
