@@ -1519,7 +1519,7 @@ const checks = [
   {
     name: 'node.kda-2.zelcore.ioTXS',
     type: 'kdaTXS',
-    urls: ['http:/5.39.57.13:9876'],
+    urls: ['http://5.39.57.13:9876'],
   },
   {
     name: 'node.kda-3.zelcore.ioTXS',
