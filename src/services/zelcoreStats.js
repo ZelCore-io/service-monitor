@@ -782,21 +782,6 @@ const checks = [
     urls: ['https://blockbook.ltc-2.zelcore.io/api/v2/address/LVjoCYFESyTbKAEU5VbFYtb9EYyBXx55V5?pageSize=50', 'https://blockbook.ltc-2.zelcore.io/api/sync'],
   },
   {
-    name: 'blockbook.sin.zelcore.io',
-    type: 'blockbook',
-    urls: ['https://blockbook.sin.zelcore.io/api/v2/address/SXoqyAiZ6gQjafKmSnb2pmfwg7qLC8r4Sf?pageSize=50', 'https://blockbook.sin.zelcore.io/api/sync'],
-  },
-  {
-    name: 'blockbook.sin-1.zelcore.io',
-    type: 'blockbook',
-    urls: ['https://blockbook.sin-1.zelcore.io/api/v2/address/SXoqyAiZ6gQjafKmSnb2pmfwg7qLC8r4Sf?pageSize=50', 'https://blockbook.sin-1.zelcore.io/api/sync'],
-  },
-  {
-    name: 'blockbook.sin-2.zelcore.io',
-    type: 'blockbook',
-    urls: ['https://blockbook.sin-2.zelcore.io/api/v2/address/SXoqyAiZ6gQjafKmSnb2pmfwg7qLC8r4Sf?pageSize=50', 'https://blockbook.sin-2.zelcore.io/api/sync'],
-  },
-  {
     name: 'blockbook.zec.zelcore.io',
     type: 'blockbook',
     urls: ['https://blockbook.zec.zelcore.io/api/v2/address/t1UPSwfMYLe18ezbCqnR5QgdJGznzCUYHkj?pageSize=50', 'https://blockbook.zec.zelcore.io/api/sync'],
@@ -930,30 +915,6 @@ const checks = [
     name: 'electrumx2.runonflux.io',
     type: 'electrumx',
     urls: ['https://proxy.runonflux.io/?server=electrumx2.runonflux.io&port=50002&contype=tls&coin=zelcash&call=nicehistory&param=t3c51GjrkUg7pUiS8bzNdTnW2hD25egWUih'],
-  },
-  {
-    name: 'proxy.vbk.zelcore.io',
-    type: 'veriblock',
-    urls: ['https://proxy.vbk.zelcore.io/addressesbalance'],
-    data: [{
-      addresses: ['V5h6udgGe6eL4M9cYGi776WCP75URm'],
-    }],
-  },
-  {
-    name: 'proxy.vbk-1.zelcore.io',
-    type: 'veriblock',
-    urls: ['https://proxy.vbk-1.zelcore.io/addressesbalance'],
-    data: [{
-      addresses: ['V5h6udgGe6eL4M9cYGi776WCP75URm'],
-    }],
-  },
-  {
-    name: 'proxy.vbk-2.zelcore.io',
-    type: 'veriblock',
-    urls: ['https://proxy.vbk-2.zelcore.io/addressesbalance'],
-    data: [{
-      addresses: ['V5h6udgGe6eL4M9cYGi776WCP75URm'],
-    }],
   },
   {
     name: 'node.etc.zelcore.io',
