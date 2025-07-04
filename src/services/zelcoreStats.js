@@ -237,8 +237,8 @@ function checkFusion(i, j, name) {
 function kadenaCheckHeight(height, ip) {
   // console.log(height);
   const currentTime = new Date().getTime();
-  const baseTime = 1742095352000;
-  const baseHeight = 113077705;
+  const baseTime = 1751604558000;
+  const baseHeight = 119411967;
   const timeDifference = currentTime - baseTime;
   const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
   const currentBlockEstimation = baseHeight + blocksPassedInDifference;
