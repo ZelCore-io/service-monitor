@@ -572,6 +572,16 @@ const checks = [
     urls: ['https://explorer.flux-6.zelcore.io/api/blocks?limit=1', 'https://explorer.flux-6.zelcore.io/api/txs/?block=', 'https://explorer.flux-6.zelcore.io/api/tx/'],
   },
   {
+    name: 'explorer1.flux.zelcore.io-ext',
+    type: 'extendedInsight',
+    urls: ['https://explorer1.flux.zelcore.io/api/blocks?limit=1', 'https://explorer1.flux.zelcore.io/api/txs/?block=', 'https://explorer1.flux.zelcore.io/api/tx/'],
+  },
+  {
+    name: 'explorer2.flux.zelcore.io-ext',
+    type: 'extendedInsight',
+    urls: ['https://explorer2.flux.zelcore.io/api/blocks?limit=1', 'https://explorer2.flux.zelcore.io/api/txs/?block=', 'https://explorer2.flux.zelcore.io/api/tx/'],
+  },
+  {
     name: 'explorer.anon.zelcore.io',
     type: 'insight',
     urls: ['https://explorer.anon.zelcore.io/api/addr/AnY5LGSDdUgawBW8TQuFL1fJeTbswo65xeK', 'https://explorer.anon.zelcore.io/api/sync'],
