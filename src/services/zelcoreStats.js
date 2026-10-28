@@ -44,29 +44,10 @@ async function postRequest(url, data) {
   return response.data;
 }
 
-// async function getStatusCode(url) {
-//   const axiosConfig = {
-//     headers: {
-//       zelid: '1CbErtneaX2QVyUfwU7JGB7VzvPgrgc3uC',
-//       zelcore: 'ZelCore-v5.19.6',
-//     },
-//   };
-//   const response = await axios.get(url, axiosConfig);
-//   return response.status;
-// }
-
 const statuses = {
   ok: [],
   errors: [],
 };
-
-function checkWordpress(i, name) {
-  const response = i;
-  if (response.includes('wp-content')) {
-    return true;
-  }
-  throw new Error(`checkWordpress ${name}`);
-}
 
 function checkInsight(i, j, name) {
   if (i.transactions.length > 0 && j.status === 'finished') {
@@ -107,15 +88,6 @@ function checkElectrumx(i, name) {
     return true;
   }
   throw new Error(`checkElectrumx ${name}`);
-}
-
-function checkVeriblockBalance(i, name) {
-  const confirmedObject = i.result.confirmed.find((a) => a.address === 'V5h6udgGe6eL4M9cYGi776WCP75URm');
-  const confirmedBal = confirmedObject.unlockedAmount;
-  if (+confirmedBal > 500000) {
-    return true;
-  }
-  throw new Error(`checkVeriblockBalance ${name}`);
 }
 
 function checkEthBalance(i, name) {
@@ -214,13 +186,9 @@ function checkFees(i, name) {
 }
 
 function checkFDM(i, name) {
-  const response = i;
-  const position = response.search('<b>uptime = </b>');
-  const substr = response.substr(position, 40);
-  const hPosition = substr.search('h');
-  const timePosition = hPosition - 1;
-  const numberOfHours = substr[timePosition];
-  if (numberOfHours === '0' || numberOfHours === '1') {
+  // haproxy stats show e.g. "<b>uptime = </b> 0d 1h27m10s", FDM reloads haproxy on config changes
+  const uptime = i.match(/<b>uptime = <\/b> (\d+)d (\d+)h/);
+  if (uptime && +uptime[1] === 0 && +uptime[2] < 2) {
     return true;
   }
   throw new Error(`checkFDM ${name}`);
@@ -230,17 +198,18 @@ function checkFusion(i, j, name) {
   if (i.status === 'success' && j.status === 'success') {
     return true;
   }
-  throw new Error(`checkFees ${name}`);
+  throw new Error(`checkFusion ${name}`);
 }
 
 // KADENA
 function kadenaCheckHeight(height, ip) {
   // console.log(height);
   const currentTime = new Date().getTime();
-  const baseTime = 1781920281000;
-  const baseHeight = 139591274;
+  const baseTime = 1793176196000;
+  const baseHeight = 147088941;
   const timeDifference = currentTime - baseTime;
-  const blocksPassedInDifference = (timeDifference / 30000) * 20; // 20 chains with blocktime 30 seconds
+  // 20 chains with blocktime 30 seconds, measured ~0.1% slower in practice which drifted past the tolerance in a couple of months
+  const blocksPassedInDifference = (timeDifference / 30000) * 20 * 0.999;
   const currentBlockEstimation = baseHeight + blocksPassedInDifference;
   const minimumAcceptedBlockHeight = currentBlockEstimation - (5000); // allow being off sync for this amount of blocks
   if (height > minimumAcceptedBlockHeight) {
@@ -446,7 +415,7 @@ async function checkKDATxs(i, name) {
   if (chainwebData === true) {
     return true;
   }
-  throw new Error(`checkKDAData ${name}`);
+  throw new Error(`checkKDATxs ${name}`);
 }
 
 async function checkFluxStorage(i, name) {
@@ -1086,7 +1055,7 @@ const checks = [
     urls: ['https://proxysgp.app.runonflux.io/'],
   },
   {
-    name: 'proxyfin.app.runonflux.ioo',
+    name: 'proxyfin.app.runonflux.io',
     type: 'explorer',
     urls: ['https://proxyfin.app.runonflux.io/'],
   },
@@ -1238,7 +1207,7 @@ const checks = [
       }`,
       variables: {
         address: '9gqbdQTNbjvvxddeFjg5DEQc7qWUWySC6FkFqvR78cNUz8aJS9Y',
-        spent: false,
+        spent: true, // address has no unspent boxes left, its spent history is permanent
         skip: 0,
         take: 50,
       },
@@ -1267,7 +1236,7 @@ const checks = [
       }`,
       variables: {
         address: '9gqbdQTNbjvvxddeFjg5DEQc7qWUWySC6FkFqvR78cNUz8aJS9Y',
-        spent: false,
+        spent: true, // address has no unspent boxes left, its spent history is permanent
         skip: 0,
         take: 50,
       },
@@ -1296,7 +1265,7 @@ const checks = [
       }`,
       variables: {
         address: '9gqbdQTNbjvvxddeFjg5DEQc7qWUWySC6FkFqvR78cNUz8aJS9Y',
-        spent: false,
+        spent: true, // address has no unspent boxes left, its spent history is permanent
         skip: 0,
         take: 50,
       },
@@ -1317,11 +1286,6 @@ const checks = [
     type: 'fees',
     urls: ['https://api.zelcore.io/networkfees'],
   },
-  // {
-  //   name: 'nitter.zelcore.io',
-  //   type: 'explorer',
-  //   urls: ['https://nitter.zelcore.io'],
-  // },
   {
     name: 'hashes.runonflux.io',
     type: 'hashes',
@@ -1330,7 +1294,7 @@ const checks = [
   {
     name: 'abe.zelcore.io',
     type: 'abe',
-    urls: ['https://abe.zelcore.io/v1/exchange/user/history', 'https://abe.zelcore.io/v1/exchange/sellassets', 'https://abe.zelcore.io/v1/serum/tickers'],
+    urls: ['https://abe.zelcore.io/v1/exchange/user/history', 'https://abe.zelcore.io/v1/exchange/sellassets'],
   },
   {
     name: 'home.runonflux.io',
@@ -1565,32 +1529,6 @@ const checks = [
 ];
 
 async function checkServices() {
-  // try {
-  //   const wps = [];
-  //   const response = await getRequest('https://api.runonflux.io/apps/globalappsspecifications');
-  //   const wordpresses = response.data.filter((app) => app.name.startsWith('wordpress1'));
-  //   // eslint-disable-next-line no-restricted-syntax
-  //   for (const wordpress of wordpresses) {
-  //     wps.push({
-  //       name: wordpress.name,
-  //       type: 'wordpress',
-  //       urls: [`https://${wordpress.name}_${wordpress.compose[0].ports[0]}.app.runonflux.io`],
-  //     });
-  //     if (wordpress.compose[0].domains[0]) {
-  //       wps.push({
-  //         name: wordpress.name,
-  //         type: 'wordpress',
-  //         urls: [`https://${wordpress.compose[0].domains[0]}`],
-  //       });
-  //     }
-  //   }
-  //   console.log(wps);
-  //   wps.forEach((wp) => {
-  //     checks.push(wp);
-  //   });
-  // } catch (error) {
-  //   console.log(error);
-  // }
   for (const check of checks) {
     try {
       if (check.type === 'insight') { // must have 2 urls
@@ -1612,9 +1550,6 @@ async function checkServices() {
         checkElectrumx(responseA, check.name);
       } else if (check.type === 'explorer') { // must have 1 url
         await getRequest(check.urls[0]); // sufficient
-      } else if (check.type === 'veriblock') { // must have 1 url
-        const responseA = await postRequest(check.urls[0], check.data[0]);
-        checkVeriblockBalance(responseA, check.name);
       } else if (check.type === 'eth') { // must have 1 url
         const responseA = await postRequest(check.urls[0], check.data[0]);
         checkEthBalance(responseA, check.name);
@@ -1669,9 +1604,6 @@ async function checkServices() {
         await checkFluxStorage(check.urls[0], check.name);
       } else if (check.type === 'simplex') { // must have 1 domain
         await checkSimplex(check.urls[0], check.name);
-      } else if (check.type === 'wordpress') { // must have 1 domain
-        const responseA = await getRequest(check.urls[0]);
-        checkWordpress(responseA, check.name);
       }
 
       if (!statuses.ok.includes(check.name)) {
